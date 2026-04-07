@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatContext · DJ</title>
+  <link rel="stylesheet" href="../css/shared.css" />
+  <style>
+    .page { max-width: 800px; margin: 0 auto; padding: 90px 24px 60px; }
+    .project-hero {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow); margin-bottom: 24px;
+    }
+    .project-icon-lg {
+      width: 64px; height: 64px; border-radius: 16px; background: #fdf4ff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; margin-bottom: 20px;
+    }
+    .project-hero h1 { font-size: 2rem; margin-bottom: 8px; }
+    .project-hero p { color: var(--muted); font-size: 1rem; max-width: 560px; margin-bottom: 24px; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .stats-row { display: flex; gap: 24px; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+    .stat { display: flex; flex-direction: column; }
+    .stat strong { font-size: 1.2rem; font-weight: 800; }
+    .stat span { font-size: .78rem; color: var(--muted); }
+
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 32px; box-shadow: var(--shadow); margin-bottom: 20px; }
+    .card h2 { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 20px; }
+    .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .feature { display: flex; gap: 12px; }
+    .feature-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+    .feature h3 { font-size: .92rem; font-weight: 700; margin-bottom: 4px; }
+    .feature p { font-size: .83rem; color: var(--muted); }
+
+    .arch-diagram { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: wrap; }
+    .arch-step {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 18px; text-align: center;
+      font-size: .82rem; font-weight: 600; min-width: 100px;
+    }
+    .arch-step .icon { font-size: 1.4rem; display: block; margin-bottom: 4px; }
+    .arch-arrow { color: var(--muted); font-size: 1.2rem; padding: 0 6px; }
+
+    .code-block {
+      background: #0f172a; color: #e2e8f0; border-radius: 10px;
+      padding: 20px 24px; font-family: monospace; font-size: .85rem;
+      line-height: 1.7; overflow-x: auto;
+    }
+    [data-theme="dark"] .code-block { background: #020617; border: 1px solid var(--border); }
+    .code-block .c { color: #64748b; }
+    .code-block .k { color: #60a5fa; }
+    .code-block .s { color: #86efac; }
+
+    @media (max-width: 600px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .project-hero { padding: 24px; }
+      .arch-diagram { flex-direction: column; }
+      .arch-arrow { transform: rotate(90deg); }
+    }
+  </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav>
+  <a class="nav-logo" href="../index.html">DJ.dev</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#projects">项目</a></li>
+      <li><a href="../index.html#contact">联系</a></li>
+    </ul>
+    <button class="theme-btn" id="themeToggle">🌙</button>
+  </div>
+</nav>
+
+<div class="page">
+  <a class="back-link fade-in" href="../index.html">← 返回主页</a>
+
+  <div class="project-hero fade-in">
+    <div class="project-icon-lg">🤖</div>
+    <h1>ChatContext</h1>
+    <p>基于 LLM 的文档问答系统。上传 PDF、Markdown 或网页内容，用自然语言提问，系统返回精准答案并附带原文引用，告别信息搜索焦虑。</p>
+    <div class="tag-row">
+      <span class="tag">Python</span><span class="tag">LangChain</span>
+      <span class="tag">FastAPI</span><span class="tag">pgvector</span>
+      <span class="tag-accent">AI</span><span class="tag-accent">开源</span>
+    </div>
+    <div class="btn-row">
+      <a class="btn btn-primary btn-sm" href="https://github.com/yourname/chatcontext" target="_blank" rel="noopener">🐙 查看 GitHub</a>
+      <a class="btn btn-outline btn-sm" href="#" target="_blank" rel="noopener">🌐 在线 Demo</a>
+    </div>
+    <div class="stats-row">
+      <div class="stat"><strong>890</strong><span>GitHub Stars</span></div>
+      <div class="stat"><strong>120</strong><span>Forks</span></div>
+      <div class="stat"><strong>PDF/MD</strong><span>支持格式</span></div>
+      <div class="stat"><strong>MIT</strong><span>开源协议</span></div>
+    </div>
+  </div>
+
+  <div class="card fade-in">
+    <h2>系统架构</h2>
+    <div class="arch-diagram">
+      <div class="arch-step"><span class="icon">📄</span>文档上传</div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-step"><span class="icon">✂️</span>分块处理</div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-step"><span class="icon">🔢</span>向量化</div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-step"><span class="icon">🗄</span>向量存储</div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-step"><span class="icon">💬</span>问答生成</div>
+    </div>
+  </div>
+
+  <div class="card fade-in">
+    <h2>核心功能</h2>
+    <div class="features-grid">
+      <div class="feature"><div class="feature-icon">📎</div><div><h3>多格式支持</h3><p>支持 PDF、Markdown、TXT、网页 URL，自动解析并清洗文本内容。</p></div></div>
+      <div class="feature"><div class="feature-icon">🔍</div><div><h3>语义检索</h3><p>使用向量相似度搜索，比关键词搜索更理解语义，找到真正相关的段落。</p></div></div>
+      <div class="feature"><div class="feature-icon">📌</div><div><h3>引用溯源</h3><p>每条答案都附带原文段落和页码，方便核实信息来源，杜绝幻觉。</p></div></div>
+      <div class="feature"><div class="feature-icon">💾</div><div><h3>对话历史</h3><p>支持多轮对话，自动记忆上下文，连续追问不丢失语境。</p></div></div>
+    </div>
+  </div>
+
+  <div class="card fade-in">
+    <h2>快速部署</h2>
+    <div class="code-block"><span class="c"># 克隆项目</span>
+<span class="k">git</span> clone https://github.com/yourname/chatcontext
+<span class="k">cd</span> chatcontext
+
+<span class="c"># 配置环境变量</span>
+<span class="k">cp</span> .env.example .env
+<span class="c"># 编辑 .env，填入 OPENAI_API_KEY</span>
+
+<span class="c"># 一键启动（Docker）</span>
+<span class="k">docker compose up</span> -d</div>
+  </div>
+</div>
+
+<footer><p>© 2026 DJ · <a href="../index.html">返回主页</a></p></footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

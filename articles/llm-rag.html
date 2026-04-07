@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LLM 应用开发实践：RAG 系统 · DJ</title>
+  <link rel="stylesheet" href="../css/shared.css" />
+  <style>
+    .page { max-width: 720px; margin: 0 auto; padding: 90px 24px 60px; }
+    .article-header { margin-bottom: 40px; }
+    .article-header h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.2; margin-bottom: 16px; }
+    .article-meta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: .85rem; margin-bottom: 24px; }
+    .article-meta .sep { color: var(--border); }
+    .article-body { font-size: .97rem; line-height: 1.85; }
+    .article-body p { margin-bottom: 20px; color: var(--muted); }
+    .article-body p strong { color: var(--text); }
+    .article-body h2 { font-size: 1.25rem; margin: 36px 0 14px; }
+    .article-body h3 { font-size: 1rem; margin: 24px 0 10px; }
+    .article-body ul, .article-body ol { padding-left: 20px; margin-bottom: 20px; }
+    .article-body li { color: var(--muted); margin-bottom: 6px; }
+    .article-body code { background: var(--bg2); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: .88em; color: var(--accent); }
+    .callout {
+      background: var(--accent-light); border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 24px 0;
+    }
+    .callout p { color: var(--text) !important; margin: 0; font-size: .9rem; }
+    .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+    .comp-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+    .comp-card h3 { font-size: .9rem; margin-bottom: 10px; }
+    .comp-card ul { padding-left: 16px; margin: 0; }
+    .comp-card li { font-size: .83rem; color: var(--muted); margin-bottom: 5px; }
+    .divider { height: 1px; background: var(--border); margin: 40px 0; }
+    .related { margin-top: 40px; }
+    .related h3 { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 16px; }
+    .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .related-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 16px; text-decoration: none; color: var(--text);
+      transition: all .2s; font-size: .88rem; font-weight: 600;
+    }
+    .related-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .related-card small { display: block; color: var(--muted); font-weight: 400; margin-top: 4px; font-size: .78rem; }
+    @media (max-width: 600px) { .comparison, .related-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav>
+  <a class="nav-logo" href="../index.html">DJ.dev</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#articles">文章</a></li>
+      <li><a href="../index.html#contact">联系</a></li>
+    </ul>
+    <button class="theme-btn" id="themeToggle">🌙</button>
+  </div>
+</nav>
+
+<div class="page">
+  <a class="back-link fade-in" href="../index.html">← 返回主页</a>
+
+  <div class="article-header fade-in">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+      <span class="tag-accent">AI</span>
+      <span class="tag">LLM</span><span class="tag">RAG</span><span class="tag">Python</span>
+    </div>
+    <h1>LLM 应用开发实践：RAG 系统的构建与优化</h1>
+    <div class="article-meta">
+      <span>DJ</span><span class="sep">·</span>
+      <span>2026-02-28</span><span class="sep">·</span>
+      <span>12 分钟阅读</span>
+    </div>
+  </div>
+
+  <div class="article-body fade-in">
+    <p>RAG（Retrieval-Augmented Generation，检索增强生成）是目前 LLM 应用落地最成熟的方案之一。本文基于我构建 <a href="../projects/chatcontext.html">ChatContext</a> 的实战经验，从向量数据库选型到 Prompt 工程，系统梳理 RAG 的核心环节。</p>
+
+    <div class="callout"><p>⚠️ 本文假设你对 LLM 基本概念（Token、Embedding、Prompt）有一定了解。代码示例使用 Python + LangChain。</p></div>
+
+    <h2>为什么需要 RAG</h2>
+    <p>LLM 有两个固有缺陷：<strong>知识截止日期</strong>和<strong>上下文窗口限制</strong>。当你需要模型回答关于你公司内部文档、最新数据或私有知识库的问题时，微调成本太高，而 RAG 是更轻量的解法。</p>
+    <p>RAG 的核心思路是：<strong>先检索，再生成</strong>。在提问时，先从知识库中检索相关片段，将其塞入 Prompt，再让模型基于这些上下文生成答案。</p>
+
+    <h2>第一步：文档处理与分块</h2>
+    <p>文档处理是整个流程中最容易被忽视、也最影响效果的环节。分块策略直接决定检索质量：</p>
+    <ul>
+      <li><strong>块太大：</strong>语义噪声多，检索精度下降，同时占用更多上下文窗口</li>
+      <li><strong>块太小：</strong>缺少上下文，模型无法生成完整答案</li>
+    </ul>
+    <p>我的经验是：对于结构化文档（如技术手册），按标题层级分块效果最好；对于非结构化文本，使用 <code>RecursiveCharacterTextSplitter</code>，设置 <code>chunk_size=512</code>、<code>overlap=64</code> 是一个不错的起点。</p>
+
+    <h2>第二步：向量数据库选型</h2>
+    <div class="comparison">
+      <div class="comp-card">
+        <h3>🏠 本地/自托管</h3>
+        <ul>
+          <li>Chroma — 开发环境首选，零配置</li>
+          <li>Qdrant — 生产级，性能优秀</li>
+          <li>pgvector — 已有 PostgreSQL 首选</li>
+        </ul>
+      </div>
+      <div class="comp-card">
+        <h3>☁️ 云服务</h3>
+        <ul>
+          <li>Pinecone — 最成熟，文档完善</li>
+          <li>Weaviate Cloud — 支持混合搜索</li>
+          <li>Supabase Vector — 全栈友好</li>
+        </ul>
+      </div>
+    </div>
+    <p>我在 ChatContext 中使用 <code>pgvector</code>，因为项目本身已经使用 PostgreSQL，统一技术栈降低了运维复杂度。</p>
+
+    <h2>第三步：提升检索质量</h2>
+    <p>朴素的向量相似度搜索效果有限，以下几个优化对实际效果提升明显：</p>
+    <h3>混合搜索（Hybrid Search）</h3>
+    <p>将向量搜索（语义相似）和关键词搜索（BM25）的结果融合，用 RRF（Reciprocal Rank Fusion）重排序。对专业术语、产品名称等查询效果显著提升。</p>
+    <h3>查询改写（Query Rewriting）</h3>
+    <p>用 LLM 将用户的口语化提问改写为更适合检索的标准表达，或扩展为多个子查询，再合并结果。</p>
+    <h3>父子分块（Parent-Child Chunking）</h3>
+    <p>检索时用小块（高精度），生成时返回其父块（完整上下文）。这是目前效果最好的分块策略之一。</p>
+
+    <h2>第四步：Prompt 工程</h2>
+    <p>一个好的 RAG Prompt 应该包含：清晰的角色定义、上下文注入格式、引用要求、拒绝回答的条件（当检索内容不足以支撑答案时，让模型明说，而不是编造）。</p>
+    <p>关键原则：<strong>告诉模型它不知道什么，比告诉它知道什么更重要。</strong></p>
+
+    <h2>常见问题 &amp; 解决方案</h2>
+    <ul>
+      <li><strong>幻觉问题：</strong>要求模型每句话都引用来源，无法引用则不输出</li>
+      <li><strong>答案不完整：</strong>增加检索 Top-K 数量，或使用父子分块扩大上下文</li>
+      <li><strong>延迟高：</strong>异步预处理文档；对高频查询缓存 Embedding 结果</li>
+    </ul>
+
+    <h2>总结</h2>
+    <p>RAG 并不是银弹，它本质上是在<strong>检索质量和生成质量之间找平衡</strong>。建议从最简单的方案开始，先跑通 pipeline，再逐步加入混合搜索、重排序等优化，每次只改一个变量，这样才能知道每个优化真正带来了多少收益。</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="related fade-in">
+    <h3>相关文章</h3>
+    <div class="related-grid">
+      <a class="related-card" href="lowcode.html">从零设计一个低代码平台<small>2026-03-15 · 8 分钟</small></a>
+      <a class="related-card" href="growth.html">工程师成长路径<small>2025-12-10 · 6 分钟</small></a>
+    </div>
+  </div>
+</div>
+
+<footer><p>© 2026 DJ · <a href="../index.html">返回主页</a></p></footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

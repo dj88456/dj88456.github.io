@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>前端性能优化的系统方法论 · DJ</title>
+  <link rel="stylesheet" href="../css/shared.css" />
+  <style>
+    .page { max-width: 720px; margin: 0 auto; padding: 90px 24px 60px; }
+    .article-header { margin-bottom: 40px; }
+    .article-header h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.2; margin-bottom: 16px; }
+    .article-meta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: .85rem; margin-bottom: 24px; }
+    .article-meta .sep { color: var(--border); }
+    .article-body { font-size: .97rem; line-height: 1.85; }
+    .article-body p { margin-bottom: 20px; color: var(--muted); }
+    .article-body p strong { color: var(--text); }
+    .article-body h2 { font-size: 1.25rem; margin: 36px 0 14px; }
+    .article-body h3 { font-size: 1rem; margin: 24px 0 10px; }
+    .article-body ul, .article-body ol { padding-left: 20px; margin-bottom: 20px; }
+    .article-body li { color: var(--muted); margin-bottom: 6px; }
+    .article-body code { background: var(--bg2); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: .88em; color: var(--accent); }
+    .callout {
+      background: var(--accent-light); border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 24px 0;
+    }
+    .callout p { color: var(--text) !important; margin: 0; font-size: .9rem; }
+    .metrics-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 24px 0; }
+    .metric-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 16px; text-align: center;
+    }
+    .metric-name { font-size: .78rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+    .metric-desc { font-size: .8rem; color: var(--muted); }
+    .divider { height: 1px; background: var(--border); margin: 40px 0; }
+    .related { margin-top: 40px; }
+    .related h3 { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 16px; }
+    .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .related-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 16px; text-decoration: none; color: var(--text);
+      transition: all .2s; font-size: .88rem; font-weight: 600;
+    }
+    .related-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .related-card small { display: block; color: var(--muted); font-weight: 400; margin-top: 4px; font-size: .78rem; }
+    @media (max-width: 600px) { .metrics-grid { grid-template-columns: 1fr 1fr; } .related-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav>
+  <a class="nav-logo" href="../index.html">DJ.dev</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#articles">文章</a></li>
+      <li><a href="../index.html#contact">联系</a></li>
+    </ul>
+    <button class="theme-btn" id="themeToggle">🌙</button>
+  </div>
+</nav>
+
+<div class="page">
+  <a class="back-link fade-in" href="../index.html">← 返回主页</a>
+
+  <div class="article-header fade-in">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+      <span class="tag-accent">性能</span>
+      <span class="tag">前端</span><span class="tag">Web Vitals</span><span class="tag">工程化</span>
+    </div>
+    <h1>前端性能优化的系统方法论</h1>
+    <div class="article-meta">
+      <span>DJ</span><span class="sep">·</span>
+      <span>2026-01-20</span><span class="sep">·</span>
+      <span>10 分钟阅读</span>
+    </div>
+  </div>
+
+  <div class="article-body fade-in">
+    <p>性能优化是一个老话题，但很多团队的做法仍然停留在"Lighthouse 跑个分，哪里红了修哪里"的阶段。这种方式缺乏系统性，往往修了一处，别处又劣化了，最终陷入"打地鼠"的循环。</p>
+    <p>本文分享我在字节跳动飞书团队主导性能优化项目时形成的方法论：<strong>先建立度量体系，再找瓶颈，再优化，再验收</strong>。</p>
+
+    <h2>第一步：定义正确的性能指标</h2>
+    <p>Lighthouse 分数是一个综合指标，适合宏观对比，但不适合作为优化目标。真正应该关注的是 <strong>Core Web Vitals</strong>：</p>
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="metric-name">LCP</div><div class="metric-desc">最大内容绘制，衡量主要内容的加载速度，目标 &lt; 2.5s</div></div>
+      <div class="metric-card"><div class="metric-name">INP</div><div class="metric-desc">交互到下一次绘制，衡量响应速度，目标 &lt; 200ms</div></div>
+      <div class="metric-card"><div class="metric-name">CLS</div><div class="metric-desc">累积布局偏移，衡量视觉稳定性，目标 &lt; 0.1</div></div>
+    </div>
+    <p>更重要的是：<strong>用真实用户数据（RUM）而非实验室数据做决策</strong>。Lighthouse 是在理想网络条件下跑的，和你的真实用户体验差距可能很大。</p>
+
+    <div class="callout"><p>💡 推荐使用 <code>web-vitals</code> 库采集真实用户数据，上报到自建监控或 Google Analytics 4，这是一切优化工作的数据基础。</p></div>
+
+    <h2>第二步：找到真正的瓶颈</h2>
+    <p>性能问题通常集中在以下几个类别，优先级从高到低：</p>
+
+    <h3>1. 网络层：资源加载</h3>
+    <ul>
+      <li>使用 <code>rel="preload"</code> 预加载关键资源（字体、Hero 图片）</li>
+      <li>图片统一使用 WebP/AVIF 格式，配合 <code>srcset</code> 响应式尺寸</li>
+      <li>第三方脚本使用 <code>async</code> 或 <code>defer</code>，非关键资源延迟加载</li>
+      <li>开启 HTTP/2 和 Brotli 压缩</li>
+    </ul>
+
+    <h3>2. 渲染层：减少阻塞</h3>
+    <ul>
+      <li>CSS 关键路径内联，非关键 CSS 异步加载</li>
+      <li>长任务（&gt;50ms）分片处理，使用 <code>scheduler.yield()</code> 让出主线程</li>
+      <li>动画优先使用 CSS transform/opacity，触发 GPU 合成层</li>
+    </ul>
+
+    <h3>3. JavaScript：包体积与执行</h3>
+    <ul>
+      <li>路由级代码分割（<code>React.lazy</code> + <code>Suspense</code>）</li>
+      <li>Tree Shaking 确保生效：避免 <code>import *</code>，使用 ESM 格式的库</li>
+      <li>Bundle 分析工具（<code>rollup-plugin-visualizer</code>）定期检查大包</li>
+      <li>使用 <code>React.memo</code>、<code>useMemo</code>、<code>useCallback</code> 避免无效重渲染</li>
+    </ul>
+
+    <h2>第三步：建立可持续的优化机制</h2>
+    <p>一次性优化的效果通常会随着功能迭代逐渐衰减。真正有效的方式是<strong>把性能指标纳入 CI/CD 流程</strong>：</p>
+    <ul>
+      <li>每次 PR 合并后自动运行 Lighthouse CI，对比与主分支的差异</li>
+      <li>设置性能预算（Performance Budget），超出阈值阻断部署</li>
+      <li>建立性能看板，让团队每周 Review 真实用户的 Core Web Vitals 趋势</li>
+    </ul>
+
+    <h2>一个实战案例</h2>
+    <p>在飞书文档项目中，我们发现真实用户的 LCP P75 达到了 4.2s，远超目标。分析后定位到两个主要原因：</p>
+    <ol>
+      <li>编辑器初始化 JS 包体积过大（1.8MB gzipped），阻塞了主线程约 1.5s</li>
+      <li>文档内容的首屏图片没有设置尺寸，导致 CLS 同时恶化</li>
+    </ol>
+    <p>针对第一个问题，我们将编辑器核心模块与插件系统分离，实现按需加载，包体积降至 600KB；第二个问题通过统一图片容器的宽高比解决。最终 LCP P75 降至 2.1s，达标。</p>
+
+    <h2>总结</h2>
+    <p>性能优化的本质是<strong>对用户感知体验负责</strong>。度量 → 分析 → 优化 → 验收，这个闭环缺一不可。没有度量就没有方向，没有验收就不知道是否真的有效。</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="related fade-in">
+    <h3>相关文章</h3>
+    <div class="related-grid">
+      <a class="related-card" href="lowcode.html">从零设计一个低代码平台<small>2026-03-15 · 8 分钟</small></a>
+      <a class="related-card" href="growth.html">工程师成长路径<small>2025-12-10 · 6 分钟</small></a>
+    </div>
+  </div>
+</div>
+
+<footer><p>© 2026 DJ · <a href="../index.html">返回主页</a></p></footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

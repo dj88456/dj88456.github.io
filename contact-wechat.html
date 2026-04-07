@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DJ · 微信联系</title>
+  <link rel="stylesheet" href="css/shared.css" />
+  <style>
+    .page { max-width: 480px; margin: 0 auto; padding: 100px 24px 60px; text-align: center; }
+    .qr-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 40px 32px;
+      box-shadow: var(--shadow-lg);
+    }
+    .qr-placeholder {
+      width: 200px; height: 200px; margin: 0 auto 24px;
+      background: var(--bg2); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px dashed var(--border); position: relative; overflow: hidden;
+    }
+    .qr-grid {
+      display: grid; grid-template-columns: repeat(7,1fr); gap: 3px;
+      width: 160px; opacity: .25;
+    }
+    .qr-cell {
+      aspect-ratio: 1; border-radius: 2px; background: var(--text);
+    }
+    .qr-label { font-size: .75rem; color: var(--muted); position: absolute; bottom: 10px; }
+    .qr-card h2 { font-size: 1.3rem; margin-bottom: 8px; }
+    .qr-card p { font-size: .9rem; color: var(--muted); margin-bottom: 28px; }
+    .wechat-id {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--bg2); padding: 10px 20px; border-radius: 10px;
+      font-size: .95rem; font-weight: 600; margin-bottom: 28px;
+      cursor: pointer; transition: all .2s; border: 1px solid var(--border);
+      position: relative;
+    }
+    .wechat-id:hover { border-color: var(--accent); color: var(--accent); }
+    .copy-tip {
+      position: absolute; top: -32px; left: 50%; transform: translateX(-50%);
+      background: var(--text); color: var(--bg); font-size: .72rem;
+      padding: 4px 10px; border-radius: 6px; white-space: nowrap;
+      opacity: 0; transition: opacity .2s; pointer-events: none;
+    }
+    .copy-tip.show { opacity: 1; }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<nav>
+  <a class="nav-logo" href="index.html">DJ.dev</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html#contact">联系</a></li>
+    </ul>
+    <button class="theme-btn" id="themeToggle" aria-label="切换主题">🌙</button>
+  </div>
+</nav>
+
+<div class="page">
+  <a class="back-link fade-in" href="index.html">← 返回主页</a>
+  <div class="qr-card fade-in delay-1">
+    <div class="qr-placeholder">
+      <!-- 模拟二维码图案 -->
+      <div class="qr-grid" id="qrGrid"></div>
+      <span class="qr-label">替换为真实二维码</span>
+    </div>
+    <h2>扫码添加微信</h2>
+    <p>用微信扫描上方二维码，或搜索以下微信号直接添加。</p>
+    <div class="wechat-id" id="copyBtn" onclick="copyId()">
+      <span>💬</span>
+      <span id="wechatIdText">your_wechat_id</span>
+      <span style="font-size:.8rem;color:var(--muted);font-weight:400;">点击复制</span>
+      <div class="copy-tip" id="copyTip">已复制！</div>
+    </div>
+    <br/>
+    <a class="btn btn-primary" href="mailto:your@email.com">或发送邮件联系 →</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 DJ · <a href="index.html">返回主页</a></p>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  // 生成模拟二维码图案
+  const grid = document.getElementById("qrGrid");
+  for (let i = 0; i < 49; i++) {
+    const cell = document.createElement("div");
+    cell.className = "qr-cell";
+    cell.style.opacity = Math.random() > 0.45 ? "1" : "0";
+    grid.appendChild(cell);
+  }
+
+  function copyId() {
+    const id = document.getElementById("wechatIdText").textContent;
+    navigator.clipboard.writeText(id).then(() => {
+      const tip = document.getElementById("copyTip");
+      tip.classList.add("show");
+      setTimeout(() => tip.classList.remove("show"), 2000);
+    });
+  }
+</script>
+</body>
+</html>
