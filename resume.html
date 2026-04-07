@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DJ · 简历</title>
+  <title>Alex Dai · Resume</title>
   <link rel="stylesheet" href="css/shared.css" />
   <style>
     body { background: var(--bg); }
     .page { max-width: 800px; margin: 0 auto; padding: 90px 24px 60px; }
-
     .resume-header {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 36px 40px;
@@ -16,13 +15,10 @@
       box-shadow: var(--shadow); margin-bottom: 24px; gap: 24px; flex-wrap: wrap;
     }
     .resume-name { font-size: 2rem; font-weight: 800; letter-spacing: -1px; }
-    .resume-title {
-      font-size: 1rem; color: var(--accent); font-weight: 600; margin-top: 4px;
-    }
+    .resume-title { font-size: 1rem; color: var(--accent); font-weight: 600; margin-top: 4px; }
     .resume-meta { margin-top: 16px; display: flex; flex-direction: column; gap: 5px; }
     .resume-meta span { font-size: .85rem; color: var(--muted); }
     .resume-actions { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
-
     .resume-section {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 28px 32px;
@@ -34,7 +30,6 @@
       padding-bottom: 10px; border-bottom: 1px solid var(--border);
     }
     .resume-section p { font-size: .9rem; color: var(--muted); line-height: 1.7; }
-
     .exp-item { margin-bottom: 24px; }
     .exp-item:last-child { margin-bottom: 0; }
     .exp-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 2px; }
@@ -42,29 +37,23 @@
     .exp-date { font-size: .78rem; color: var(--accent); font-weight: 600; background: var(--accent-light); padding: 2px 10px; border-radius: 20px; white-space: nowrap; }
     .exp-org { font-size: .85rem; color: var(--muted); margin-bottom: 8px; }
     .exp-points { padding-left: 0; display: flex; flex-direction: column; gap: 4px; }
-    .exp-points li {
-      font-size: .85rem; color: var(--muted); list-style: none;
-      padding-left: 14px; position: relative;
-    }
+    .exp-points li { font-size: .85rem; color: var(--muted); list-style: none; padding-left: 14px; position: relative; }
     .exp-points li::before { content: "›"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
-
     .skills-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
     .skill-group h3 { font-size: .85rem; font-weight: 700; margin-bottom: 8px; }
     .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .skill-tag {
-      background: var(--bg2); color: var(--muted);
-      padding: 4px 10px; border-radius: 6px; font-size: .78rem; font-weight: 500;
-    }
-
+    .skill-tag { background: var(--bg2); color: var(--muted); padding: 4px 10px; border-radius: 6px; font-size: .78rem; font-weight: 500; }
+    .certs-list { display: flex; flex-direction: column; gap: 10px; }
+    .cert-item { display: flex; align-items: center; gap: 12px; font-size: .88rem; }
+    .cert-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+    .cert-name { font-weight: 600; }
+    .cert-issuer { color: var(--muted); font-size: .78rem; }
     .edu-item { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; }
     .edu-info h3 { font-size: .95rem; font-weight: 700; }
     .edu-info p { font-size: .85rem; color: var(--muted); margin-top: 2px; }
     .edu-date { font-size: .78rem; color: var(--accent); font-weight: 600; background: var(--accent-light); padding: 2px 10px; border-radius: 20px; white-space: nowrap; }
-
     .awards-list { display: flex; flex-direction: column; gap: 8px; }
     .award-item { display: flex; align-items: center; gap: 10px; font-size: .88rem; }
-    .award-icon { font-size: 1rem; }
-
     @media print {
       nav, .resume-actions .btn-outline, #progress-bar { display: none !important; }
       .page { padding-top: 20px; }
@@ -78,159 +67,213 @@
   </style>
 </head>
 <body>
-
 <div id="progress-bar"></div>
-
 <nav>
-  <a class="nav-logo" href="index.html">DJ.dev</a>
+  <a class="nav-logo" href="index.html">Alex Dai</a>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="index.html#about">关于</a></li>
-      <li><a href="index.html#projects">项目</a></li>
-      <li><a href="index.html#contact">联系</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
     </ul>
-    <button class="theme-btn" id="themeToggle" aria-label="切换主题">🌙</button>
+    <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">🌙</button>
   </div>
 </nav>
 
 <div class="page">
-  <a class="back-link fade-in" href="index.html">← 返回主页</a>
+  <a class="back-link fade-in" href="index.html">← Back to Home</a>
 
   <div class="resume-header fade-in">
     <div>
-      <div class="resume-name">DJ</div>
-      <div class="resume-title">高级全栈工程师 · 产品构建者</div>
+      <div class="resume-name">Alex Dai</div>
+      <div class="resume-title">IT Architect II · Azure Solutions Architect Expert</div>
       <div class="resume-meta">
-        <span>📍 北京，中国</span>
-        <span>✉️ your@email.com</span>
-        <span>🐙 github.com/yourname</span>
-        <span>🌐 yoursite.com</span>
+        <span>📍 Edmonton, Alberta, Canada</span>
+        <span>✉️ daijian.gov@gmail.com</span>
+        <span>💼 linkedin.com/in/alex-dai</span>
+        <span>🐙 github.com/dj88456</span>
       </div>
     </div>
     <div class="resume-actions">
-      <button class="btn btn-primary btn-sm" onclick="window.print()">🖨 打印 / 保存 PDF</button>
-      <a class="btn btn-outline btn-sm" href="index.html#contact">✉ 联系我</a>
+      <button class="btn btn-primary btn-sm" onclick="window.print()">🖨 Print / Save PDF</button>
+      <a class="btn btn-outline btn-sm" href="index.html#contact">✉ Contact Me</a>
     </div>
   </div>
 
   <div class="resume-section fade-in">
-    <h2>个人简介</h2>
-    <p>5 年以上全栈开发经验，专注于前端工程化与后端系统设计。曾就职于字节跳动、阿里巴巴，以及 B 轮 SaaS 创业公司。擅长从 0 到 1 构建产品，同时具备带领小团队交付复杂项目的经验。对 AI 应用开发、开源工具和用户体验有持续热情。</p>
+    <h2>Summary</h2>
+    <p>Microsoft Certified Azure Solutions Architect Expert with over 8 years of experience managing and architecting enterprise IT infrastructure and cloud services. Proven expertise in Microsoft Azure, Power Platform, and enterprise platforms including Exchange, SharePoint, Citrix, and VMware. Strong communicator with a track record of delivering complex digital transformation projects in cross-functional teams.</p>
   </div>
 
   <div class="resume-section fade-in">
-    <h2>工作经历</h2>
+    <h2>Work Experience</h2>
 
     <div class="exp-item">
       <div class="exp-header">
-        <div class="exp-title">高级软件工程师（前端方向）</div>
-        <span class="exp-date">2024.03 — 至今</span>
+        <div class="exp-title">IT Architect II</div>
+        <span class="exp-date">Aug 2023 — Present</span>
       </div>
-      <div class="exp-org">字节跳动 · 飞书团队 · 北京</div>
+      <div class="exp-org">WCB-Alberta · Edmonton, Alberta, Canada</div>
       <ul class="exp-points">
-        <li>负责飞书文档编辑器核心模块架构设计与性能优化，日活用户超千万</li>
-        <li>主导编辑器渲染引擎重构，首屏加载速度提升 40%</li>
-        <li>设计并落地组件库 2.0，覆盖团队 30+ 工程师</li>
-        <li>推动前端监控体系建设，线上异常发现速度缩短至分钟级</li>
+        <li>Lead enterprise IT architecture decisions for cloud and on-premises infrastructure</li>
+        <li>Drive digital transformation initiatives including Dynamics 365, Power BI, and Power Platform</li>
+        <li>Manage and architect Azure cloud solutions with governance, networking and security controls</li>
+        <li>Oversee enterprise platforms: Citrix, Exchange Online, SharePoint, Veeam</li>
       </ul>
     </div>
 
     <div class="exp-item">
       <div class="exp-header">
-        <div class="exp-title">全栈工程师</div>
-        <span class="exp-date">2022.06 — 2024.02</span>
+        <div class="exp-title">IT Architect</div>
+        <span class="exp-date">Jun 2022 — Aug 2023</span>
       </div>
-      <div class="exp-org">某 B 轮 SaaS 创业公司 · 上海（早期员工 #5）</div>
+      <div class="exp-org">WCB-Alberta · Edmonton, Alberta, Canada</div>
       <ul class="exp-points">
-        <li>从零搭建全栈技术体系（React + Node.js + PostgreSQL），3 个月内上线 MVP</li>
-        <li>设计多租户 SaaS 架构，稳定支持 500+ 企业客户</li>
-        <li>招募并带领 4 人前端团队，建立 Code Review 与发布规范</li>
+        <li>Designed and implemented the company's first Azure tenant and landing zone</li>
+        <li>Created cloud governance documentation including Azure RBAC role definitions</li>
+        <li>Led Exchange Online migration project from planning through cutover</li>
+        <li>Reviewed and approved infrastructure design proposals across teams</li>
       </ul>
     </div>
 
     <div class="exp-item">
       <div class="exp-header">
-        <div class="exp-title">前端开发工程师</div>
-        <span class="exp-date">2021.07 — 2022.05</span>
+        <div class="exp-title">IT Specialist II</div>
+        <span class="exp-date">Aug 2020 — Jun 2022</span>
       </div>
-      <div class="exp-org">阿里巴巴 · 淘宝技术 · 杭州</div>
+      <div class="exp-org">WCB-Alberta · Edmonton, Canada</div>
       <ul class="exp-points">
-        <li>参与淘宝活动页面低代码搭建平台研发，开发 20+ 通用组件，累计使用超 5000 次</li>
-        <li>优化渲染性能，降低复杂页面卡顿率 60%</li>
+        <li>Managed onsite and cloud infrastructure for the Infrastructure Platform team</li>
+        <li>Implemented Power BI and Power Platform environments with planning, setup and testing</li>
+        <li>Led Print Release POC project; administered HPE Synergy and 3PAR/Nimble Storage</li>
+        <li>Collaborated across teams to resolve Severity 1 incidents</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-title">IT Specialist</div>
+        <span class="exp-date">Sep 2019 — Jul 2020</span>
+      </div>
+      <div class="exp-org">WCB-Alberta · Edmonton, Alberta, Canada</div>
+      <ul class="exp-points">
+        <li>Supported enterprise IT infrastructure and end-user platforms</li>
+        <li>Administered Windows Server, Exchange, and virtualization environments</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-title">IT Team Lead</div>
+        <span class="exp-date">May 2017 — Aug 2019</span>
+      </div>
+      <div class="exp-org">Sunrise International Inc. · Stony Plain, Alberta</div>
+      <ul class="exp-points">
+        <li>Managed all IT for 12 franchise hotels (Best Western, Ramada) across multiple sites</li>
+        <li>Designed corporate network structure and deployed Windows Server, Exchange, Office 365</li>
+        <li>Configured VM ESXi, Hyper-V, firewall, Site-to-Site VPN, and offsite cloud backup</li>
+        <li>Managed domain and websites on AWS; handled high-quality website design and marketing</li>
       </ul>
     </div>
   </div>
 
   <div class="resume-section fade-in">
-    <h2>技术技能</h2>
+    <h2>Technical Skills</h2>
     <div class="skills-grid">
       <div class="skill-group">
-        <h3>前端</h3>
+        <h3>Cloud &amp; Azure</h3>
         <div class="skill-tags">
-          <span class="skill-tag">TypeScript</span>
-          <span class="skill-tag">React</span>
-          <span class="skill-tag">Next.js</span>
-          <span class="skill-tag">Vue 3</span>
-          <span class="skill-tag">CSS / Tailwind</span>
+          <span class="skill-tag">Microsoft Azure</span>
+          <span class="skill-tag">Azure Landing Zone</span>
+          <span class="skill-tag">Power Platform</span>
+          <span class="skill-tag">Dynamics 365</span>
+          <span class="skill-tag">Power BI</span>
         </div>
       </div>
       <div class="skill-group">
-        <h3>后端</h3>
+        <h3>Infrastructure</h3>
         <div class="skill-tags">
-          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Windows Server</span>
+          <span class="skill-tag">HPE Synergy</span>
+          <span class="skill-tag">3PAR / Nimble</span>
+          <span class="skill-tag">VMware ESXi</span>
+          <span class="skill-tag">Hyper-V</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Enterprise Platforms</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Exchange / Exchange Online</span>
+          <span class="skill-tag">SharePoint</span>
+          <span class="skill-tag">Citrix</span>
+          <span class="skill-tag">Veeam</span>
+          <span class="skill-tag">Office 365</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Programming &amp; Tools</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">PowerShell</span>
           <span class="skill-tag">Python</span>
-          <span class="skill-tag">FastAPI</span>
-          <span class="skill-tag">PostgreSQL</span>
-          <span class="skill-tag">Redis</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>工具 &amp; DevOps</h3>
-        <div class="skill-tags">
-          <span class="skill-tag">Docker</span>
-          <span class="skill-tag">GitHub Actions</span>
-          <span class="skill-tag">AWS / Vercel</span>
-          <span class="skill-tag">Nginx</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>AI &amp; 其他</h3>
-        <div class="skill-tags">
-          <span class="skill-tag">LangChain</span>
-          <span class="skill-tag">OpenAI API</span>
-          <span class="skill-tag">Figma</span>
-          <span class="skill-tag">Git</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">C/C++</span>
+          <span class="skill-tag">MATLAB</span>
+          <span class="skill-tag">AWS</span>
         </div>
       </div>
     </div>
   </div>
 
   <div class="resume-section fade-in">
-    <h2>教育背景</h2>
+    <h2>Certifications</h2>
+    <div class="certs-list">
+      <div class="cert-item">
+        <div class="cert-icon">🏆</div>
+        <div><div class="cert-name">Microsoft Certified: Azure Solutions Architect Expert</div><div class="cert-issuer">Microsoft</div></div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon">🤖</div>
+        <div><div class="cert-name">Microsoft Certified: Azure AI Fundamentals</div><div class="cert-issuer">Microsoft</div></div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon">📊</div>
+        <div><div class="cert-name">Microsoft Certified: Dynamics 365 Fundamentals</div><div class="cert-issuer">Microsoft</div></div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon">⚙️</div>
+        <div><div class="cert-name">ITIL® 4 Foundation CPD</div><div class="cert-issuer">AXELOS</div></div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon">🔄</div>
+        <div><div class="cert-name">What Is Scrum?</div><div class="cert-issuer">Scrum.org</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="resume-section fade-in">
+    <h2>Education</h2>
     <div class="edu-item">
       <div class="edu-info">
-        <h3>北京航空航天大学</h3>
-        <p>计算机科学与技术 · 工学学士 · GPA 3.8/4.0</p>
+        <h3>University of Alberta</h3>
+        <p>Bachelor of Science (B.Sc.) · Electrical and Computer Engineering</p>
       </div>
-      <span class="edu-date">2017 — 2021</span>
+      <span class="edu-date">2012 — 2017</span>
     </div>
   </div>
 
   <div class="resume-section fade-in">
-    <h2>荣誉 &amp; 奖项</h2>
+    <h2>Honors &amp; Languages</h2>
     <div class="awards-list">
-      <div class="award-item"><span class="award-icon">🥈</span><span>ACM-ICPC 区域赛银奖（2019）</span></div>
-      <div class="award-item"><span class="award-icon">🏆</span><span>Apache 基金会 Committer（开源贡献）</span></div>
-      <div class="award-item"><span class="award-icon">📚</span><span>连续三年获校学业奖学金</span></div>
-      <div class="award-item"><span class="award-icon">⭐</span><span>GitHub 开源项目累计 3k+ Stars</span></div>
+      <div class="award-item"><span>🏅</span><span>University of Alberta Academic Excellence Scholarship</span></div>
+      <div class="award-item"><span>🇨🇳</span><span>Chinese — Native or Bilingual</span></div>
+      <div class="award-item"><span>🇨🇦</span><span>English — Full Professional</span></div>
     </div>
   </div>
 </div>
 
 <footer>
-  <p>© 2026 DJ · <a href="index.html">返回主页</a></p>
+  <p>© 2026 Alex Dai · <a href="index.html">Back to Home</a></p>
 </footer>
-
 <script src="js/main.js"></script>
 </body>
 </html>
