@@ -30,27 +30,46 @@ const fadeObserver = new IntersectionObserver(
 );
 document.querySelectorAll(".fade-in").forEach(el => fadeObserver.observe(el));
 
-// ── 汉堡菜单 ──
+// ── 汉堡菜单 + Mega dropdown ──
 const hamburger = document.getElementById("hamburger");
 const navLinks = document.getElementById("navLinks");
+
+function closeAll() {
+  if (hamburger) hamburger.classList.remove("open");
+  if (navLinks) navLinks.classList.remove("open");
+  document.querySelectorAll(".has-dropdown").forEach(d => d.classList.remove("open"));
+}
+
 if (hamburger && navLinks) {
   hamburger.addEventListener("click", (e) => {
     e.stopPropagation();
     hamburger.classList.toggle("open");
     navLinks.classList.toggle("open");
   });
-  // Close menu when a link is clicked
-  navLinks.querySelectorAll("a").forEach(a => {
-    a.addEventListener("click", () => {
-      hamburger.classList.remove("open");
-      navLinks.classList.remove("open");
+
+  // Mobile: drop-toggle opens sub-accordion
+  navLinks.querySelectorAll(".drop-toggle").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      const li = btn.closest(".has-dropdown");
+      const isOpen = li.classList.contains("open");
+      // Close siblings
+      navLinks.querySelectorAll(".has-dropdown").forEach(d => d.classList.remove("open"));
+      if (!isOpen) li.classList.add("open");
     });
   });
-  // Close menu on outside click
+
+  // Close hamburger when a non-toggle link is clicked
+  navLinks.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", () => {
+      closeAll();
+    });
+  });
+
   document.addEventListener("click", e => {
     if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-      hamburger.classList.remove("open");
-      navLinks.classList.remove("open");
+      closeAll();
     }
   });
 }
