@@ -30,6 +30,30 @@ const fadeObserver = new IntersectionObserver(
 );
 document.querySelectorAll(".fade-in").forEach(el => fadeObserver.observe(el));
 
+// ── 汉堡菜单 ──
+const hamburger = document.getElementById("hamburger");
+const navLinks = document.getElementById("navLinks");
+if (hamburger && navLinks) {
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("open");
+    navLinks.classList.toggle("open");
+  });
+  // Close menu when a link is clicked
+  navLinks.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", () => {
+      hamburger.classList.remove("open");
+      navLinks.classList.remove("open");
+    });
+  });
+  // Close menu on outside click
+  document.addEventListener("click", e => {
+    if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+      hamburger.classList.remove("open");
+      navLinks.classList.remove("open");
+    }
+  });
+}
+
 // ── 技能条动画 ──
 const skillBars = document.getElementById("skillBars");
 if (skillBars) {
