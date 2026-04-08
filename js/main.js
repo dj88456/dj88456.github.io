@@ -34,7 +34,8 @@ document.querySelectorAll(".fade-in").forEach(el => fadeObserver.observe(el));
 const hamburger = document.getElementById("hamburger");
 const navLinks = document.getElementById("navLinks");
 if (hamburger && navLinks) {
-  hamburger.addEventListener("click", () => {
+  hamburger.addEventListener("click", (e) => {
+    e.stopPropagation();
     hamburger.classList.toggle("open");
     navLinks.classList.toggle("open");
   });
