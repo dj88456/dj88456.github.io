@@ -1,48 +1,37 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>前端性能优化的系统方法论 · DJ</title>
+  <title>Azure RBAC and Cloud Governance: A Practical Framework · Alex Dai</title>
   <link rel="stylesheet" href="../css/shared.css" />
   <style>
     .page { max-width: 720px; margin: 0 auto; padding: 90px 24px 60px; }
     .article-header { margin-bottom: 40px; }
-    .article-header h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.2; margin-bottom: 16px; }
-    .article-meta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: .85rem; margin-bottom: 24px; }
+    .article-header h1 { font-size: clamp(1.9rem, 4.5vw, 2.6rem); line-height: 1.15; margin-bottom: 18px; }
+    .article-meta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: .92rem; margin-bottom: 28px; }
     .article-meta .sep { color: var(--border); }
-    .article-body { font-size: .97rem; line-height: 1.85; }
-    .article-body p { margin-bottom: 20px; color: var(--muted); }
+    .article-body { font-size: 1.08rem; line-height: 1.95; }
+    .article-body p { margin-bottom: 24px; color: var(--muted); }
     .article-body p strong { color: var(--text); }
-    .article-body h2 { font-size: 1.25rem; margin: 36px 0 14px; }
-    .article-body h3 { font-size: 1rem; margin: 24px 0 10px; }
+    .article-body h2 { font-size: 1.4rem; margin: 44px 0 16px; color: var(--text); }
+    .article-body h3 { font-size: 1.1rem; margin: 28px 0 12px; color: var(--text); }
     .article-body ul, .article-body ol { padding-left: 20px; margin-bottom: 20px; }
     .article-body li { color: var(--muted); margin-bottom: 6px; }
     .article-body code { background: var(--bg2); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: .88em; color: var(--accent); }
-    .callout {
-      background: var(--accent-light); border-left: 3px solid var(--accent);
-      border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 24px 0;
-    }
+    .callout { background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 24px 0; }
     .callout p { color: var(--text) !important; margin: 0; font-size: .9rem; }
-    .metrics-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 24px 0; }
-    .metric-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; padding: 16px; text-align: center;
-    }
-    .metric-name { font-size: .78rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
-    .metric-desc { font-size: .8rem; color: var(--muted); }
+    .role-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: .88rem; }
+    .role-table th { background: var(--bg2); color: var(--text); font-weight: 600; padding: 10px 14px; text-align: left; border: 1px solid var(--border); }
+    .role-table td { padding: 10px 14px; border: 1px solid var(--border); color: var(--muted); vertical-align: top; }
+    .role-table tr:hover td { background: var(--surface); }
     .divider { height: 1px; background: var(--border); margin: 40px 0; }
-    .related { margin-top: 40px; }
     .related h3 { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 16px; }
     .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .related-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
-      padding: 16px; text-decoration: none; color: var(--text);
-      transition: all .2s; font-size: .88rem; font-weight: 600;
-    }
+    .related-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-decoration: none; color: var(--text); transition: all .2s; font-size: .88rem; font-weight: 600; }
     .related-card:hover { border-color: var(--accent); transform: translateY(-2px); }
     .related-card small { display: block; color: var(--muted); font-weight: 400; margin-top: 4px; font-size: .78rem; }
-    @media (max-width: 600px) { .metrics-grid { grid-template-columns: 1fr 1fr; } .related-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -51,102 +40,135 @@
   <a class="nav-logo" href="../index.html">Alex Dai</a>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="../index.html#articles">文章</a></li>
-      <li><a href="../index.html#contact">联系</a></li>
+      <li><a href="../index.html#articles">Articles</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
     </ul>
     <button class="theme-btn" id="themeToggle">🌙</button>
   </div>
 </nav>
 
 <div class="page">
-  <a class="back-link fade-in" href="../index.html">← 返回主页</a>
+  <a class="back-link fade-in" href="../index.html">← Back to Home</a>
 
   <div class="article-header fade-in">
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
-      <span class="tag-accent">性能</span>
-      <span class="tag">前端</span><span class="tag">Web Vitals</span><span class="tag">工程化</span>
+      <span class="tag-accent">Azure</span>
+      <span class="tag">RBAC</span>
+      <span class="tag">Governance</span>
+      <span class="tag">Security</span>
     </div>
-    <h1>前端性能优化的系统方法论</h1>
+    <h1>Azure RBAC and Cloud Governance: A Practical Framework</h1>
     <div class="article-meta">
-      <span>DJ</span><span class="sep">·</span>
+      <span>Alex Dai</span><span class="sep">·</span>
       <span>2026-01-20</span><span class="sep">·</span>
-      <span>10 分钟阅读</span>
+      <span>8 min read</span>
     </div>
   </div>
 
   <div class="article-body fade-in">
-    <p>性能优化是一个老话题，但很多团队的做法仍然停留在"Lighthouse 跑个分，哪里红了修哪里"的阶段。这种方式缺乏系统性，往往修了一处，别处又劣化了，最终陷入"打地鼠"的循环。</p>
-    <p>本文分享我在字节跳动飞书团队主导性能优化项目时形成的方法论：<strong>先建立度量体系，再找瓶颈，再优化，再验收</strong>。</p>
+    <p>As organizations expand their Azure footprint, access control becomes one of the most critical — and most frequently mishandled — aspects of cloud governance. Too permissive and you have a security incident waiting to happen. Too restrictive and your engineers can't do their jobs. This article describes the RBAC model and governance framework we implemented at WCB-Alberta.</p>
 
-    <h2>第一步：定义正确的性能指标</h2>
-    <p>Lighthouse 分数是一个综合指标，适合宏观对比，但不适合作为优化目标。真正应该关注的是 <strong>Core Web Vitals</strong>：</p>
-    <div class="metrics-grid">
-      <div class="metric-card"><div class="metric-name">LCP</div><div class="metric-desc">最大内容绘制，衡量主要内容的加载速度，目标 &lt; 2.5s</div></div>
-      <div class="metric-card"><div class="metric-name">INP</div><div class="metric-desc">交互到下一次绘制，衡量响应速度，目标 &lt; 200ms</div></div>
-      <div class="metric-card"><div class="metric-name">CLS</div><div class="metric-desc">累积布局偏移，衡量视觉稳定性，目标 &lt; 0.1</div></div>
-    </div>
-    <p>更重要的是：<strong>用真实用户数据（RUM）而非实验室数据做决策</strong>。Lighthouse 是在理想网络条件下跑的，和你的真实用户体验差距可能很大。</p>
+    <div class="callout"><p>💡 This article pairs well with the Azure Landing Zone article. The governance structures described here assume a hub-and-spoke subscription model with management groups already in place.</p></div>
 
-    <div class="callout"><p>💡 推荐使用 <code>web-vitals</code> 库采集真实用户数据，上报到自建监控或 Google Analytics 4，这是一切优化工作的数据基础。</p></div>
+    <h2>Understanding Azure RBAC Fundamentals</h2>
+    <p>Azure Role-Based Access Control (RBAC) is an authorization system built on Azure Resource Manager. Access is granted by assigning a <strong>role</strong> (a collection of permissions) to a <strong>security principal</strong> (user, group, service principal, or managed identity) at a specific <strong>scope</strong> (management group, subscription, resource group, or resource).</p>
+    <p>The key principle is <strong>inheritance</strong>: permissions assigned at a higher scope cascade down. A Contributor role at the subscription level grants Contributor access to every resource group and resource within that subscription. This makes scope selection critically important — assign at the lowest scope that satisfies the use case.</p>
 
-    <h2>第二步：找到真正的瓶颈</h2>
-    <p>性能问题通常集中在以下几个类别，优先级从高到低：</p>
-
-    <h3>1. 网络层：资源加载</h3>
+    <h2>Built-in Roles vs. Custom Roles</h2>
+    <p>Azure provides over 100 built-in roles. For most use cases, the following five cover the vast majority of scenarios:</p>
+    <table class="role-table">
+      <thead>
+        <tr><th>Role</th><th>What It Can Do</th><th>Typical Assignment</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>Owner</code></td><td>Full access including role assignment</td><td>Platform team on platform subscriptions only</td></tr>
+        <tr><td><code>Contributor</code></td><td>Create/manage all resources, no role assignment</td><td>Application teams on their own resource groups</td></tr>
+        <tr><td><code>Reader</code></td><td>View all resources, no modifications</td><td>Auditors, security team, senior management</td></tr>
+        <tr><td><code>User Access Administrator</code></td><td>Manage access only</td><td>Delegated access managers (use sparingly)</td></tr>
+        <tr><td><code>Network Contributor</code></td><td>Manage networking resources</td><td>Network team on spoke VNets</td></tr>
+      </tbody>
+    </table>
+    <p>Custom roles are powerful but come with maintenance overhead. We created custom roles only when built-ins were either too permissive (granted more than needed) or too restrictive (required combining permissions from multiple built-ins). Our two most useful custom roles:</p>
     <ul>
-      <li>使用 <code>rel="preload"</code> 预加载关键资源（字体、Hero 图片）</li>
-      <li>图片统一使用 WebP/AVIF 格式，配合 <code>srcset</code> 响应式尺寸</li>
-      <li>第三方脚本使用 <code>async</code> 或 <code>defer</code>，非关键资源延迟加载</li>
-      <li>开启 HTTP/2 和 Brotli 压缩</li>
+      <li><strong>VM Operator</strong> — Can start/stop/restart VMs but cannot create, delete, or modify them. For helpdesk staff who need operational access without deployment rights.</li>
+      <li><strong>Monitoring Reader Plus</strong> — Reader plus the ability to query Log Analytics workspaces. For the security team who needed to run KQL queries without broader Contributor access.</li>
     </ul>
 
-    <h3>2. 渲染层：减少阻塞</h3>
+    <h2>Structuring Access with Groups</h2>
+    <p>A common mistake is assigning roles directly to individual users. This creates a sprawl of individual role assignments that becomes impossible to audit and maintain. <strong>Always assign roles to Azure AD groups, never to individuals.</strong></p>
+    <p>Our group naming convention: <code>[Department]-[Environment]-[Role]</code>. For example:</p>
     <ul>
-      <li>CSS 关键路径内联，非关键 CSS 异步加载</li>
-      <li>长任务（&gt;50ms）分片处理，使用 <code>scheduler.yield()</code> 让出主线程</li>
-      <li>动画优先使用 CSS transform/opacity，触发 GPU 合成层</li>
+      <li><code>IT-Prod-Contributor</code> — IT team with Contributor on production subscriptions</li>
+      <li><code>AppTeamA-Dev-Contributor</code> — Application Team A with Contributor on their dev resource group</li>
+      <li><code>Security-All-Reader</code> — Security team with Reader across all subscriptions</li>
+    </ul>
+    <p>Group membership is managed in Azure AD (now Entra ID), which means you can use Privileged Identity Management (PIM) to make sensitive group memberships time-bound and require approval.</p>
+
+    <h2>Privileged Identity Management (PIM)</h2>
+    <p>PIM is one of the highest-value governance tools in the Microsoft 365 / Azure ecosystem, and it's frequently overlooked. Rather than granting permanent Owner or Global Administrator access, PIM allows you to make these roles <strong>eligible</strong> — users can activate them on-demand for a defined period (e.g., 8 hours) with optional MFA re-authentication and justification.</p>
+    <p>We configured PIM for all roles with <code>*/write</code> permissions at the subscription scope or above. Key settings we use:</p>
+    <ul>
+      <li>Maximum activation duration: 8 hours for Contributor, 4 hours for Owner</li>
+      <li>Require MFA on activation: enabled for all elevated roles</li>
+      <li>Require justification: enabled — engineers must provide a ticket number</li>
+      <li>Notify on activation: alerts to the security team distribution list</li>
     </ul>
 
-    <h3>3. JavaScript：包体积与执行</h3>
+    <h2>Azure Policy for Guardrails</h2>
+    <p>RBAC controls <em>who</em> can do what. Azure Policy controls <em>what</em> can be done, regardless of who is asking. The two are complementary — RBAC alone is insufficient for governance because Contributor-level access is very broad.</p>
+    <p>Our policy framework is organized into three tiers:</p>
+    <h3>Tier 1 — Deny Policies (non-negotiable)</h3>
     <ul>
-      <li>路由级代码分割（<code>React.lazy</code> + <code>Suspense</code>）</li>
-      <li>Tree Shaking 确保生效：避免 <code>import *</code>，使用 ESM 格式的库</li>
-      <li>Bundle 分析工具（<code>rollup-plugin-visualizer</code>）定期检查大包</li>
-      <li>使用 <code>React.memo</code>、<code>useMemo</code>、<code>useCallback</code> 避免无效重渲染</li>
+      <li>Deny resources outside Canada Central and Canada East</li>
+      <li>Deny public IP addresses on VMs in production</li>
+      <li>Deny storage accounts with public blob access</li>
+      <li>Deny SQL servers without Azure AD authentication enforced</li>
+    </ul>
+    <h3>Tier 2 — Audit Policies (visibility)</h3>
+    <ul>
+      <li>Audit VMs not using managed disks</li>
+      <li>Audit Key Vaults without soft delete enabled</li>
+      <li>Audit resources missing required tags (CostCenter, Owner, Environment)</li>
+    </ul>
+    <h3>Tier 3 — DeployIfNotExists Policies (auto-remediation)</h3>
+    <ul>
+      <li>Deploy diagnostic settings to Log Analytics if missing</li>
+      <li>Enable Microsoft Defender for Cloud on new subscriptions</li>
+      <li>Deploy network watcher when a VNet is created</li>
     </ul>
 
-    <h2>第三步：建立可持续的优化机制</h2>
-    <p>一次性优化的效果通常会随着功能迭代逐渐衰减。真正有效的方式是<strong>把性能指标纳入 CI/CD 流程</strong>：</p>
+    <h2>Governance Review Cadence</h2>
+    <p>A governance framework is only as good as the review process behind it. We run three recurring reviews:</p>
     <ul>
-      <li>每次 PR 合并后自动运行 Lighthouse CI，对比与主分支的差异</li>
-      <li>设置性能预算（Performance Budget），超出阈值阻断部署</li>
-      <li>建立性能看板，让团队每周 Review 真实用户的 Core Web Vitals 趋势</li>
+      <li><strong>Monthly:</strong> Access review via Entra ID Access Reviews — all Owners and privileged group members must re-certify their access</li>
+      <li><strong>Quarterly:</strong> Policy compliance dashboard review — identify and remediate persistent violations</li>
+      <li><strong>Annually:</strong> Full RBAC audit — remove stale role assignments, review custom role definitions, assess whether any roles should be elevated to PIM-only</li>
     </ul>
 
-    <h2>一个实战案例</h2>
-    <p>在飞书文档项目中，我们发现真实用户的 LCP P75 达到了 4.2s，远超目标。分析后定位到两个主要原因：</p>
-    <ol>
-      <li>编辑器初始化 JS 包体积过大（1.8MB gzipped），阻塞了主线程约 1.5s</li>
-      <li>文档内容的首屏图片没有设置尺寸，导致 CLS 同时恶化</li>
-    </ol>
-    <p>针对第一个问题，我们将编辑器核心模块与插件系统分离，实现按需加载，包体积降至 600KB；第二个问题通过统一图片容器的宽高比解决。最终 LCP P75 降至 2.1s，达标。</p>
+    <h2>Common Pitfalls to Avoid</h2>
+    <ul>
+      <li><strong>Subscription-level Owner for application teams:</strong> Unnecessary and dangerous. Application teams should have Contributor scoped to their resource groups, not the whole subscription.</li>
+      <li><strong>Service principals with Contributor at subscription scope:</strong> Automation accounts often get over-privileged because it's easier. Scope them to the specific resource groups they actually need.</li>
+      <li><strong>Skipping PIM for "temporary" elevated access:</strong> Temporary access has a way of becoming permanent. PIM's time-bounded activations enforce the "temporary" part automatically.</li>
+      <li><strong>Not testing Deny policies before assigning:</strong> Always test with Audit mode first. We had one Deny policy that inadvertently blocked a legitimate diagnostic setting because the policy condition wasn't precise enough.</li>
+    </ul>
 
-    <h2>总结</h2>
-    <p>性能优化的本质是<strong>对用户感知体验负责</strong>。度量 → 分析 → 优化 → 验收，这个闭环缺一不可。没有度量就没有方向，没有验收就不知道是否真的有效。</p>
+    <h2>Final Thoughts</h2>
+    <p>Governance isn't a one-time project — it's an ongoing practice. The frameworks described here took several months to fully implement and refine. Start with the fundamentals: group-based RBAC, PIM for elevated roles, and a small set of Deny policies for your absolute non-negotiables. Then build out from there as your cloud footprint grows and your team's comfort with the tooling increases.</p>
+    <p>The goal is to reach a state where your engineers have the access they need to move fast, and your security team can verify compliance without manual work.</p>
   </div>
 
   <div class="divider"></div>
-
   <div class="related fade-in">
-    <h3>相关文章</h3>
+    <h3>Related Articles</h3>
     <div class="related-grid">
-      <a class="related-card" href="lowcode.html">从零设计一个低代码平台<small>2026-03-15 · 8 分钟</small></a>
-      <a class="related-card" href="growth.html">工程师成长路径<small>2025-12-10 · 6 分钟</small></a>
+      <a class="related-card" href="lowcode.html">Designing an Enterprise Azure Landing Zone<small>2026-03-15 · 8 min</small></a>
+      <a class="related-card" href="llm-rag.html">Exchange Online Migration: Lessons Learned<small>2026-02-28 · 10 min</small></a>
     </div>
   </div>
 </div>
 
-<footer><p>© 2026 Alex Dai · <a href="../index.html">返回主页</a></p></footer>
+<footer><p>© 2026 Alex Dai · <a href="../index.html">Back to Home</a></p></footer>
 <script src="../js/main.js"></script>
 </body>
 </html>

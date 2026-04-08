@@ -1,53 +1,42 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>工程师成长路径 · DJ</title>
+  <title>From IT Specialist to IT Architect: My Career Journey · Alex Dai</title>
   <link rel="stylesheet" href="../css/shared.css" />
   <style>
     .page { max-width: 720px; margin: 0 auto; padding: 90px 24px 60px; }
     .article-header { margin-bottom: 40px; }
-    .article-header h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.2; margin-bottom: 16px; }
-    .article-meta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: .85rem; margin-bottom: 24px; }
+    .article-header h1 { font-size: clamp(1.9rem, 4.5vw, 2.6rem); line-height: 1.15; margin-bottom: 18px; }
+    .article-meta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: .92rem; margin-bottom: 28px; }
     .article-meta .sep { color: var(--border); }
-    .article-body { font-size: .97rem; line-height: 1.85; }
-    .article-body p { margin-bottom: 20px; color: var(--muted); }
+    .article-body { font-size: 1.08rem; line-height: 1.95; }
+    .article-body p { margin-bottom: 24px; color: var(--muted); }
     .article-body p strong { color: var(--text); }
-    .article-body h2 { font-size: 1.25rem; margin: 36px 0 14px; }
-    .article-body h3 { font-size: 1rem; margin: 24px 0 10px; }
+    .article-body h2 { font-size: 1.4rem; margin: 44px 0 16px; color: var(--text); }
+    .article-body h3 { font-size: 1.1rem; margin: 28px 0 12px; color: var(--text); }
     .article-body ul, .article-body ol { padding-left: 20px; margin-bottom: 20px; }
     .article-body li { color: var(--muted); margin-bottom: 6px; }
-    .article-body blockquote {
-      border-left: 3px solid var(--accent); padding: 12px 20px; margin: 24px 0;
-      background: var(--bg2); border-radius: 0 8px 8px 0;
-    }
-    .article-body blockquote p { color: var(--text) !important; margin: 0; font-style: italic; }
-    .callout {
-      background: var(--accent-light); border-left: 3px solid var(--accent);
-      border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 24px 0;
-    }
+    .article-body code { background: var(--bg2); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: .88em; color: var(--accent); }
+    .callout { background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 24px 0; }
     .callout p { color: var(--text) !important; margin: 0; font-size: .9rem; }
-    .stage-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin: 24px 0; }
-    .stage-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; padding: 18px; text-align: center;
-    }
-    .stage-card .num { font-size: 1.6rem; font-weight: 800; color: var(--accent); margin-bottom: 6px; }
-    .stage-card h3 { font-size: .88rem; margin-bottom: 6px; }
-    .stage-card p { font-size: .78rem; color: var(--muted); margin: 0; }
+    .career-timeline { margin: 32px 0; }
+    .ct-item { display: flex; gap: 20px; padding-bottom: 32px; position: relative; }
+    .ct-item::before { content: ''; position: absolute; left: 19px; top: 40px; bottom: 0; width: 2px; background: var(--border); }
+    .ct-item:last-child::before { display: none; }
+    .ct-dot { width: 40px; height: 40px; border-radius: 50%; background: var(--accent-light); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+    .ct-content { padding-top: 8px; }
+    .ct-title { font-weight: 700; color: var(--text); font-size: .95rem; }
+    .ct-meta { font-size: .8rem; color: var(--muted); margin-bottom: 6px; }
+    .ct-body { font-size: .88rem; color: var(--muted); line-height: 1.7; }
     .divider { height: 1px; background: var(--border); margin: 40px 0; }
-    .related { margin-top: 40px; }
     .related h3 { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 16px; }
     .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .related-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
-      padding: 16px; text-decoration: none; color: var(--text);
-      transition: all .2s; font-size: .88rem; font-weight: 600;
-    }
+    .related-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-decoration: none; color: var(--text); transition: all .2s; font-size: .88rem; font-weight: 600; }
     .related-card:hover { border-color: var(--accent); transform: translateY(-2px); }
     .related-card small { display: block; color: var(--muted); font-weight: 400; margin-top: 4px; font-size: .78rem; }
-    @media (max-width: 600px) { .stage-grid { grid-template-columns: 1fr; } .related-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -56,83 +45,120 @@
   <a class="nav-logo" href="../index.html">Alex Dai</a>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="../index.html#articles">文章</a></li>
-      <li><a href="../index.html#contact">联系</a></li>
+      <li><a href="../index.html#articles">Articles</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
     </ul>
     <button class="theme-btn" id="themeToggle">🌙</button>
   </div>
 </nav>
 
 <div class="page">
-  <a class="back-link fade-in" href="../index.html">← 返回主页</a>
+  <a class="back-link fade-in" href="../index.html">← Back to Home</a>
 
   <div class="article-header fade-in">
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
-      <span class="tag-accent">成长</span>
-      <span class="tag">职业规划</span><span class="tag">软技能</span>
+      <span class="tag-accent">Career</span>
+      <span class="tag">IT Architecture</span>
+      <span class="tag">Growth</span>
     </div>
-    <h1>工程师成长路径：我如何从执行者变成决策者</h1>
+    <h1>From IT Specialist to IT Architect: My Career Journey</h1>
     <div class="article-meta">
-      <span>DJ</span><span class="sep">·</span>
+      <span>Alex Dai</span><span class="sep">·</span>
       <span>2025-12-10</span><span class="sep">·</span>
-      <span>6 分钟阅读</span>
+      <span>6 min read</span>
     </div>
   </div>
 
   <div class="article-body fade-in">
-    <p>工作五年，我见过很多聪明的工程师在某个阶段陷入瓶颈：技术能力很强，但始终处于接收任务、执行任务的角色，没有话语权，也没有成就感。</p>
-    <p>这篇文章是我的个人经历和观察，不是什么方法论，就是一些我觉得真正起作用的事情。</p>
+    <p>I graduated with a B.Sc. in Computing Science from the University of Alberta in 2017 with a vague plan of "working in tech." Eight years later, I'm designing enterprise cloud architectures for a major provincial organization. This is the honest account of how that happened — the deliberate moves, the lucky breaks, and the things I'd do differently.</p>
 
-    <h2>三个成长阶段</h2>
-    <div class="stage-grid">
-      <div class="stage-card"><div class="num">01</div><h3>执行者</h3><p>把别人定义好的任务做好，能力体现在"怎么做"</p></div>
-      <div class="stage-card"><div class="num">02</div><h3>贡献者</h3><p>开始主动定义任务边界，能力体现在"做什么"</p></div>
-      <div class="stage-card"><div class="num">03</div><h3>决策者</h3><p>定义方向和优先级，能力体现在"为什么"</p></div>
+    <div class="callout"><p>💡 This is a personal reflection, not a prescriptive career guide. Career paths in IT are genuinely diverse. I'm sharing what worked for me, not a universal formula.</p></div>
+
+    <h2>The Early Years: Building a Foundation</h2>
+    <p>My first real IT role after university was IT Team Lead at Sunrise Health Lodge, a long-term care facility. In hindsight, this was an ideal first job for someone who wanted to eventually move into architecture: it was a small team, which meant wearing many hats.</p>
+    <p>In two years I touched networking, server administration, desktop support, vendor management, and project management. None of it at a deep level, but I got a breadth of exposure that I've drawn on ever since. <strong>Generalist roles early in your career are underrated.</strong> Specialists earn more at the junior level, but generalists develop pattern recognition across domains that becomes increasingly valuable as you move toward architecture roles.</p>
+    <p>The biggest technical skill I built in that period was PowerShell. Automating repetitive tasks — user provisioning, printer deployments, backup verification — was less about the scripts themselves and more about developing the mindset of: "if I'm doing this manually three times, I should automate it."</p>
+
+    <h2>Moving to WCB-Alberta: Scale Changes Everything</h2>
+    <p>Joining WCB-Alberta as an IT Specialist I in 2019 was a significant jump in organizational scale. Where my previous employer had a small headcount, WCB has over 1,500 employees, with offices across Alberta and complex infrastructure spanning multiple sites.</p>
+    <p>The first thing I noticed: the problems at scale are qualitatively different, not just quantitatively larger. At a small organization, you can often solve problems by knowing every system and every person. At scale, you need processes, documentation, and architecture — because no single person can hold the whole environment in their head.</p>
+
+    <div class="career-timeline">
+      <div class="ct-item">
+        <div class="ct-dot">🎓</div>
+        <div class="ct-content">
+          <div class="ct-title">University of Alberta — B.Sc. Computing Science</div>
+          <div class="ct-meta">2012 – 2017</div>
+          <div class="ct-body">Focused on software development fundamentals. Wished later I'd taken more networking and systems courses.</div>
+        </div>
+      </div>
+      <div class="ct-item">
+        <div class="ct-dot">💼</div>
+        <div class="ct-content">
+          <div class="ct-title">IT Team Lead — Sunrise Health Lodge</div>
+          <div class="ct-meta">May 2017 – Aug 2019</div>
+          <div class="ct-body">First real IT role. Managed everything from helpdesk to infrastructure. Learned PowerShell automation and vendor management.</div>
+        </div>
+      </div>
+      <div class="ct-item">
+        <div class="ct-dot">⬆️</div>
+        <div class="ct-content">
+          <div class="ct-title">IT Specialist I → II — WCB-Alberta</div>
+          <div class="ct-meta">Sep 2019 – Jun 2022</div>
+          <div class="ct-body">Infrastructure focus: Windows Server, VMware, Exchange, Citrix. Led the Dynamics 365 deployment project. Earned first three Microsoft certifications.</div>
+        </div>
+      </div>
+      <div class="ct-item">
+        <div class="ct-dot">🏗️</div>
+        <div class="ct-content">
+          <div class="ct-title">IT Architect — WCB-Alberta</div>
+          <div class="ct-meta">Jun 2022 – Aug 2023</div>
+          <div class="ct-body">First architecture role. Designed the Azure landing zone. Led Exchange Online migration. Earned Azure Solutions Architect Expert certification.</div>
+        </div>
+      </div>
+      <div class="ct-item">
+        <div class="ct-dot">🚀</div>
+        <div class="ct-content">
+          <div class="ct-title">IT Architect II — WCB-Alberta</div>
+          <div class="ct-meta">Aug 2023 – Present</div>
+          <div class="ct-body">Expanded scope to multi-site infrastructure strategy, Power Platform governance, and enterprise architecture planning.</div>
+        </div>
+      </div>
     </div>
-    <p>从 01 到 02 靠技术积累，这条路大多数人都走得过去。真正难的是从 02 到 03，这一步需要的不再是技术能力，而是<strong>判断力、沟通力和影响力</strong>。</p>
 
-    <h2>技术深度 vs 技术宽度：一个假问题</h2>
-    <p>很多人在纠结"要做技术专家还是全栈通才"，我觉得这是个伪命题。</p>
-    <p>真正的问题是：<strong>你的技术能力是否能支撑你做出更好的判断？</strong>一个对前后端都有基本认知的工程师，在评估方案时比只懂一端的人有更全面的视角。而一个在某个领域有深度的工程师，在关键时刻能解决别人解决不了的问题。</p>
-    <p>我的做法是：<strong>T 型结构</strong>——在核心领域深耕，同时保持对相邻领域的持续关注。深度让你不可替代，宽度让你参与更大的决策。</p>
+    <h2>The Transition to Architecture</h2>
+    <p>The jump from IT Specialist II to IT Architect was the most significant transition of my career. The work changed from <em>implementing solutions</em> to <em>designing them</em>. A few things made that transition possible:</p>
+    <h3>Certifications as structured learning</h3>
+    <p>I'm not a certification maximalist — I don't think a wall of badges translates directly to competence. But studying for the <strong>Azure Solutions Architect Expert</strong> (AZ-305) forced me to engage with architectural concepts I hadn't encountered in specialist work: hub-and-spoke networking, management group hierarchies, governance at scale. The certification was a structured curriculum that accelerated my ramp-up into architecture thinking.</p>
+    <h3>Leading a significant project</h3>
+    <p>The Dynamics 365 deployment I led as a Specialist gave me credibility and visibility. It wasn't an architecture role, but driving a cross-functional project end-to-end demonstrated the skills that architecture requires: stakeholder management, requirement gathering, trade-off analysis, documentation. When the IT Architect role opened, I had a concrete body of work to point to.</p>
+    <h3>Finding a mentor in the architecture space</h3>
+    <p>I was fortunate to work alongside a senior enterprise architect who was willing to explain the "why" behind design decisions, not just the "what." Learning to think in terms of constraints and trade-offs — rather than just technical best practices — was the most important intellectual shift of my career.</p>
 
-    <h2>让自己的工作可见</h2>
-    <p>这是很多工程师最容易忽视的一件事。你可能做了很多有价值的工作，但如果没人知道，它对你的职业成长影响有限。</p>
-    <blockquote><p>你不需要自我吹嘘，但你需要让工作的价值被看见。</p></blockquote>
-    <p>我的方式：</p>
+    <h2>What I'd Tell My Earlier Self</h2>
     <ul>
-      <li>每次上线重要功能或解决复杂问题，写一篇简短的复盘发到团队群里</li>
-      <li>在技术评审会上主动发言，即使你的方案最终没有被采纳</li>
-      <li>维护一个对外的技术博客（就像这个网站），让行业看到你的思考</li>
+      <li><strong>Write more.</strong> Documentation, design documents, post-mortems. Writing forces clarity of thinking, and a well-documented project is evidence of competence in a way that undocumented work never is.</li>
+      <li><strong>Learn the business context.</strong> Understanding why WCB needs specific compliance controls, or what the operational impact of downtime is, made me a significantly better architect than pure technical depth alone.</li>
+      <li><strong>Don't neglect soft skills.</strong> The ability to explain a complex technical decision to a non-technical stakeholder has been more career-relevant than almost any specific technical skill.</li>
+      <li><strong>Certifications are a tool, not a goal.</strong> Study for them to learn, not to accumulate. The ones where I genuinely engaged with the material paid dividends; the ones I crammed through didn't stick.</li>
     </ul>
 
-    <h2>主动承担更大的责任</h2>
-    <p>职级和晋升通常是<strong>结果</strong>，而不是过程。很多人在等待被赋予更多责任，但现实是：<strong>你需要先承担责任，才会被赋予权力</strong>。</p>
-
-    <div class="callout"><p>💡 找到一个团队没有人在认真负责的事情，主动承担起来。可以是测试基础设施、文档体系、新人 Onboarding，不一定是高光的需求开发。</p></div>
-
-    <p>我在阿里的第三个月，主动接手了组件库的维护工作——这件事没人愿意做，因为枯燥且容易背锅。但正是这段经历让我熟悉了整个前端体系，也建立了跨团队的协作关系，成为我后来晋升的重要筹码。</p>
-
-    <h2>关于跳槽和选择</h2>
-    <p>我跳过两次槽，一次从大厂到创业公司，一次从创业公司回到大厂。每次都有人问我后不后悔。</p>
-    <p>我的判断框架是：<strong>这份工作在未来两年能让我学到什么？我将要解决的问题对我有没有真正的挑战？这个团队里有没有我想跟他学习的人？</strong> 薪资当然重要，但它不应该是唯一的考量。</p>
-
-    <h2>最后</h2>
-    <p>成长没有捷径，但有方向：<strong>持续输出、主动承担、让价值可见</strong>。如果你正处于职业发展的某个困惑节点，欢迎找我聊聊，我很乐意分享更多细节。</p>
+    <h2>Where Things Stand Now</h2>
+    <p>As IT Architect II at WCB-Alberta, my focus has expanded to multi-site infrastructure strategy and Power Platform governance. The problems are larger and more ambiguous than anything I dealt with as a Specialist, which is exactly what I was looking for.</p>
+    <p>The honest truth is that "IT Architect" is a broad title and the skills it requires are never fully acquired — the technology landscape shifts too fast. The most useful thing I've developed isn't any specific technical skill; it's the ability to rapidly come up to speed on new domains and reason about trade-offs under uncertainty. That capacity, more than any certification or technology expertise, is what I expect to carry forward.</p>
   </div>
 
   <div class="divider"></div>
-
   <div class="related fade-in">
-    <h3>相关文章</h3>
+    <h3>Related Articles</h3>
     <div class="related-grid">
-      <a class="related-card" href="performance.html">前端性能优化的系统方法论<small>2026-01-20 · 10 分钟</small></a>
-      <a class="related-card" href="llm-rag.html">LLM 应用开发实践：RAG 系统<small>2026-02-28 · 12 分钟</small></a>
+      <a class="related-card" href="lowcode.html">Designing an Enterprise Azure Landing Zone<small>2026-03-15 · 8 min</small></a>
+      <a class="related-card" href="performance.html">Azure RBAC and Cloud Governance<small>2026-01-20 · 8 min</small></a>
     </div>
   </div>
 </div>
 
-<footer><p>© 2026 Alex Dai · <a href="../index.html">返回主页</a></p></footer>
+<footer><p>© 2026 Alex Dai · <a href="../index.html">Back to Home</a></p></footer>
 <script src="../js/main.js"></script>
 </body>
 </html>

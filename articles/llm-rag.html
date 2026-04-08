@@ -1,46 +1,38 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LLM 应用开发实践：RAG 系统 · DJ</title>
+  <title>Exchange Online Migration: Lessons Learned · Alex Dai</title>
   <link rel="stylesheet" href="../css/shared.css" />
   <style>
     .page { max-width: 720px; margin: 0 auto; padding: 90px 24px 60px; }
     .article-header { margin-bottom: 40px; }
-    .article-header h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.2; margin-bottom: 16px; }
-    .article-meta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: .85rem; margin-bottom: 24px; }
+    .article-header h1 { font-size: clamp(1.9rem, 4.5vw, 2.6rem); line-height: 1.15; margin-bottom: 18px; }
+    .article-meta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: .92rem; margin-bottom: 28px; }
     .article-meta .sep { color: var(--border); }
-    .article-body { font-size: .97rem; line-height: 1.85; }
-    .article-body p { margin-bottom: 20px; color: var(--muted); }
+    .article-body { font-size: 1.08rem; line-height: 1.95; }
+    .article-body p { margin-bottom: 24px; color: var(--muted); }
     .article-body p strong { color: var(--text); }
-    .article-body h2 { font-size: 1.25rem; margin: 36px 0 14px; }
-    .article-body h3 { font-size: 1rem; margin: 24px 0 10px; }
+    .article-body h2 { font-size: 1.4rem; margin: 44px 0 16px; color: var(--text); }
+    .article-body h3 { font-size: 1.1rem; margin: 28px 0 12px; color: var(--text); }
     .article-body ul, .article-body ol { padding-left: 20px; margin-bottom: 20px; }
     .article-body li { color: var(--muted); margin-bottom: 6px; }
     .article-body code { background: var(--bg2); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: .88em; color: var(--accent); }
-    .callout {
-      background: var(--accent-light); border-left: 3px solid var(--accent);
-      border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 24px 0;
-    }
+    .callout { background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 24px 0; }
     .callout p { color: var(--text) !important; margin: 0; font-size: .9rem; }
-    .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
-    .comp-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
-    .comp-card h3 { font-size: .9rem; margin-bottom: 10px; }
-    .comp-card ul { padding-left: 16px; margin: 0; }
-    .comp-card li { font-size: .83rem; color: var(--muted); margin-bottom: 5px; }
+    .phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0; }
+    .phase-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+    .phase-num { font-size: 1.4rem; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+    .phase-name { font-size: .8rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .phase-desc { font-size: .75rem; color: var(--muted); }
     .divider { height: 1px; background: var(--border); margin: 40px 0; }
-    .related { margin-top: 40px; }
     .related h3 { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 16px; }
     .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .related-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
-      padding: 16px; text-decoration: none; color: var(--text);
-      transition: all .2s; font-size: .88rem; font-weight: 600;
-    }
+    .related-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-decoration: none; color: var(--text); transition: all .2s; font-size: .88rem; font-weight: 600; }
     .related-card:hover { border-color: var(--accent); transform: translateY(-2px); }
     .related-card small { display: block; color: var(--muted); font-weight: 400; margin-top: 4px; font-size: .78rem; }
-    @media (max-width: 600px) { .comparison, .related-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .phase-grid { grid-template-columns: 1fr 1fr; } .related-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -49,103 +41,113 @@
   <a class="nav-logo" href="../index.html">Alex Dai</a>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="../index.html#articles">文章</a></li>
-      <li><a href="../index.html#contact">联系</a></li>
+      <li><a href="../index.html#articles">Articles</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
     </ul>
     <button class="theme-btn" id="themeToggle">🌙</button>
   </div>
 </nav>
 
 <div class="page">
-  <a class="back-link fade-in" href="../index.html">← 返回主页</a>
+  <a class="back-link fade-in" href="../index.html">← Back to Home</a>
 
   <div class="article-header fade-in">
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
-      <span class="tag-accent">AI</span>
-      <span class="tag">LLM</span><span class="tag">RAG</span><span class="tag">Python</span>
+      <span class="tag-accent">Microsoft 365</span>
+      <span class="tag">Exchange Online</span>
+      <span class="tag">Migration</span>
     </div>
-    <h1>LLM 应用开发实践：RAG 系统的构建与优化</h1>
+    <h1>Exchange Online Migration: Lessons Learned</h1>
     <div class="article-meta">
-      <span>DJ</span><span class="sep">·</span>
+      <span>Alex Dai</span><span class="sep">·</span>
       <span>2026-02-28</span><span class="sep">·</span>
-      <span>12 分钟阅读</span>
+      <span>10 min read</span>
     </div>
   </div>
 
   <div class="article-body fade-in">
-    <p>RAG（Retrieval-Augmented Generation，检索增强生成）是目前 LLM 应用落地最成熟的方案之一。本文基于我构建 <a href="../projects/chatcontext.html">ChatContext</a> 的实战经验，从向量数据库选型到 Prompt 工程，系统梳理 RAG 的核心环节。</p>
+    <p>Migrating an organization's email infrastructure to Exchange Online is one of the most user-visible IT projects you can undertake. When WCB-Alberta moved its on-premises Exchange environment to Microsoft 365, the project touched every single employee. This article covers the decisions, complications, and hard-won lessons from that migration.</p>
 
-    <div class="callout"><p>⚠️ 本文假设你对 LLM 基本概念（Token、Embedding、Prompt）有一定了解。代码示例使用 Python + LangChain。</p></div>
+    <div class="callout"><p>💡 This article assumes familiarity with Active Directory, Exchange Server, and basic Microsoft 365 concepts. Our environment was Exchange Server 2016 with a hybrid configuration target.</p></div>
 
-    <h2>为什么需要 RAG</h2>
-    <p>LLM 有两个固有缺陷：<strong>知识截止日期</strong>和<strong>上下文窗口限制</strong>。当你需要模型回答关于你公司内部文档、最新数据或私有知识库的问题时，微调成本太高，而 RAG 是更轻量的解法。</p>
-    <p>RAG 的核心思路是：<strong>先检索，再生成</strong>。在提问时，先从知识库中检索相关片段，将其塞入 Prompt，再让模型基于这些上下文生成答案。</p>
-
-    <h2>第一步：文档处理与分块</h2>
-    <p>文档处理是整个流程中最容易被忽视、也最影响效果的环节。分块策略直接决定检索质量：</p>
+    <h2>Migration Approach: Why Hybrid?</h2>
+    <p>There are three common approaches to Exchange Online migration: <strong>cutover</strong> (move everything at once), <strong>staged</strong> (batches over time), and <strong>hybrid</strong> (coexistence with on-premises). We chose a hybrid migration for several reasons:</p>
     <ul>
-      <li><strong>块太大：</strong>语义噪声多，检索精度下降，同时占用更多上下文窗口</li>
-      <li><strong>块太小：</strong>缺少上下文，模型无法生成完整答案</li>
+      <li>Our user base was large enough that a cutover would create unacceptable downtime risk</li>
+      <li>Certain mailboxes had compliance holds that required careful handling during transition</li>
+      <li>We wanted to preserve full free/busy calendar sharing during the transition period</li>
+      <li>Some shared mailboxes and distribution groups needed to remain on-premises temporarily</li>
     </ul>
-    <p>我的经验是：对于结构化文档（如技术手册），按标题层级分块效果最好；对于非结构化文本，使用 <code>RecursiveCharacterTextSplitter</code>，设置 <code>chunk_size=512</code>、<code>overlap=64</code> 是一个不错的起点。</p>
+    <p>The hybrid approach adds complexity — you're essentially running two environments simultaneously — but it gives you the flexibility to migrate at a controlled pace and roll back individual mailboxes if issues arise.</p>
 
-    <h2>第二步：向量数据库选型</h2>
-    <div class="comparison">
-      <div class="comp-card">
-        <h3>🏠 本地/自托管</h3>
-        <ul>
-          <li>Chroma — 开发环境首选，零配置</li>
-          <li>Qdrant — 生产级，性能优秀</li>
-          <li>pgvector — 已有 PostgreSQL 首选</li>
-        </ul>
-      </div>
-      <div class="comp-card">
-        <h3>☁️ 云服务</h3>
-        <ul>
-          <li>Pinecone — 最成熟，文档完善</li>
-          <li>Weaviate Cloud — 支持混合搜索</li>
-          <li>Supabase Vector — 全栈友好</li>
-        </ul>
-      </div>
+    <h2>Phase Overview</h2>
+    <div class="phase-grid">
+      <div class="phase-card"><div class="phase-num">1</div><div class="phase-name">Assessment</div><div class="phase-desc">Inventory, dependency mapping, licensing</div></div>
+      <div class="phase-card"><div class="phase-num">2</div><div class="phase-name">Hybrid Setup</div><div class="phase-desc">HCW, AAD Connect, federation</div></div>
+      <div class="phase-card"><div class="phase-num">3</div><div class="phase-name">Pilot</div><div class="phase-desc">IT team first, validate mail flow</div></div>
+      <div class="phase-card"><div class="phase-num">4</div><div class="phase-name">Wave Migration</div><div class="phase-desc">Department batches over 8 weeks</div></div>
+      <div class="phase-card"><div class="phase-num">5</div><div class="phase-name">Decommission</div><div class="phase-desc">Remove on-prem, clean up</div></div>
+      <div class="phase-card"><div class="phase-num">6</div><div class="phase-name">Post-Migration</div><div class="phase-desc">Optimize, train, monitor</div></div>
     </div>
-    <p>我在 ChatContext 中使用 <code>pgvector</code>，因为项目本身已经使用 PostgreSQL，统一技术栈降低了运维复杂度。</p>
 
-    <h2>第三步：提升检索质量</h2>
-    <p>朴素的向量相似度搜索效果有限，以下几个优化对实际效果提升明显：</p>
-    <h3>混合搜索（Hybrid Search）</h3>
-    <p>将向量搜索（语义相似）和关键词搜索（BM25）的结果融合，用 RRF（Reciprocal Rank Fusion）重排序。对专业术语、产品名称等查询效果显著提升。</p>
-    <h3>查询改写（Query Rewriting）</h3>
-    <p>用 LLM 将用户的口语化提问改写为更适合检索的标准表达，或扩展为多个子查询，再合并结果。</p>
-    <h3>父子分块（Parent-Child Chunking）</h3>
-    <p>检索时用小块（高精度），生成时返回其父块（完整上下文）。这是目前效果最好的分块策略之一。</p>
-
-    <h2>第四步：Prompt 工程</h2>
-    <p>一个好的 RAG Prompt 应该包含：清晰的角色定义、上下文注入格式、引用要求、拒绝回答的条件（当检索内容不足以支撑答案时，让模型明说，而不是编造）。</p>
-    <p>关键原则：<strong>告诉模型它不知道什么，比告诉它知道什么更重要。</strong></p>
-
-    <h2>常见问题 &amp; 解决方案</h2>
+    <h2>Step 1: Pre-Migration Assessment</h2>
+    <p>The assessment phase is where you avoid the most painful surprises. Key things to inventory:</p>
     <ul>
-      <li><strong>幻觉问题：</strong>要求模型每句话都引用来源，无法引用则不输出</li>
-      <li><strong>答案不完整：</strong>增加检索 Top-K 数量，或使用父子分块扩大上下文</li>
-      <li><strong>延迟高：</strong>异步预处理文档；对高频查询缓存 Embedding 结果</li>
+      <li><strong>Mailbox sizes and item counts</strong> — Large mailboxes (we had several over 50GB) take significantly longer to migrate and are more prone to failures</li>
+      <li><strong>Mailbox types</strong> — User, shared, room, equipment, and public folders each have different migration paths</li>
+      <li><strong>Client applications</strong> — Any application sending email via SMTP relay or using EWS/MAPI directly needs to be updated</li>
+      <li><strong>Third-party integrations</strong> — Fax-to-email, HR systems, ticketing systems that use email authentication</li>
+      <li><strong>Distribution groups and mail-enabled objects</strong> — These need to be synchronized to Azure AD before mailboxes can be migrated</li>
+    </ul>
+    <p>We used the <strong>Microsoft 365 Assessment Tool</strong> alongside a custom PowerShell script to generate our inventory. Don't skip this step — we found 14 service accounts sending email that nobody had documented.</p>
+
+    <h2>Step 2: Hybrid Configuration Wizard (HCW)</h2>
+    <p>The Hybrid Configuration Wizard automates most of the Exchange hybrid setup, but "most" is doing a lot of work in that sentence. Common issues we hit:</p>
+    <ul>
+      <li><strong>Certificate mismatches:</strong> Your on-premises Exchange server's SSL certificate must be trusted and match the FQDN used for Autodiscover and mail flow. Expired or self-signed certs will break the HCW.</li>
+      <li><strong>Firewall rules:</strong> Port 443 outbound to Microsoft 365 endpoints needs to be open. Many organizations have fine-grained egress controls that require specific allow-list entries.</li>
+      <li><strong>AAD Connect sync scope:</strong> Mail-enabled objects must be in scope for Azure AD Connect sync. We had a few OUs excluded that needed to be added before their mailboxes could be migrated.</li>
+    </ul>
+    <p>Run the HCW from a server with direct internet access if possible — proxy complications can cause cryptic errors that are hard to trace.</p>
+
+    <h2>Step 3: Mail Flow Considerations</h2>
+    <p>During hybrid coexistence, you have two choices for mail flow: <strong>centralized</strong> (all inbound/outbound goes through on-premises) or <strong>decentralized</strong> (cloud mailboxes route directly). We started with centralized to maintain our existing email security gateway, then switched to decentralized once we validated Defender for Office 365 coverage.</p>
+    <p>Key things to test before starting wave migrations:</p>
+    <ul>
+      <li>Internal mail routing between on-prem and cloud mailboxes (both directions)</li>
+      <li>Calendar free/busy lookups across the hybrid boundary</li>
+      <li>Meeting acceptance and updates from mixed environments</li>
+      <li>Shared mailbox access from Outlook and OWA</li>
+      <li>SMTP relay from internal applications</li>
     </ul>
 
-    <h2>总结</h2>
-    <p>RAG 并不是银弹，它本质上是在<strong>检索质量和生成质量之间找平衡</strong>。建议从最简单的方案开始，先跑通 pipeline，再逐步加入混合搜索、重排序等优化，每次只改一个变量，这样才能知道每个优化真正带来了多少收益。</p>
+    <h2>The Biggest Surprises</h2>
+    <ul>
+      <li><strong>Public folders:</strong> We had legacy public folders that hadn't been touched in years but had active users. Migrating these to Exchange Online public folders (or replacing them with SharePoint/Teams) required significant planning and stakeholder communication.</li>
+      <li><strong>Outlook profile updates:</strong> Even with Autodiscover configured correctly, some users with older Outlook versions needed manual profile recreation after their mailbox moved. We built this into our helpdesk runbook.</li>
+      <li><strong>Litigation hold and eDiscovery:</strong> Mailboxes with compliance holds had to be kept on-premises until legal confirmed the cloud equivalent (Microsoft Purview) was configured and validated. This delayed our decommission timeline by six weeks.</li>
+      <li><strong>Mobile device re-enrollment:</strong> MDM-managed devices picked up the new mail profile automatically, but BYOD devices required users to remove and re-add their work account. Communicating this clearly in advance prevented most helpdesk tickets.</li>
+    </ul>
+
+    <h2>What Went Well</h2>
+    <p>The wave-based approach was the right call. By migrating department by department (starting with IT, then smaller departments, saving the largest last), we refined our runbook with each wave. By wave 3, migrations that initially took 4 hours of active support had become nearly self-service.</p>
+    <p><strong>User communication was the highest-leverage investment.</strong> We sent a prep email 5 days before, a "migration tonight" reminder the day before, and a "what to do Monday morning" guide the morning after. Departments that received this full communication package generated roughly 60% fewer helpdesk tickets than our first wave where we under-communicated.</p>
+
+    <h2>Final Thoughts</h2>
+    <p>Exchange Online migration is a mature, well-documented process — Microsoft has done this thousands of times. The technical steps are manageable. The harder parts are the organizational ones: stakeholder alignment, user communication, and dealing with the legacy integrations that nobody documented. Invest time upfront in the assessment phase, and treat change management as a first-class workstream, not an afterthought.</p>
   </div>
 
   <div class="divider"></div>
-
   <div class="related fade-in">
-    <h3>相关文章</h3>
+    <h3>Related Articles</h3>
     <div class="related-grid">
-      <a class="related-card" href="lowcode.html">从零设计一个低代码平台<small>2026-03-15 · 8 分钟</small></a>
-      <a class="related-card" href="growth.html">工程师成长路径<small>2025-12-10 · 6 分钟</small></a>
+      <a class="related-card" href="lowcode.html">Designing an Enterprise Azure Landing Zone<small>2026-03-15 · 8 min</small></a>
+      <a class="related-card" href="performance.html">Azure RBAC and Cloud Governance<small>2026-01-20 · 8 min</small></a>
     </div>
   </div>
 </div>
 
-<footer><p>© 2026 Alex Dai · <a href="../index.html">返回主页</a></p></footer>
+<footer><p>© 2026 Alex Dai · <a href="../index.html">Back to Home</a></p></footer>
 <script src="../js/main.js"></script>
 </body>
 </html>

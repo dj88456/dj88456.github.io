@@ -1,39 +1,30 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>从零设计一个低代码平台 · DJ</title>
+  <title>Designing an Enterprise Azure Landing Zone · Alex Dai</title>
   <link rel="stylesheet" href="../css/shared.css" />
   <style>
     .page { max-width: 720px; margin: 0 auto; padding: 90px 24px 60px; }
     .article-header { margin-bottom: 40px; }
-    .article-header h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.2; margin-bottom: 16px; }
-    .article-meta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: .85rem; margin-bottom: 24px; }
+    .article-header h1 { font-size: clamp(1.9rem, 4.5vw, 2.6rem); line-height: 1.15; margin-bottom: 18px; }
+    .article-meta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: .92rem; margin-bottom: 28px; }
     .article-meta .sep { color: var(--border); }
-    .article-body { font-size: .97rem; line-height: 1.85; color: var(--text); }
-    .article-body p { margin-bottom: 20px; color: var(--muted); }
+    .article-body { font-size: 1.08rem; line-height: 1.95; }
+    .article-body p { margin-bottom: 24px; color: var(--muted); }
     .article-body p strong { color: var(--text); }
-    .article-body h2 { font-size: 1.25rem; margin: 36px 0 14px; color: var(--text); }
-    .article-body h3 { font-size: 1rem; margin: 24px 0 10px; color: var(--text); }
+    .article-body h2 { font-size: 1.4rem; margin: 44px 0 16px; color: var(--text); }
+    .article-body h3 { font-size: 1.1rem; margin: 28px 0 12px; color: var(--text); }
     .article-body ul, .article-body ol { padding-left: 20px; margin-bottom: 20px; }
     .article-body li { color: var(--muted); margin-bottom: 6px; }
-    .article-body a { color: var(--accent); text-decoration: none; }
-    .article-body a:hover { text-decoration: underline; }
-    .callout {
-      background: var(--accent-light); border-left: 3px solid var(--accent);
-      border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 24px 0;
-    }
+    .article-body code { background: var(--bg2); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: .88em; color: var(--accent); }
+    .callout { background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 24px 0; }
     .callout p { color: var(--text) !important; margin: 0; font-size: .9rem; }
     .divider { height: 1px; background: var(--border); margin: 40px 0; }
-    .related { margin-top: 40px; }
     .related h3 { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 16px; }
     .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .related-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
-      padding: 16px; text-decoration: none; color: var(--text);
-      transition: all .2s; font-size: .88rem; font-weight: 600;
-    }
+    .related-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-decoration: none; color: var(--text); transition: all .2s; font-size: .88rem; font-weight: 600; }
     .related-card:hover { border-color: var(--accent); transform: translateY(-2px); }
     .related-card small { display: block; color: var(--muted); font-weight: 400; margin-top: 4px; font-size: .78rem; }
     @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
@@ -45,84 +36,99 @@
   <a class="nav-logo" href="../index.html">Alex Dai</a>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="../index.html#articles">文章</a></li>
-      <li><a href="../index.html#contact">联系</a></li>
+      <li><a href="../index.html#articles">Articles</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
     </ul>
     <button class="theme-btn" id="themeToggle">🌙</button>
   </div>
 </nav>
 
 <div class="page">
-  <a class="back-link fade-in" href="../index.html">← 返回主页</a>
+  <a class="back-link fade-in" href="../index.html">← Back to Home</a>
 
   <div class="article-header fade-in">
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
-      <span class="tag-accent">架构</span>
-      <span class="tag">低代码</span>
-      <span class="tag">前端工程</span>
+      <span class="tag-accent">Azure</span>
+      <span class="tag">Cloud Architecture</span>
+      <span class="tag">Governance</span>
     </div>
-    <h1>从零设计一个低代码平台：我踩过的那些坑</h1>
+    <h1>Designing an Enterprise Azure Landing Zone from Scratch</h1>
     <div class="article-meta">
-      <span>DJ</span><span class="sep">·</span>
+      <span>Alex Dai</span><span class="sep">·</span>
       <span>2026-03-15</span><span class="sep">·</span>
-      <span>8 分钟阅读</span>
+      <span>8 min read</span>
     </div>
   </div>
 
   <div class="article-body fade-in">
-    <p>过去两年，我先后在两家公司参与低代码平台的研发。一个是 ToC 的活动页面搭建工具，另一个是 ToB 的企业级数据仪表盘平台。两次经历加起来踩了不少坑，这篇文章是我的经验总结。</p>
+    <p>When WCB-Alberta decided to move to the cloud, I was tasked with designing and implementing our first Azure tenant and landing zone from scratch. This article summarizes the key decisions, pitfalls, and lessons learned from that journey.</p>
 
-    <div class="callout"><p>💡 本文适合有前端基础、对低代码/无代码平台感兴趣的开发者，以及正在考虑自研搭建系统的团队。</p></div>
+    <div class="callout"><p>💡 This article is aimed at IT architects and cloud engineers planning their first enterprise Azure deployment. Familiarity with Azure basics is assumed.</p></div>
 
-    <h2>什么是低代码平台，为什么要做它</h2>
-    <p>低代码平台的本质是<strong>把重复性的 UI 搭建工作从工程师手中转移出去</strong>，让产品、运营、设计师也能参与到页面构建中。听起来很美好，但实现起来比你想象的要复杂得多。</p>
-    <p>很多团队在立项时低估了这件事的复杂度。他们以为"不就是拖拽一下组件"，但等真正开始做，才发现数据绑定、事件联动、响应式布局、版本管理……每一个点都是一个独立的系统设计问题。</p>
+    <h2>What Is an Azure Landing Zone?</h2>
+    <p>An Azure Landing Zone is a <strong>scalable, secure, and governed environment</strong> that serves as the foundation for all your cloud workloads. Think of it as the blueprint for your Azure infrastructure — it defines how subscriptions are organized, how networking is structured, who can access what, and how policies are enforced.</p>
+    <p>Microsoft's Cloud Adoption Framework (CAF) provides the reference architecture, but every organization needs to adapt it to their specific compliance requirements, existing infrastructure, and team capabilities.</p>
 
-    <h2>第一个坑：数据模型设计不当</h2>
-    <p>低代码平台的核心是一套 DSL（Domain Specific Language），用来描述页面的结构和行为。我见过两种常见的错误设计方式：</p>
+    <h2>Step 1: Subscription and Management Group Design</h2>
+    <p>The first major decision is how to organize your subscriptions. We chose a <strong>platform/application separation model</strong>:</p>
     <ul>
-      <li><strong>过于贴近 DOM 结构：</strong>把组件树直接映射成 HTML 树，看似简单，但一旦涉及跨层级通信、全局状态、动态数据，就会陷入混乱。</li>
-      <li><strong>过于抽象：</strong>设计了一套非常"通用"的 DSL，结果连自己的组件库都适配不进去，更别说第三方扩展了。</li>
+      <li><strong>Platform subscriptions</strong> — Identity, Management, Connectivity (hub network, DNS, firewall)</li>
+      <li><strong>Landing zone subscriptions</strong> — Corp (internal apps), Online (public-facing), Sandbox (dev/test)</li>
     </ul>
-    <p>我最终采用的方案是<strong>分层设计</strong>：组件树负责结构，数据 Schema 负责状态，事件总线负责行为，三者解耦后各自扩展，清晰得多。</p>
+    <p>A common mistake is cramming everything into a single subscription early on. This works fine at first but becomes a governance nightmare as teams and workloads grow. Designing for separation from day one saves significant pain later.</p>
 
-    <h2>第二个坑：渲染引擎选型</h2>
-    <p>渲染引擎决定了平台的上限。主要有两种方案：</p>
-    <h3>方案 A：基于 Virtual DOM 的运行时渲染</h3>
-    <p>将 DSL 在运行时解析并渲染为真实 DOM，灵活性高，支持动态组件。缺点是首次渲染开销大，对低端设备不友好。</p>
-    <h3>方案 B：代码生成</h3>
-    <p>将 DSL 编译为标准的 React/Vue 组件代码，性能最优，但丧失了动态性，调试体验差。</p>
-    <p>我们最后采用了<strong>混合方案</strong>：编辑时用运行时渲染保证灵活性，发布时静态编译为组件代码保证性能。这是目前主流平台（如 Webflow、Retool）的通用做法。</p>
-
-    <h2>第三个坑：组件扩展机制</h2>
-    <p>一个好的低代码平台必须是可扩展的。否则遇到任何平台没有的组件需求，开发者都需要修改平台源码，这是不可持续的。</p>
-    <p>我们设计了一套<strong>组件注册协议</strong>：每个组件暴露 <code>props schema</code>（配置面板自动生成）、<code>events</code>（可被其他组件监听）和 <code>slots</code>（支持嵌套）三个接口。业务团队按规范开发组件后，打包上传即可在平台中使用，零侵入平台核心。</p>
-
-    <h2>性能优化：一些实战经验</h2>
+    <h2>Step 2: Networking Architecture</h2>
+    <p>We adopted a <strong>hub-and-spoke topology</strong> with a central hub virtual network hosting shared services (Azure Firewall, VPN Gateway, DNS). Spoke VNets for each workload connect to the hub via VNet peering.</p>
+    <p>Key decisions we made:</p>
     <ul>
-      <li>使用虚拟列表渲染画布中的大量组件，避免全量 DOM 操作</li>
-      <li>组件配置面板使用 debounce，避免每次输入都触发重渲染</li>
-      <li>将组件注册表和实例数据分开存储，减少不必要的 diff</li>
-      <li>发布产物按页面分包，首屏只加载当前页组件</li>
+      <li>Use <strong>Azure Firewall</strong> for east-west and north-south traffic inspection</li>
+      <li>Dedicated <strong>DNS private zones</strong> for internal name resolution</li>
+      <li>ExpressRoute for hybrid connectivity to on-premises (WCB has significant on-prem infrastructure)</li>
+      <li>Private Endpoints for PaaS services — no public exposure for storage, SQL, Key Vault</li>
     </ul>
 
-    <h2>总结</h2>
-    <p>低代码平台是一个<strong>系统工程</strong>，不是某个技术方向的单点突破。在启动前，我建议你先想清楚：目标用户是谁？核心场景是什么？扩展边界在哪里？这三个问题想清楚了，技术选型自然会收敛。</p>
-    <p>如果你正在做类似的事情，欢迎找我交流。</p>
+    <h2>Step 3: Identity and RBAC</h2>
+    <p>We integrated Azure AD with our on-premises Active Directory via <strong>Azure AD Connect</strong>. For RBAC, we followed the principle of least privilege with a tiered role model:</p>
+    <ul>
+      <li><strong>Platform team</strong> — Owner on platform subscriptions, Contributor on shared services</li>
+      <li><strong>Application teams</strong> — Contributor scoped to their own resource groups</li>
+      <li><strong>Read-only groups</strong> — Auditors, security team, senior management</li>
+    </ul>
+    <p>We created <strong>custom roles</strong> for specific scenarios (e.g., a "Network Contributor" role that can manage NICs and NSGs but not create VNets). Document your role definitions carefully — they become the foundation of your security posture.</p>
+
+    <h2>Step 4: Policy as Code</h2>
+    <p>Azure Policy is one of the most powerful governance tools available, and also one of the most under-used. We implemented policies to:</p>
+    <ul>
+      <li>Enforce allowed resource locations (Canada Central and Canada East only)</li>
+      <li>Require specific tags on all resources (CostCenter, Owner, Environment)</li>
+      <li>Deny public IP addresses on VMs in production</li>
+      <li>Require diagnostic settings to be sent to our central Log Analytics workspace</li>
+    </ul>
+    <p>Start with <strong>Audit mode</strong> before switching to <strong>Deny</strong> — you'll almost certainly find existing resources that violate your policies, and you need time to remediate them.</p>
+
+    <h2>The Biggest Pitfalls</h2>
+    <ul>
+      <li><strong>Under-estimating hybrid connectivity complexity:</strong> VPN/ExpressRoute setup with on-prem firewalls took twice as long as planned</li>
+      <li><strong>Not involving security early enough:</strong> Retrofitting security controls is far more painful than designing them in from the start</li>
+      <li><strong>Treating it as a one-time project:</strong> A landing zone is a living platform — plan for ongoing maintenance, updates, and team enablement</li>
+    </ul>
+
+    <h2>Final Thoughts</h2>
+    <p>A well-designed landing zone is an investment that pays dividends every time a new workload is onboarded. The goal isn't perfection on day one — it's building a solid, extensible foundation that your teams can build on with confidence. Start with the non-negotiables (identity, networking, governance), then iterate.</p>
+    <p>If you're planning a similar journey, feel free to reach out — I'm happy to share more details about our specific configuration.</p>
   </div>
 
   <div class="divider"></div>
-
   <div class="related fade-in">
-    <h3>相关文章</h3>
+    <h3>Related Articles</h3>
     <div class="related-grid">
-      <a class="related-card" href="performance.html">前端性能优化的系统方法论<small>2026-01-20 · 10 分钟</small></a>
-      <a class="related-card" href="llm-rag.html">LLM 应用开发实践：RAG 系统的构建与优化<small>2026-02-28 · 12 分钟</small></a>
+      <a class="related-card" href="performance.html">Azure RBAC and Cloud Governance<small>2026-01-20 · 8 min</small></a>
+      <a class="related-card" href="llm-rag.html">Exchange Online Migration: Lessons Learned<small>2026-02-28 · 10 min</small></a>
     </div>
   </div>
 </div>
 
-<footer><p>© 2026 Alex Dai · <a href="../index.html">返回主页</a></p></footer>
+<footer><p>© 2026 Alex Dai · <a href="../index.html">Back to Home</a></p></footer>
 <script src="../js/main.js"></script>
 </body>
 </html>

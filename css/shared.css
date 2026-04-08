@@ -18,11 +18,12 @@
   --shadow-lg: 0 8px 32px rgba(0,0,0,.4);
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; font-size: 17px; }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-  background: var(--bg); color: var(--text); line-height: 1.7;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.75;
   transition: background .3s, color .3s;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* ── PROGRESS BAR ── */
@@ -36,14 +37,14 @@ body {
 nav {
   position: fixed; top: 3px; left: 0; right: 0; z-index: 100;
   display: flex; justify-content: space-between; align-items: center;
-  padding: 0 8%; height: 60px;
+  padding: 0 8%; height: 64px;
   background: rgba(248,250,252,.88); backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
   transition: background .3s, border-color .3s;
 }
 [data-theme="dark"] nav { background: rgba(15,23,42,.88); }
 .nav-logo {
-  font-weight: 800; font-size: 1.1rem;
+  font-weight: 800; font-size: 1.15rem;
   background: linear-gradient(135deg, var(--accent), var(--accent2));
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   text-decoration: none;
@@ -51,7 +52,7 @@ nav {
 .nav-right { display: flex; align-items: center; gap: 24px; }
 .nav-links { display: flex; gap: 22px; list-style: none; }
 .nav-links a {
-  text-decoration: none; color: var(--muted); font-size: .88rem;
+  text-decoration: none; color: var(--muted); font-size: .92rem;
   font-weight: 500; transition: color .2s; position: relative;
 }
 .nav-links a::after {
@@ -79,9 +80,9 @@ nav {
   content: ""; width: 16px; height: 2px;
   background: var(--accent); border-radius: 2px;
 }
-h1, h2, h3 { font-weight: 800; letter-spacing: -.5px; }
-h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 20px; }
-h2 { font-size: 1.75rem; margin-bottom: 36px; }
+h1, h2, h3 { font-weight: 800; letter-spacing: -.6px; }
+h1 { font-size: clamp(2.2rem, 5.5vw, 3.4rem); line-height: 1.08; margin-bottom: 22px; }
+h2 { font-size: 1.9rem; margin-bottom: 36px; }
 
 /* ── BUTTONS ── */
 .btn {
