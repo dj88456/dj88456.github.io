@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
 /* ── RESET & VARIABLES ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -20,7 +22,7 @@
 
 html { scroll-behavior: smooth; font-size: 18px; }
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  font-family: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: var(--bg); color: var(--text); line-height: 1.75;
   transition: background .3s, color .3s;
   -webkit-font-smoothing: antialiased;
@@ -123,10 +125,10 @@ h2 { font-size: 1.6rem; margin-bottom: 32px; }
 
 /* ── FOOTER ── */
 footer {
-  background: #1a2236;
+  background: #2e3f5c;
   margin-top: 60px;
 }
-[data-theme="dark"] footer { background: #080f1a; }
+[data-theme="dark"] footer { background: #1a2436; }
 .footer-main {
   max-width: 900px; margin: 0 auto;
   padding: 60px 24px 48px;
