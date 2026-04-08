@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DesignToken Sync · DJ</title>
+  <title>Multi-Site IT Infrastructure · Alex Dai</title>
   <link rel="stylesheet" href="../css/shared.css" />
   <style>
     .page { max-width: 800px; margin: 0 auto; padding: 90px 24px 60px; }
@@ -17,10 +17,11 @@
       font-size: 2rem; margin-bottom: 20px;
     }
     .project-hero h1 { font-size: 2rem; margin-bottom: 8px; }
-    .project-hero p { color: var(--muted); font-size: 1rem; max-width: 560px; margin-bottom: 24px; }
+    .project-hero p { color: var(--muted); font-size: 1.05rem; max-width: 580px; margin-bottom: 24px; line-height: 1.75; }
     .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
     .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
     .stats-row { display: flex; gap: 24px; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+    .stat { display: flex; flex-direction: column; }
     .stat strong { font-size: 1.2rem; font-weight: 800; }
     .stat span { font-size: .78rem; color: var(--muted); }
 
@@ -29,32 +30,22 @@
     .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .feature { display: flex; gap: 12px; }
     .feature-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
-    .feature h3 { font-size: .92rem; font-weight: 700; margin-bottom: 4px; }
-    .feature p { font-size: .83rem; color: var(--muted); }
+    .feature h3 { font-size: .95rem; font-weight: 700; margin-bottom: 4px; }
+    .feature p { font-size: .88rem; color: var(--muted); line-height: 1.65; }
 
-    .flow { display: flex; align-items: center; gap: 0; flex-wrap: wrap; justify-content: center; }
-    .flow-item {
-      text-align: center; padding: 16px 20px; background: var(--bg2);
-      border: 1px solid var(--border); border-radius: 10px; min-width: 120px;
+    .sites-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 4px; }
+    .site-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 16px; text-align: center;
     }
-    .flow-item .ico { font-size: 1.6rem; margin-bottom: 6px; }
-    .flow-item .lbl { font-size: .8rem; font-weight: 600; }
-    .flow-item .sub { font-size: .72rem; color: var(--muted); margin-top: 2px; }
-    .flow-arrow { color: var(--muted); font-size: 1.4rem; padding: 0 8px; }
-
-    .token-preview { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .token-side { background: var(--bg2); border-radius: 10px; padding: 16px; }
-    .token-side h3 { font-size: .78rem; font-weight: 700; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; letter-spacing: 1px; }
-    .token-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: .82rem; }
-    .color-swatch { width: 20px; height: 20px; border-radius: 4px; flex-shrink: 0; }
-    .token-name { font-family: monospace; color: var(--accent); }
-    .token-value { color: var(--muted); margin-left: auto; font-family: monospace; font-size: .75rem; }
+    .site-icon { font-size: 1.6rem; margin-bottom: 6px; }
+    .site-name { font-size: .85rem; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .site-brand { font-size: .75rem; color: var(--muted); }
 
     @media (max-width: 600px) {
-      .features-grid, .token-preview { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .sites-grid { grid-template-columns: 1fr 1fr; }
       .project-hero { padding: 24px; }
-      .flow { flex-direction: column; }
-      .flow-arrow { transform: rotate(90deg); }
     }
   </style>
 </head>
@@ -64,84 +55,98 @@
   <a class="nav-logo" href="../index.html">Alex Dai</a>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="../index.html#projects">项目</a></li>
-      <li><a href="../index.html#contact">联系</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
     </ul>
     <button class="theme-btn" id="themeToggle">🌙</button>
   </div>
 </nav>
 
 <div class="page">
-  <a class="back-link fade-in" href="../index.html">← 返回主页</a>
+  <a class="back-link fade-in" href="../index.html">← Back to Home</a>
 
   <div class="project-hero fade-in">
-    <div class="project-icon-lg">🎨</div>
-    <h1>DesignToken Sync</h1>
-    <p>将 Figma 设计变量（Design Variables）自动同步为代码中的 Token，打通设计师与开发者之间的协作断层，让设计系统真正落地。</p>
+    <div class="project-icon-lg">🏨</div>
+    <h1>Multi-Site IT Infrastructure</h1>
+    <p>As the sole IT Team Lead at Sunrise International, designed and managed the complete IT infrastructure for 12 franchise hotel properties — including Best Western and Ramada brands — across Alberta. Handled everything from network design to cloud backup and Office 365 migration.</p>
     <div class="tag-row">
-      <span class="tag">Figma API</span><span class="tag">TypeScript</span>
-      <span class="tag">CSS Variables</span><span class="tag">Style Dictionary</span>
-      <span class="tag-accent">Figma 插件</span><span class="tag-accent">CLI 工具</span>
+      <span class="tag">VMware ESXi</span>
+      <span class="tag">Hyper-V</span>
+      <span class="tag">AWS</span>
+      <span class="tag">Networking</span>
+      <span class="tag">VPN</span>
+      <span class="tag">Office 365</span>
+      <span class="tag-accent">Sunrise International</span>
+      <span class="tag-accent">2017–2019</span>
     </div>
     <div class="btn-row">
-      <a class="btn btn-primary btn-sm" href="#" target="_blank" rel="noopener">🎨 Figma 插件页</a>
-      <a class="btn btn-outline btn-sm" href="https://github.com/yourname/designtoken-sync" target="_blank" rel="noopener">🐙 GitHub</a>
+      <a class="btn btn-outline btn-sm" href="../index.html#contact">✉ Get in Touch</a>
     </div>
     <div class="stats-row">
-      <div class="stat"><strong>2k+</strong><span>插件安装</span></div>
-      <div class="stat"><strong>4.8★</strong><span>用户评分</span></div>
-      <div class="stat"><strong>CSS/JS/iOS</strong><span>输出格式</span></div>
-      <div class="stat"><strong>Free</strong><span>免费使用</span></div>
+      <div class="stat"><strong>12</strong><span>Hotel Properties</span></div>
+      <div class="stat"><strong>2</strong><span>Franchise Brands</span></div>
+      <div class="stat"><strong>Solo</strong><span>IT Team Lead</span></div>
+      <div class="stat"><strong>AWS</strong><span>Cloud Backup Platform</span></div>
     </div>
   </div>
 
   <div class="card fade-in">
-    <h2>工作流程</h2>
-    <div class="flow">
-      <div class="flow-item"><div class="ico">🖌</div><div class="lbl">Figma 设计</div><div class="sub">Design Variables</div></div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-item"><div class="ico">🔄</div><div class="lbl">插件同步</div><div class="sub">一键导出</div></div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-item"><div class="ico">📦</div><div class="lbl">Token 转换</div><div class="sub">Style Dictionary</div></div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-item"><div class="ico">💻</div><div class="lbl">代码集成</div><div class="sub">CSS / JS / iOS</div></div>
+    <h2>Properties Managed</h2>
+    <div class="sites-grid">
+      <div class="site-card"><div class="site-icon">🏨</div><div class="site-name">Best Western</div><div class="site-brand">Multiple locations</div></div>
+      <div class="site-card"><div class="site-icon">🏩</div><div class="site-name">Ramada</div><div class="site-brand">Multiple locations</div></div>
+      <div class="site-card"><div class="site-icon">🌐</div><div class="site-name">Corporate Office</div><div class="site-brand">Stony Plain, AB</div></div>
     </div>
   </div>
 
   <div class="card fade-in">
-    <h2>Token 预览</h2>
-    <div class="token-preview">
-      <div class="token-side">
-        <h3>Figma 变量</h3>
-        <div class="token-row"><div class="color-swatch" style="background:#2563eb;"></div><span class="token-name">color/primary</span><span class="token-value">#2563EB</span></div>
-        <div class="token-row"><div class="color-swatch" style="background:#0f172a;"></div><span class="token-name">color/text</span><span class="token-value">#0F172A</span></div>
-        <div class="token-row"><div class="color-swatch" style="background:#e2e8f0;"></div><span class="token-name">color/border</span><span class="token-value">#E2E8F0</span></div>
-      </div>
-      <div class="token-side">
-        <h3>生成代码（CSS）</h3>
-        <div style="font-family:monospace;font-size:.78rem;color:var(--muted);line-height:1.8;">
-          <span style="color:#60a5fa;">:root</span> {<br>
-          &nbsp;&nbsp;<span style="color:#f9a8d4;">--color-primary</span>: #2563EB;<br>
-          &nbsp;&nbsp;<span style="color:#f9a8d4;">--color-text</span>: #0F172A;<br>
-          &nbsp;&nbsp;<span style="color:#f9a8d4;">--color-border</span>: #E2E8F0;<br>
-          }
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card fade-in">
-    <h2>核心功能</h2>
+    <h2>Key Deliverables</h2>
     <div class="features-grid">
-      <div class="feature"><div class="feature-icon">⚡</div><div><h3>实时同步</h3><p>Figma 变量修改后，运行一条命令即可将所有 Token 更新到代码仓库。</p></div></div>
-      <div class="feature"><div class="feature-icon">🎯</div><div><h3>多平台输出</h3><p>同时生成 CSS Variables、JS/TS 对象、iOS Swift、Android XML 格式。</p></div></div>
-      <div class="feature"><div class="feature-icon">🔗</div><div><h3>CI 集成</h3><p>提供 GitHub Action，设计稿更新后自动触发 Token 同步并提交 PR。</p></div></div>
-      <div class="feature"><div class="feature-icon">🌓</div><div><h3>主题支持</h3><p>完整支持 Figma 多模式变量，自动生成亮色/暗色/高对比等多套主题。</p></div></div>
+      <div class="feature">
+        <div class="feature-icon">🌐</div>
+        <div><h3>Network Design & Deployment</h3><p>Designed and deployed the corporate network structure across all 12 properties, including VLANs, managed switches, wireless infrastructure, and firewall configurations.</p></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🖥️</div>
+        <div><h3>Server Virtualization</h3><p>Deployed VMware ESXi and Hyper-V hypervisors at each site, consolidating physical servers and improving reliability and resource utilization.</p></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🔒</div>
+        <div><h3>Site-to-Site VPN</h3><p>Configured Site-to-Site VPN tunnels connecting all hotel properties to the corporate office, enabling centralized management and shared services.</p></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">☁️</div>
+        <div><h3>Cloud Backup (AWS)</h3><p>Implemented offsite cloud backup to AWS for critical business data, replacing unreliable tape-based backups and ensuring recovery capability across all sites.</p></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📧</div>
+        <div><h3>Office 365 Migration</h3><p>Led migration from on-premises email to Office 365, managing DNS changes, user provisioning, and post-migration support across all properties.</p></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🌍</div>
+        <div><h3>Domain & Web Hosting</h3><p>Managed corporate domain infrastructure and hotel websites hosted on AWS, including DNS management, SSL certificates, and hosting maintenance.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card fade-in">
+    <h2>Technologies Used</h2>
+    <div class="tag-row">
+      <span class="tag">VMware ESXi</span>
+      <span class="tag">Hyper-V</span>
+      <span class="tag">Windows Server</span>
+      <span class="tag">AWS S3 / EC2</span>
+      <span class="tag">Site-to-Site VPN</span>
+      <span class="tag">Active Directory</span>
+      <span class="tag">Office 365</span>
+      <span class="tag">DNS / DHCP</span>
+      <span class="tag">Fortinet / Cisco</span>
+      <span class="tag">Veeam Backup</span>
     </div>
   </div>
 </div>
 
-<footer><p>© 2026 Alex Dai · <a href="../index.html">返回主页</a></p></footer>
+<footer><p>© 2026 Alex Dai · <a href="../index.html">Back to Home</a></p></footer>
 <script src="../js/main.js"></script>
 </body>
 </html>

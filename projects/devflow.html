@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DevFlow CLI · DJ</title>
+  <title>Azure Landing Zone · Alex Dai</title>
   <link rel="stylesheet" href="../css/shared.css" />
   <style>
     .page { max-width: 800px; margin: 0 auto; padding: 90px 24px 60px; }
     .project-hero {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow);
-      margin-bottom: 24px;
+      border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow); margin-bottom: 24px;
     }
     .project-icon-lg {
       width: 64px; height: 64px; border-radius: 16px; background: #eff6ff;
@@ -18,7 +17,7 @@
       font-size: 2rem; margin-bottom: 20px;
     }
     .project-hero h1 { font-size: 2rem; margin-bottom: 8px; }
-    .project-hero p { color: var(--muted); font-size: 1rem; max-width: 560px; margin-bottom: 24px; }
+    .project-hero p { color: var(--muted); font-size: 1.05rem; max-width: 580px; margin-bottom: 24px; line-height: 1.75; }
     .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
     .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
     .stats-row { display: flex; gap: 24px; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border); flex-wrap: wrap; }
@@ -27,27 +26,35 @@
     .stat span { font-size: .78rem; color: var(--muted); }
 
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 32px; box-shadow: var(--shadow); margin-bottom: 20px; }
-    .card h2 { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 20px; font-size: .8rem; }
+    .card h2 { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 20px; }
     .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .feature { display: flex; gap: 12px; }
     .feature-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
-    .feature h3 { font-size: .92rem; font-weight: 700; margin-bottom: 4px; }
-    .feature p { font-size: .83rem; color: var(--muted); }
+    .feature h3 { font-size: .95rem; font-weight: 700; margin-bottom: 4px; }
+    .feature p { font-size: .88rem; color: var(--muted); line-height: 1.65; }
 
-    .code-block {
-      background: #0f172a; color: #e2e8f0; border-radius: 10px;
-      padding: 20px 24px; font-family: "Fira Code", "Cascadia Code", monospace;
-      font-size: .85rem; line-height: 1.7; overflow-x: auto; margin-bottom: 16px;
+    .arch-diagram { display: flex; align-items: stretch; gap: 0; flex-wrap: wrap; justify-content: center; }
+    .arch-step {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 18px; text-align: center;
+      font-size: .82rem; font-weight: 600; min-width: 110px;
     }
-    [data-theme="dark"] .code-block { background: #020617; border: 1px solid var(--border); }
-    .code-block .c { color: #64748b; }
-    .code-block .k { color: #60a5fa; }
-    .code-block .s { color: #86efac; }
-    .code-block .p { color: #f9a8d4; }
+    .arch-step .icon { font-size: 1.4rem; display: block; margin-bottom: 4px; }
+    .arch-step .sub { font-size: .72rem; color: var(--muted); margin-top: 3px; font-weight: 400; }
+    .arch-arrow { color: var(--muted); font-size: 1.2rem; padding: 0 6px; display: flex; align-items: center; }
+
+    .timeline-list { display: flex; flex-direction: column; gap: 16px; }
+    .tl-item { display: flex; gap: 16px; }
+    .tl-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 6px; }
+    .tl-line { display: flex; flex-direction: column; align-items: center; gap: 0; }
+    .tl-connector { width: 2px; flex: 1; background: var(--border); margin: 4px 0; }
+    .tl-body h3 { font-size: .92rem; font-weight: 700; margin-bottom: 3px; }
+    .tl-body p { font-size: .85rem; color: var(--muted); }
 
     @media (max-width: 600px) {
       .features-grid { grid-template-columns: 1fr; }
       .project-hero { padding: 24px; }
+      .arch-diagram { flex-direction: column; }
     }
   </style>
 </head>
@@ -57,93 +64,102 @@
   <a class="nav-logo" href="../index.html">Alex Dai</a>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="../index.html#projects">项目</a></li>
-      <li><a href="../index.html#contact">联系</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
     </ul>
     <button class="theme-btn" id="themeToggle">🌙</button>
   </div>
 </nav>
 
 <div class="page">
-  <a class="back-link fade-in" href="../index.html">← 返回主页</a>
+  <a class="back-link fade-in" href="../index.html">← Back to Home</a>
 
   <div class="project-hero fade-in">
-    <div class="project-icon-lg">🚀</div>
-    <h1>DevFlow CLI</h1>
-    <p>一款面向开发者的命令行工具，自动化日常 Git 工作流、一键生成规范的 Changelog，并集成 CI/CD 状态检查，让每次发版都更顺畅。</p>
+    <div class="project-icon-lg">☁️</div>
+    <h1>Azure Landing Zone</h1>
+    <p>Designed and implemented WCB-Alberta's first Azure tenant and landing zone from the ground up — establishing cloud governance, hub-and-spoke networking, RBAC roles, and Azure Policy to serve as the foundation for all cloud workloads.</p>
     <div class="tag-row">
-      <span class="tag">TypeScript</span>
-      <span class="tag">Node.js</span>
-      <span class="tag">CLI</span>
-      <span class="tag-accent">开源</span>
-      <span class="tag-accent">v2.4.1</span>
+      <span class="tag">Microsoft Azure</span>
+      <span class="tag">Landing Zone</span>
+      <span class="tag">RBAC</span>
+      <span class="tag">Azure Firewall</span>
+      <span class="tag">Azure Policy</span>
+      <span class="tag-accent">WCB-Alberta</span>
+      <span class="tag-accent">2020–2022</span>
     </div>
     <div class="btn-row">
-      <a class="btn btn-primary btn-sm" href="https://github.com/yourname/devflow" target="_blank" rel="noopener">🐙 查看 GitHub</a>
-      <a class="btn btn-outline btn-sm" href="https://npmjs.com/package/devflow-cli" target="_blank" rel="noopener">📦 npm 包页面</a>
+      <a class="btn btn-outline btn-sm" href="../articles/lowcode.html">📄 Read the Article →</a>
+      <a class="btn btn-outline btn-sm" href="../index.html#contact">✉ Get in Touch</a>
     </div>
     <div class="stats-row">
-      <div class="stat"><strong>1.2k</strong><span>GitHub Stars</span></div>
-      <div class="stat"><strong>180</strong><span>Forks</span></div>
-      <div class="stat"><strong>50k+</strong><span>npm 下载</span></div>
-      <div class="stat"><strong>v2.4.1</strong><span>最新版本</span></div>
+      <div class="stat"><strong>3</strong><span>Platform Subscriptions</span></div>
+      <div class="stat"><strong>Hub-Spoke</strong><span>Network Topology</span></div>
+      <div class="stat"><strong>5+</strong><span>Azure Policies Deployed</span></div>
+      <div class="stat"><strong>Zero</strong><span>Public IPs on VMs (Prod)</span></div>
     </div>
   </div>
 
   <div class="card fade-in">
-    <h2>核心功能</h2>
+    <h2>Architecture Overview</h2>
+    <div class="arch-diagram">
+      <div class="arch-step"><span class="icon">🏢</span>Management Groups<span class="sub">Hierarchy & Governance</span></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-step"><span class="icon">📦</span>Subscriptions<span class="sub">Platform + App LZs</span></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-step"><span class="icon">🌐</span>Hub VNet<span class="sub">Firewall, VPN, DNS</span></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-step"><span class="icon">🔗</span>Spoke VNets<span class="sub">Workload Isolation</span></div>
+    </div>
+  </div>
+
+  <div class="card fade-in">
+    <h2>Key Deliverables</h2>
     <div class="features-grid">
       <div class="feature">
-        <div class="feature-icon">⚡</div>
-        <div><h3>智能 Commit</h3><p>遵循 Conventional Commits 规范，自动提示类型与范围，生成标准化提交信息。</p></div>
+        <div class="feature-icon">🏗️</div>
+        <div><h3>Subscription Design</h3><p>Platform/application separation model with dedicated subscriptions for Identity, Connectivity, Management, and workload landing zones.</p></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🌐</div>
+        <div><h3>Hub-and-Spoke Networking</h3><p>Central hub with Azure Firewall for traffic inspection, Private DNS zones, and ExpressRoute for hybrid connectivity to on-premises.</p></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🔐</div>
+        <div><h3>RBAC Framework</h3><p>Custom role definitions and group-based assignments for platform team, application teams, and read-only auditors. All elevated roles gated via PIM.</p></div>
       </div>
       <div class="feature">
         <div class="feature-icon">📋</div>
-        <div><h3>Changelog 生成</h3><p>基于 Git 历史自动生成分类清晰的 CHANGELOG.md，支持自定义模板。</p></div>
+        <div><h3>Azure Policy Guardrails</h3><p>Deny policies for non-Canadian regions and public IPs; audit policies for tagging and diagnostic settings; auto-remediation for log forwarding.</p></div>
       </div>
       <div class="feature">
-        <div class="feature-icon">🔍</div>
-        <div><h3>CI 状态检查</h3><p>发版前自动拉取 GitHub Actions / CircleCI 构建状态，阻断失败的发布。</p></div>
+        <div class="feature-icon">🔒</div>
+        <div><h3>Private Endpoints</h3><p>All PaaS services (Storage, SQL, Key Vault) accessed via Private Endpoints — no public exposure in production environments.</p></div>
       </div>
       <div class="feature">
-        <div class="feature-icon">🏷</div>
-        <div><h3>语义化版本</h3><p>根据提交类型自动推算下一个 semver 版本号，支持 pre-release 标签。</p></div>
+        <div class="feature-icon">📊</div>
+        <div><h3>Governance Documentation</h3><p>Cloud governance documents including RBAC role definitions, naming conventions, tagging taxonomy, and subscription vending process.</p></div>
       </div>
     </div>
   </div>
 
   <div class="card fade-in">
-    <h2>快速开始</h2>
-    <div class="code-block"><span class="c"># 全局安装</span>
-<span class="k">npm</span> install -g devflow-cli
-
-<span class="c"># 初始化项目配置</span>
-<span class="k">devflow</span> init
-
-<span class="c"># 交互式提交</span>
-<span class="k">devflow</span> commit
-
-<span class="c"># 生成 Changelog 并发布</span>
-<span class="k">devflow</span> release --minor</div>
-  </div>
-
-  <div class="card fade-in">
-    <h2>技术栈</h2>
+    <h2>Technologies Used</h2>
     <div class="tag-row">
-      <span class="tag">TypeScript 5</span>
-      <span class="tag">Node.js 20</span>
-      <span class="tag">Commander.js</span>
-      <span class="tag">Inquirer.js</span>
-      <span class="tag">Chalk</span>
-      <span class="tag">simple-git</span>
-      <span class="tag">Vitest</span>
+      <span class="tag">Azure Resource Manager</span>
+      <span class="tag">Azure Firewall</span>
+      <span class="tag">Azure AD / Entra ID</span>
+      <span class="tag">Azure Policy</span>
+      <span class="tag">Azure Monitor</span>
+      <span class="tag">Log Analytics</span>
+      <span class="tag">ExpressRoute</span>
+      <span class="tag">Private DNS Zones</span>
+      <span class="tag">Bicep / ARM Templates</span>
+      <span class="tag">Microsoft Defender for Cloud</span>
     </div>
   </div>
 </div>
 
-<footer>
-  <p>© 2026 Alex Dai · <a href="../index.html">返回主页</a></p>
-</footer>
+<footer><p>© 2026 Alex Dai · <a href="../index.html">Back to Home</a></p></footer>
 <script src="../js/main.js"></script>
 </body>
 </html>
