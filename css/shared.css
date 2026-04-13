@@ -30,6 +30,10 @@ body {
 }
 
 /* ── PROGRESS BAR ── */
+#progress-bar-track {
+  position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 199;
+  background: var(--border);
+}
 #progress-bar {
   position: fixed; top: 0; left: 0; height: 3px; z-index: 200;
   background: linear-gradient(90deg, var(--accent), var(--accent2));
