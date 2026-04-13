@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -l \"<head>\" c:/Users/DJ/personal-site/*.html c:/Users/DJ/personal-site/articles/*.html c:/Users/DJ/personal-site/projects/*.html)",
+      "Bash(python -m http.server 3000)",
+      "Bash(sed -i 's|<button class=\"theme-btn\" id=\"themeToggle\" aria-label=\"Toggle theme\">🌙</button>|<button class=\"theme-btn\" id=\"themeToggle\" aria-label=\"Toggle theme\"></button>|g' index.html resume.html)",
+      "Bash(sed -i 's|<button class=\"theme-btn\" id=\"themeToggle\" aria-label=\"切换主题\">🌙</button>|<button class=\"theme-btn\" id=\"themeToggle\" aria-label=\"切换主题\"></button>|g' contact-wechat.html)",
+      "Bash(sed -i 's|<button class=\"theme-btn\" id=\"themeToggle\">&#x1F319;</button>|<button class=\"theme-btn\" id=\"themeToggle\"></button>|g' articles/*.html projects/*.html)",
+      "Bash(sed -i 's|<link rel=\"icon\" type=\"image/svg+xml\" href=\"favicon.svg\" />|<link rel=\"icon\" type=\"image/svg+xml\" href=\"favicon.svg\" />\\\\n  <meta name=\"theme-color\" content=\"#f8fafc\" id=\"themeColorMeta\" />|g' index.html resume.html contact-wechat.html)",
+      "Bash(sed -i 's|<link rel=\"icon\" type=\"image/svg+xml\" href=\"../favicon.svg\" />|<link rel=\"icon\" type=\"image/svg+xml\" href=\"../favicon.svg\" />\\\\n  <meta name=\"theme-color\" content=\"#f8fafc\" id=\"themeColorMeta\" />|g' articles/*.html projects/*.html)",
+      "Bash(grep -rn \"max-width\" c:/Users/DJ/personal-site/articles/*.html c:/Users/DJ/personal-site/projects/*.html)",
+      "Bash(sed -i 's/max-width: 900px;/max-width: 1100px;/g' css/shared.css)",
+      "Bash(sed -i 's/padding: 0 8%;/padding: 0 5%;/' css/shared.css)",
+      "Bash(sed -i 's/max-width: 800px; margin: 0 auto; padding: 96px 24px 64px;/max-width: 1000px; margin: 0 auto; padding: 96px 24px 64px;/' index.html)",
+      "Bash(sed -i 's/max-width: 560px;/max-width: 660px;/' index.html)",
+      "Bash(sed -i 's/max-width: 800px; margin: 0 auto; padding: 90px 24px 60px;/max-width: 1000px; margin: 0 auto; padding: 90px 24px 60px;/' resume.html)"
+    ]
+  }
+}
