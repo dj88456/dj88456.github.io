@@ -26,14 +26,22 @@ const ICON_SUN = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" st
 
 const themeBtn = document.getElementById("themeToggle");
 const root = document.documentElement;
+const themeMeta = document.getElementById("themeColorMeta");
+const THEME_COLORS = { light: "#f8fafc", dark: "#0f172a" };
+
+function applyTheme(t) {
+  root.setAttribute("data-theme", t);
+  if (themeBtn) themeBtn.innerHTML = t === "dark" ? ICON_SUN : ICON_MOON;
+  if (themeMeta) themeMeta.setAttribute("content", THEME_COLORS[t]);
+}
+
 const saved = localStorage.getItem("theme") || "light";
-root.setAttribute("data-theme", saved);
+applyTheme(saved);
+
 if (themeBtn) {
-  themeBtn.innerHTML = saved === "dark" ? ICON_SUN : ICON_MOON;
   themeBtn.addEventListener("click", () => {
     const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    root.setAttribute("data-theme", next);
-    themeBtn.innerHTML = next === "dark" ? ICON_SUN : ICON_MOON;
+    applyTheme(next);
     localStorage.setItem("theme", next);
   });
 }
