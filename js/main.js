@@ -81,6 +81,22 @@ if (revealables.length) {
   }
 }
 
+// ── Header shadow once the page has scrolled ───────────────
+const head = document.querySelector(".site-head");
+if (head) {
+  let ticking = false;
+  const sync = () => {
+    head.classList.toggle("scrolled", window.scrollY > 8);
+    ticking = false;
+  };
+  window.addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(sync);
+  }, { passive: true });
+  sync();
+}
+
 // ── Reading progress (article pages) ───────────────────────
 const bar = document.getElementById("progress-bar");
 if (bar) {

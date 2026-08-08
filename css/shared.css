@@ -288,19 +288,37 @@ a.link:hover { border-color: var(--accent); }
 
 @media (max-width: 48rem) {
   .menu-btn { display: flex; }
+
+  /* The panel sits over scrolling content, so it is opaque — a blur
+     alone left the text underneath showing through. */
   .site-nav {
     position: absolute; top: 100%; left: 0; right: 0;
+    display: flex;
     flex-direction: column; align-items: stretch; gap: 0.15rem;
-    background: var(--glass);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    background: var(--bg);
     border: 0;
     border-bottom: 1px solid var(--rule);
     border-radius: 0;
     padding: 0.6rem var(--pad) 1.1rem;
-    display: none;
+    box-shadow: 0 18px 40px -12px rgba(0, 0, 0, .18);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-0.6rem);
+    pointer-events: none;
+    transition: opacity .2s ease,
+                transform .34s cubic-bezier(.2,.75,.3,1),
+                visibility .34s;
   }
-  .site-nav.open { display: flex; }
+  [data-theme="dark"] .site-nav { box-shadow: 0 18px 40px -12px rgba(0, 0, 0, .6); }
+
+  .site-nav.open {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+  }
+
   .site-nav a {
     font-size: 1.1rem;
     font-weight: 600;
@@ -308,8 +326,22 @@ a.link:hover { border-color: var(--accent); }
     padding: 0.7rem 1rem;
     border-radius: 10px;
     color: var(--ink);
+    opacity: 0;
+    transform: translateY(-0.4rem);
+    transition: opacity .3s ease, transform .3s cubic-bezier(.2,.75,.3,1),
+                background .2s, color .2s;
   }
+  .site-nav.open a { opacity: 1; transform: none; }
+  .site-nav.open a:nth-child(1) { transition-delay: .04s; }
+  .site-nav.open a:nth-child(2) { transition-delay: .08s; }
+  .site-nav.open a:nth-child(3) { transition-delay: .12s; }
+  .site-nav.open a:nth-child(4) { transition-delay: .16s; }
+  .site-nav.open a:nth-child(5) { transition-delay: .20s; }
+
   .site-nav a[aria-current="page"] { justify-content: flex-start; }
+
+  /* the bar itself also needs to be near-solid on a phone */
+  .site-head { background: color-mix(in srgb, var(--bg) 94%, transparent); }
 }
 
 /* ── LAYOUT ───────────────────────────────────────────────── */
@@ -1291,6 +1323,50 @@ a:hover > .icon-box { border-color: color-mix(in srgb, var(--accent) 45%, transp
   transition: width .1s linear;
 }
 
+/* ══ MOTION ══════════════════════════════════════════════════ */
+/* Cross-document view transitions: the site is many small pages, so
+   navigation is the moment most worth smoothing. Chrome and Safari
+   honour it; everywhere else simply ignores the rule. */
+@view-transition { navigation: auto; }
+
+::view-transition-old(root) { animation: vtOut .2s cubic-bezier(.4,0,1,1) both; }
+::view-transition-new(root) { animation: vtIn .32s cubic-bezier(0,0,.2,1) both; }
+@keyframes vtOut { to   { opacity: 0; transform: translateY(-6px); } }
+@keyframes vtIn  { from { opacity: 0; transform: translateY(10px); } }
+
+/* header and footer hold still across a navigation rather than
+   cross-fading along with the body */
+.site-head { view-transition-name: site-head; }
+.site-foot { view-transition-name: site-foot; }
+
+html { scroll-behavior: smooth; }
+
+/* the hero diagram breathes, very slightly */
+.hero-figure { animation: drift 14s ease-in-out infinite alternate; }
+@keyframes drift {
+  from { transform: translateY(-5px); }
+  to   { transform: translateY(5px); }
+}
+
+/* the bar picks up a shadow once the page has moved under it */
+.site-head { transition: box-shadow .3s ease, background .3s ease; }
+.site-head.scrolled { box-shadow: 0 6px 24px -12px rgba(0, 0, 0, .28); }
+[data-theme="dark"] .site-head.scrolled { box-shadow: 0 6px 24px -10px rgba(0, 0, 0, .7); }
+
+/* micro-interactions: small, and only where something is clickable */
+.icon-box { transition: border-color .25s, transform .3s cubic-bezier(.2,.7,.3,1); }
+.entry:hover .icon-box { transform: translateY(-2px); }
+
+.cover-thumb .cover-art { transition: transform .45s cubic-bezier(.2,.7,.3,1); }
+.entry:hover .cover-thumb .cover-art { transform: scale(1.05); }
+
+.btn { transition: background .2s, color .2s, border-color .2s, transform .2s; }
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+.cover, .feature { transition: border-color .3s, background .3s; }
+.role { transition: background .3s; }
+
 /* ── REVEAL ───────────────────────────────────────────────── */
 .reveal {
   opacity: 0;
@@ -1308,6 +1384,10 @@ a:hover > .icon-box { border-color: color-mix(in srgb, var(--accent) 45%, transp
   * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   .reveal { opacity: 1; transform: none; }
   body::before { display: none; }
+  html { scroll-behavior: auto; }
+  .hero-figure { animation: none; }
+  /* the * rule cannot reach view-transition pseudo-elements */
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
 }
 
 /* ── PRINT (resume) ───────────────────────────────────────── */
