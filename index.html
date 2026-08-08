@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Alex Dai — IT Architect</title>
   <meta name="description" content="Alex Dai is an IT architect in Edmonton, Alberta, working on Azure platforms, enterprise infrastructure and cloud governance." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta name="theme-color" content="#f7f5f1" id="themeColorMeta" />
+  <meta name="theme-color" content="#08090a" id="themeColorMeta" />
+  <script>try{if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/shared.css?v=20260808a" />
 </head>
 <body>
 
@@ -32,29 +33,87 @@
 
 <main>
 
-  <section class="wrap" style="padding-top: clamp(4rem, 12vw, 9rem); padding-bottom: clamp(3rem, 8vw, 6rem);">
-    <span class="eyebrow reveal" style="margin-bottom: 1.75rem;">Edmonton, Alberta</span>
-    <h1 class="display reveal">Alex Dai</h1>
-    <p class="lede reveal" style="margin-top: 2rem; max-width: 38ch;">
-      I'm an IT architect at WCB&#8209;Alberta. I design the cloud platforms and
-      enterprise systems that a few thousand people use every day without ever
-      having to think about them.
-    </p>
-    <div class="btn-row reveal" style="margin-top: 2.5rem;">
-      <a class="btn" href="work.html">See the work</a>
-      <a class="btn btn-quiet" href="resume.html">Résumé</a>
-    </div>
-  </section>
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <span class="eyebrow reveal" style="margin-bottom: 1.75rem;">Edmonton, Alberta</span>
+        <h1 class="display reveal">Alex Dai</h1>
+        <p class="lede reveal" style="margin-top: 1.75rem; max-width: 38ch;">
+          I'm an IT architect at WCB&#8209;Alberta. I design the cloud platforms and
+          enterprise systems that a few thousand people use every day without ever
+          having to think about them.
+        </p>
+        <div class="btn-row reveal" style="margin-top: 2.25rem;">
+          <a class="btn" href="work.html">See the work</a>
+          <a class="btn btn-quiet" href="resume.html">Résumé</a>
+        </div>
+      </div>
 
-  <section class="band wrap" style="border-top: 1px solid var(--rule);">
+      <!-- Hub-and-spoke topology: the shape most of my work ends up taking -->
+      <div class="hero-figure reveal" aria-hidden="true">
+        <svg viewBox="0 0 320 320" role="presentation">
+          <g class="topo-spin">
+            <circle class="topo-ring" cx="160" cy="160" r="128" />
+          </g>
+          <circle class="topo-ring" cx="160" cy="160" r="96" />
+
+          <g class="topo-link">
+            <path d="M160 160 L160 52" /><path d="M160 160 L262 214" />
+            <path d="M160 160 L58 214" /><path d="M160 160 L160 268" />
+          </g>
+          <g class="topo-flow">
+            <path d="M160 160 L160 52" style="animation-delay:0s" />
+            <path d="M160 160 L262 214" style="animation-delay:1s" />
+            <path d="M160 160 L58 214" style="animation-delay:2s" />
+            <path d="M160 160 L160 268" style="animation-delay:3s" />
+          </g>
+
+          <g class="topo-node topo-node-a">
+            <rect x="136" y="28" width="48" height="48" rx="4" />
+          </g>
+          <g class="topo-node"><rect x="238" y="190" width="48" height="48" rx="4" /></g>
+          <g class="topo-node"><rect x="34"  y="190" width="48" height="48" rx="4" /></g>
+          <g class="topo-node"><rect x="136" y="244" width="48" height="48" rx="4" /></g>
+
+          <g class="topo-icon" stroke-linecap="round" stroke-linejoin="round">
+            <g transform="translate(148 40) scale(0.6)"><path d="M17.5 19a4.5 4.5 0 0 0 .5-8.97A6 6 0 0 0 6.2 11.3 3.5 3.5 0 0 0 7 19z"/></g>
+            <g transform="translate(250 202) scale(0.6)"><rect x="3" y="4" width="18" height="7" rx="1.2"/><rect x="3" y="13" width="18" height="7" rx="1.2"/></g>
+            <g transform="translate(46 202) scale(0.6)"><rect x="4.5" y="10.5" width="15" height="10" rx="1.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></g>
+            <g transform="translate(148 256) scale(0.6)"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></g>
+          </g>
+
+          <rect class="topo-hub" x="124" y="124" width="72" height="72" rx="6" />
+          <rect class="topo-core" x="150" y="150" width="20" height="20" rx="2" />
+
+          <text class="topo-label" x="160" y="20"  text-anchor="middle">spoke 01</text>
+          <text class="topo-label" x="262" y="256" text-anchor="middle">spoke 02</text>
+          <text class="topo-label" x="58"  y="256" text-anchor="middle">spoke 03</text>
+          <text class="topo-label" x="160" y="308" text-anchor="middle">spoke 04</text>
+          <text class="topo-label" x="160" y="214" text-anchor="middle" style="fill: var(--accent)">hub</text>
+        </svg>
+      </div>
+    </section>
+
+    <div class="readout reveal">
+      <span><b>53.5461&deg;N 113.4938&deg;W</b></span>
+      <span>MST <b>UTC&#8722;7</b></span>
+      <span>Azure Solutions Architect <b>Expert</b></span>
+      <span class="k">Open to conversations</span>
+    </div>
+  </div>
+
+  <section class="band wrap" data-hue="blue" style="border-top: 1px solid var(--rule);">
     <div class="band-head">
       <h2 class="reveal">Selected work</h2>
       <a class="more-link reveal" href="work.html">All four projects</a>
     </div>
 
     <div class="entries">
-      <a class="entry reveal" href="projects/devflow.html">
-        <span class="entry-index">01</span>
+      <a class="entry reveal" data-hue="blue" href="projects/devflow.html">
+        <span class="entry-mark">
+          <span class="entry-index">01</span>
+          <span class="icon-box"><i data-icon="cloud"></i></span>
+        </span>
         <span>
           <span class="entry-title">Azure Landing Zone</span>
           <span class="entry-desc">WCB-Alberta's first Azure tenant, built from an empty subscription: management groups, hub-and-spoke networking, RBAC and the policy guardrails everything else now sits on.</span>
@@ -63,37 +122,46 @@
         <span class="entry-aside">2020&ndash;2022</span>
       </a>
 
-      <a class="entry reveal" href="projects/insightboard.html">
-        <span class="entry-index">02</span>
+      <a class="entry reveal" data-hue="teal" href="projects/insightboard.html">
+        <span class="entry-mark">
+          <span class="entry-index">02</span>
+          <span class="icon-box"><i data-icon="mail"></i></span>
+        </span>
         <span>
           <span class="entry-title">Exchange Online Migration</span>
           <span class="entry-desc">1,500 mailboxes moved from on-premises Exchange to Microsoft 365 in waves, with hybrid coexistence holding the whole way through. Nobody lost a day of mail.</span>
           <span class="entry-meta">Microsoft 365 · Migration</span>
         </span>
-        <span class="entry-aside">Completed</span>
+        <span class="entry-aside"><span class="chip static">Completed</span></span>
       </a>
 
-      <a class="entry reveal" href="projects/chatcontext.html">
-        <span class="entry-index">03</span>
+      <a class="entry reveal" data-hue="purple" href="projects/chatcontext.html">
+        <span class="entry-mark">
+          <span class="entry-index">03</span>
+          <span class="icon-box"><i data-icon="chart"></i></span>
+        </span>
         <span>
           <span class="entry-title">Dynamics 365 &amp; Power Platform</span>
           <span class="entry-desc">Environment strategy, Azure AD integration and a Centre of Excellence to keep a fast-growing low-code estate from turning into shadow IT.</span>
           <span class="entry-meta">Dynamics 365 · Power BI</span>
         </span>
-        <span class="entry-aside">Ongoing</span>
+        <span class="entry-aside"><span class="chip">Ongoing</span></span>
       </a>
     </div>
   </section>
 
-  <section class="band wrap">
+  <section class="band wrap" data-hue="pink">
     <div class="band-head">
       <h2 class="reveal">Recent writing</h2>
       <a class="more-link reveal" href="writing.html">All articles</a>
     </div>
 
     <div class="entries">
-      <a class="entry reveal" href="articles/lowcode.html">
-        <span class="entry-index">01</span>
+      <a class="entry reveal" data-hue="blue" href="articles/lowcode.html">
+        <span class="entry-mark">
+          <span class="entry-index">01</span>
+          <span class="icon-box"><i data-icon="layers"></i></span>
+        </span>
         <span>
           <span class="entry-title">Designing an enterprise Azure landing zone from scratch</span>
           <span class="entry-desc">The decisions that were hard to reverse, and the two I would make differently.</span>
@@ -102,8 +170,11 @@
         <span class="entry-aside">Mar 2026 · 8 min</span>
       </a>
 
-      <a class="entry reveal" href="articles/llm-rag.html">
-        <span class="entry-index">02</span>
+      <a class="entry reveal" data-hue="teal" href="articles/llm-rag.html">
+        <span class="entry-mark">
+          <span class="entry-index">02</span>
+          <span class="icon-box"><i data-icon="branch"></i></span>
+        </span>
         <span>
           <span class="entry-title">Exchange Online migration: lessons learned</span>
           <span class="entry-desc">Hybrid coexistence, mail flow, compliance holds, and why the communication plan mattered more than the tooling.</span>
@@ -114,7 +185,7 @@
     </div>
   </section>
 
-  <section class="band wrap">
+  <section class="band wrap" data-hue="teal">
     <div class="reveal" style="max-width: 34rem;">
       <span class="eyebrow" style="margin-bottom: 1.25rem;">Elsewhere</span>
       <p style="font-family: var(--display); font-size: clamp(1.3rem, 3vw, 1.9rem); line-height: 1.3; font-weight: 500; letter-spacing: -0.03em;">
@@ -157,6 +228,7 @@
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/icons.js?v=20260808a"></script>
+<script src="js/main.js?v=20260808a"></script>
 </body>
 </html>

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-  <meta name="theme-color" content="#f6f7f8" id="themeColorMeta" />
+  <meta name="theme-color" content="#08090a" id="themeColorMeta" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Exchange Online Migration · Alex Dai</title>
+  <script>try{if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="../css/shared.css" />
+  <link rel="stylesheet" href="../css/shared.css?v=20260808a" />
 </head>
 <body>
 <header class="site-head">
@@ -28,7 +29,7 @@
   </div>
 </header>
 
-<main class="page">
+<main class="page" data-hue="teal">
   <a class="back-link" href="../work.html">All work</a>
 
   <div class="detail-head reveal">
@@ -71,21 +72,27 @@
     <h2>Key Deliverables</h2>
     <div class="features-grid">
       <div class="feature">
+        <span class="icon-box"><i data-icon="shield"></i></span>
         <div><h3>Hybrid Coexistence</h3><p>Configured Exchange Hybrid using the Hybrid Configuration Wizard, enabling seamless free/busy sharing and mail routing between on-premises and cloud mailboxes during transition.</p></div>
       </div>
       <div class="feature">
+        <span class="icon-box"><i data-icon="cpu"></i></span>
         <div><h3>Directory Synchronization</h3><p>Validated and extended Azure AD Connect scope to ensure all mail-enabled objects were synchronized before migration batches started.</p></div>
       </div>
       <div class="feature">
+        <span class="icon-box"><i data-icon="mail"></i></span>
         <div><h3>Migration Runbook</h3><p>Developed a detailed pre/post-migration checklist refined across 6 waves. By wave 3, the process was near self-service with 60% fewer helpdesk tickets.</p></div>
       </div>
       <div class="feature">
+        <span class="icon-box"><i data-icon="shield"></i></span>
         <div><h3>Compliance & eDiscovery</h3><p>Coordinated with legal to validate Microsoft Purview as the replacement for on-premises litigation hold, unblocking the decommission timeline.</p></div>
       </div>
       <div class="feature">
+        <span class="icon-box"><i data-icon="users"></i></span>
         <div><h3>User Communication</h3><p>Designed a three-touch communication strategy (5-day notice, day-before reminder, morning-of guide) that significantly reduced helpdesk volume.</p></div>
       </div>
       <div class="feature">
+        <span class="icon-box"><i data-icon="lock"></i></span>
         <div><h3>Email Security</h3><p>Transitioned from legacy email security gateway to Microsoft Defender for Office 365, validating coverage before switching mail flow routing.</p></div>
       </div>
     </div>
@@ -137,6 +144,7 @@
     <span>Hand-written HTML. No trackers.</span>
   </div>
 </footer>
-<script src="../js/main.js"></script>
+<script src="../js/icons.js?v=20260808a"></script>
+<script src="../js/main.js?v=20260808a"></script>
 </body>
 </html>

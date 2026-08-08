@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-  <meta name="theme-color" content="#f6f7f8" id="themeColorMeta" />
+  <meta name="theme-color" content="#08090a" id="themeColorMeta" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dynamics 365 Deployment · Alex Dai</title>
+  <script>try{if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="../css/shared.css" />
+  <link rel="stylesheet" href="../css/shared.css?v=20260808a" />
 </head>
 <body>
 <header class="site-head">
@@ -28,7 +29,7 @@
   </div>
 </header>
 
-<main class="page">
+<main class="page" data-hue="purple">
   <a class="back-link" href="../work.html">All work</a>
 
   <div class="detail-head reveal">
@@ -57,10 +58,10 @@
   <div class="block reveal">
     <h2>Deployment Pipeline</h2>
     <div class="arch-diagram">
-      <div class="arch-step">Requirements<span class="sub">Stakeholder workshops</span></div>
-      <div class="arch-step">Environment Setup<span class="sub">Dev / Test / Prod</span></div>
-      <div class="arch-step">Integration<span class="sub">Azure AD, data sources</span></div>
-      <div class="arch-step">UAT & Go-Live<span class="sub">Training & handoff</span></div>
+      <div class="arch-step"><i data-icon="cpu"></i>Requirements<span class="sub">Stakeholder workshops</span></div>
+      <div class="arch-step"><i data-icon="layers"></i>Environment Setup<span class="sub">Dev / Test / Prod</span></div>
+      <div class="arch-step"><i data-icon="branch"></i>Integration<span class="sub">Azure AD, data sources</span></div>
+      <div class="arch-step"><i data-icon="activity"></i>UAT & Go-Live<span class="sub">Training & handoff</span></div>
     </div>
   </div>
 
@@ -68,21 +69,27 @@
     <h2>Key Deliverables</h2>
     <div class="features-grid">
       <div class="feature">
+        <span class="icon-box"><i data-icon="layers"></i></span>
         <div><h3>Environment Architecture</h3><p>Designed a multi-environment strategy (Development, Test, Production) with proper ALM pipelines using Power Platform pipelines and Azure DevOps.</p></div>
       </div>
       <div class="feature">
+        <span class="icon-box"><i data-icon="key"></i></span>
         <div><h3>Security & Access Control</h3><p>Configured Dataverse security roles, business units, and Azure AD group mappings aligned with WCB's existing RBAC model.</p></div>
       </div>
       <div class="feature">
+        <span class="icon-box"><i data-icon="chart"></i></span>
         <div><h3>Power BI Implementation</h3><p>Set up Power BI Premium workspace, configured row-level security, and established data refresh schedules connected to enterprise data sources.</p></div>
       </div>
       <div class="feature">
+        <span class="icon-box"><i data-icon="branch"></i></span>
         <div><h3>Power Automate Workflows</h3><p>Built automated approval workflows and notification flows to replace manual processes, reducing processing time for key business operations.</p></div>
       </div>
       <div class="feature">
+        <span class="icon-box"><i data-icon="shield"></i></span>
         <div><h3>CoE & Governance</h3><p>Implemented the Power Platform Center of Excellence (CoE) Starter Kit to monitor adoption, enforce DLP policies, and manage connector governance.</p></div>
       </div>
       <div class="feature">
+        <span class="icon-box"><i data-icon="cpu"></i></span>
         <div><h3>Ongoing Maintenance</h3><p>Responsible for environment health, solution deployments, license management, and supporting citizen developers across the organization.</p></div>
       </div>
     </div>
@@ -134,6 +141,7 @@
     <span>Hand-written HTML. No trackers.</span>
   </div>
 </footer>
-<script src="../js/main.js"></script>
+<script src="../js/icons.js?v=20260808a"></script>
+<script src="../js/main.js?v=20260808a"></script>
 </body>
 </html>

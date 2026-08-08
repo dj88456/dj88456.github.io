@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-  <meta name="theme-color" content="#f6f7f8" id="themeColorMeta" />
+  <meta name="theme-color" content="#08090a" id="themeColorMeta" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Multi-Site IT Infrastructure · Alex Dai</title>
+  <script>try{if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="../css/shared.css" />
+  <link rel="stylesheet" href="../css/shared.css?v=20260808a" />
 </head>
 <body>
 <header class="site-head">
@@ -28,7 +29,7 @@
   </div>
 </header>
 
-<main class="page">
+<main class="page" data-hue="orange">
   <a class="back-link" href="../work.html">All work</a>
 
   <div class="detail-head reveal">
@@ -68,21 +69,27 @@
     <h2>Key Deliverables</h2>
     <div class="features-grid">
       <div class="feature">
+        <span class="icon-box"><i data-icon="network"></i></span>
         <div><h3>Network Design & Deployment</h3><p>Designed and deployed the corporate network structure across all 12 properties, including VLANs, managed switches, wireless infrastructure, and firewall configurations.</p></div>
       </div>
       <div class="feature">
+        <span class="icon-box"><i data-icon="server"></i></span>
         <div><h3>Server Virtualization</h3><p>Deployed VMware ESXi and Hyper-V hypervisors at each site, consolidating physical servers and improving reliability and resource utilization.</p></div>
       </div>
       <div class="feature">
+        <span class="icon-box"><i data-icon="network"></i></span>
         <div><h3>Site-to-Site VPN</h3><p>Configured Site-to-Site VPN tunnels connecting all hotel properties to the corporate office, enabling centralized management and shared services.</p></div>
       </div>
       <div class="feature">
+        <span class="icon-box"><i data-icon="database"></i></span>
         <div><h3>Cloud Backup (AWS)</h3><p>Implemented offsite cloud backup to AWS for critical business data, replacing unreliable tape-based backups and ensuring recovery capability across all sites.</p></div>
       </div>
       <div class="feature">
+        <span class="icon-box"><i data-icon="mail"></i></span>
         <div><h3>Office 365 Migration</h3><p>Led migration from on-premises email to Office 365, managing DNS changes, user provisioning, and post-migration support across all properties.</p></div>
       </div>
       <div class="feature">
+        <span class="icon-box"><i data-icon="server"></i></span>
         <div><h3>Domain & Web Hosting</h3><p>Managed corporate domain infrastructure and hotel websites hosted on AWS, including DNS management, SSL certificates, and hosting maintenance.</p></div>
       </div>
     </div>
@@ -135,6 +142,7 @@
     <span>Hand-written HTML. No trackers.</span>
   </div>
 </footer>
-<script src="../js/main.js"></script>
+<script src="../js/icons.js?v=20260808a"></script>
+<script src="../js/main.js?v=20260808a"></script>
 </body>
 </html>

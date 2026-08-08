@@ -1,8 +1,9 @@
 // ── Theme ──────────────────────────────────────────────────
-// Follows the OS until the visitor picks a side, then remembers.
+// Dark is the intended look; light is there for anyone who wants it,
+// and whichever they pick is remembered.
 const root = document.documentElement;
 const themeMeta = document.getElementById("themeColorMeta");
-const PAPER = { light: "#f7f5f1", dark: "#141310" };
+const PAPER = { light: "#f6f7f8", dark: "#08090a" };
 
 const ICON = `<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
   <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.2"/>
@@ -14,12 +15,7 @@ function applyTheme(t) {
   if (themeMeta) themeMeta.setAttribute("content", PAPER[t]);
 }
 
-const stored = localStorage.getItem("theme");
-const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-applyTheme(stored || (prefersDark.matches ? "dark" : "light"));
-prefersDark.addEventListener("change", e => {
-  if (!localStorage.getItem("theme")) applyTheme(e.matches ? "dark" : "light");
-});
+applyTheme(localStorage.getItem("theme") === "light" ? "light" : "dark");
 
 const themeBtn = document.getElementById("themeToggle");
 if (themeBtn) {
@@ -58,20 +54,32 @@ if (menuBtn && siteNav) {
 }
 
 // ── Reveal on scroll ───────────────────────────────────────
-const revealables = document.querySelectorAll(".reveal");
-if (revealables.length) {
-  const io = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add("in");
-      obs.unobserve(entry.target);
-    });
-  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
+// The animation is decoration; the content must never depend on it.
+// If the observer has produced nothing after a second, show everything.
+const revealables = [...document.querySelectorAll(".reveal")];
+const showAll = () => revealables.forEach(el => el.classList.add("in"));
 
-  revealables.forEach((el, i) => {
-    el.style.transitionDelay = `${Math.min(i, 6) * 60}ms`;
-    io.observe(el);
-  });
+if (revealables.length) {
+  if (!("IntersectionObserver" in window)) {
+    showAll();
+  } else {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("in");
+        obs.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
+
+    revealables.forEach((el, i) => {
+      el.style.transitionDelay = `${Math.min(i, 6) * 60}ms`;
+      io.observe(el);
+    });
+
+    setTimeout(() => {
+      if (!revealables.some(el => el.classList.contains("in"))) showAll();
+    }, 1000);
+  }
 }
 
 // ── Reading progress (article pages) ───────────────────────

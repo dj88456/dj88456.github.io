@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About — Alex Dai</title>
   <meta name="description" content="Alex Dai, IT architect in Edmonton: how I work, what I work with, and what I do when I am not working." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta name="theme-color" content="#f7f5f1" id="themeColorMeta" />
+  <meta name="theme-color" content="#08090a" id="themeColorMeta" />
+  <script>try{if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/shared.css?v=20260808a" />
 </head>
 <body>
 
@@ -30,7 +31,7 @@
   </div>
 </header>
 
-<main>
+<main data-hue="indigo">
   <div class="wrap">
     <div class="page-head">
       <span class="eyebrow">About</span>
@@ -73,23 +74,23 @@
       <div class="band-head"><h2 class="reveal">What I work with</h2></div>
       <dl class="facts reveal">
         <div class="fact">
-          <dt>Cloud</dt>
+          <dt><i data-icon="cloud"></i>Cloud</dt>
           <dd>Microsoft Azure<span class="sub">Landing zones, hub-and-spoke networking, Azure Policy, Entra ID, Defender for Cloud, AWS where the history demands it</span></dd>
         </div>
         <div class="fact">
-          <dt>Infrastructure</dt>
+          <dt><i data-icon="server"></i>Infrastructure</dt>
           <dd>Windows Server, VMware ESXi, Hyper-V<span class="sub">HPE Synergy compute, 3PAR and Nimble storage, Veeam</span></dd>
         </div>
         <div class="fact">
-          <dt>Platforms</dt>
+          <dt><i data-icon="network"></i>Platforms</dt>
           <dd>Exchange &amp; Exchange Online, SharePoint, Citrix, Microsoft 365<span class="sub">Hybrid identity, compliance and retention, the awkward middle years of a migration</span></dd>
         </div>
         <div class="fact">
-          <dt>Low-code</dt>
+          <dt><i data-icon="layers"></i>Low-code</dt>
           <dd>Power Platform, Dynamics 365, Power BI<span class="sub">Environment strategy, ALM, Centre of Excellence tooling</span></dd>
         </div>
         <div class="fact">
-          <dt>Scripting</dt>
+          <dt><i data-icon="terminal"></i>Scripting</dt>
           <dd>PowerShell, Python, SQL<span class="sub">Plus C/C++ and MATLAB from the engineering degree, mostly dormant</span></dd>
         </div>
       </dl>
@@ -145,6 +146,7 @@
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/icons.js?v=20260808a"></script>
+<script src="js/main.js?v=20260808a"></script>
 </body>
 </html>

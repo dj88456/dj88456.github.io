@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-  <meta name="theme-color" content="#f6f7f8" id="themeColorMeta" />
+  <meta name="theme-color" content="#08090a" id="themeColorMeta" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Azure RBAC and Cloud Governance: A Practical Framework · Alex Dai</title>
+  <script>try{if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="../css/shared.css" />
+  <link rel="stylesheet" href="../css/shared.css?v=20260808a" />
 </head>
 <body>
 <div id="progress-bar"></div>
@@ -29,11 +30,11 @@
   </div>
 </header>
 
-<main class="page narrow">
+<main class="page narrow" data-hue="green">
   <a class="back-link" href="../writing.html">All writing</a>
 
   <div class="article-header reveal">
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+    <div class="tag-row">
       <span class="tag-accent">Azure</span>
       <span class="tag">RBAC</span>
       <span class="tag">Governance</span>
@@ -180,6 +181,7 @@
     <span>Hand-written HTML. No trackers.</span>
   </div>
 </footer>
-<script src="../js/main.js"></script>
+<script src="../js/icons.js?v=20260808a"></script>
+<script src="../js/main.js?v=20260808a"></script>
 </body>
 </html>

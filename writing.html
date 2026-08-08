@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Writing — Alex Dai</title>
   <meta name="description" content="Notes on Azure landing zones, Exchange Online migrations, cloud governance, and moving from IT specialist to architect." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta name="theme-color" content="#f7f5f1" id="themeColorMeta" />
+  <meta name="theme-color" content="#08090a" id="themeColorMeta" />
+  <script>try{if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/shared.css?v=20260808a" />
 </head>
 <body>
 
@@ -30,7 +31,7 @@
   </div>
 </header>
 
-<main>
+<main data-hue="pink">
   <div class="wrap">
     <div class="page-head">
       <span class="eyebrow">Writing</span>
@@ -42,8 +43,11 @@
     </div>
 
     <div class="entries" style="margin-bottom: clamp(3rem, 6vw, 5rem);">
-      <a class="entry reveal" href="articles/lowcode.html">
-        <span class="entry-index">01</span>
+      <a class="entry reveal" data-hue="blue" href="articles/lowcode.html">
+        <span class="entry-mark">
+          <span class="entry-index">01</span>
+          <span class="icon-box"><i data-icon="layers"></i></span>
+        </span>
         <span>
           <span class="entry-title">Designing an enterprise Azure landing zone from scratch</span>
           <span class="entry-desc">Subscription and management group design, hub-and-spoke networking, the tiered RBAC model, and policy as code. Includes the three pitfalls that cost us the most time.</span>
@@ -52,8 +56,11 @@
         <span class="entry-aside">2026-03-15<br>8 min</span>
       </a>
 
-      <a class="entry reveal" href="articles/llm-rag.html">
-        <span class="entry-index">02</span>
+      <a class="entry reveal" data-hue="teal" href="articles/llm-rag.html">
+        <span class="entry-mark">
+          <span class="entry-index">02</span>
+          <span class="icon-box"><i data-icon="branch"></i></span>
+        </span>
         <span>
           <span class="entry-title">Exchange Online migration: lessons learned</span>
           <span class="entry-desc">Hybrid coexistence, mail flow routing, compliance holds and cutover strategy — plus why the user communication plan turned out to matter more than any of the tooling.</span>
@@ -62,8 +69,11 @@
         <span class="entry-aside">2026-02-28<br>10 min</span>
       </a>
 
-      <a class="entry reveal" href="articles/performance.html">
-        <span class="entry-index">03</span>
+      <a class="entry reveal" data-hue="green" href="articles/performance.html">
+        <span class="entry-mark">
+          <span class="entry-index">03</span>
+          <span class="icon-box"><i data-icon="shield"></i></span>
+        </span>
         <span>
           <span class="entry-title">Azure RBAC and cloud governance: a practical framework</span>
           <span class="entry-desc">How to design an RBAC structure that survives contact with real teams: custom roles, PIM for anything elevated, Azure Policy guardrails, and an access review cadence people actually keep.</span>
@@ -72,8 +82,11 @@
         <span class="entry-aside">2026-01-20<br>8 min</span>
       </a>
 
-      <a class="entry reveal" href="articles/growth.html">
-        <span class="entry-index">04</span>
+      <a class="entry reveal" data-hue="pink" href="articles/growth.html">
+        <span class="entry-mark">
+          <span class="entry-index">04</span>
+          <span class="icon-box"><i data-icon="compass"></i></span>
+        </span>
         <span>
           <span class="entry-title">From IT specialist to IT architect</span>
           <span class="entry-desc">A personal account rather than a career guide. What changed when the job stopped being about fixing things and started being about deciding how they should be built.</span>
@@ -116,6 +129,7 @@
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/icons.js?v=20260808a"></script>
+<script src="js/main.js?v=20260808a"></script>
 </body>
 </html>

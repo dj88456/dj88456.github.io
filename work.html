@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Work — Alex Dai</title>
   <meta name="description" content="Four projects: an Azure landing zone, an Exchange Online migration, a Dynamics 365 rollout and multi-site hotel infrastructure." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta name="theme-color" content="#f7f5f1" id="themeColorMeta" />
+  <meta name="theme-color" content="#08090a" id="themeColorMeta" />
+  <script>try{if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/shared.css?v=20260808a" />
 </head>
 <body>
 
@@ -30,7 +31,7 @@
   </div>
 </header>
 
-<main>
+<main data-hue="blue">
   <div class="wrap">
     <div class="page-head">
       <span class="eyebrow">Work</span>
@@ -43,8 +44,11 @@
     </div>
 
     <div class="entries" style="margin-bottom: clamp(3rem, 6vw, 5rem);">
-      <a class="entry reveal" href="projects/devflow.html">
-        <span class="entry-index">01</span>
+      <a class="entry reveal" data-hue="blue" href="projects/devflow.html">
+        <span class="entry-mark">
+          <span class="entry-index">01</span>
+          <span class="icon-box"><i data-icon="cloud"></i></span>
+        </span>
         <span>
           <span class="entry-title">Azure Landing Zone</span>
           <span class="entry-desc">WCB-Alberta had no Azure presence at all. I designed the tenant from the ground up: management group hierarchy, platform and workload subscriptions, a hub-and-spoke network with Azure Firewall, a tiered RBAC model, and the policy set that keeps everything inside Canadian regions.</span>
@@ -53,8 +57,11 @@
         <span class="entry-aside">WCB-Alberta<br>2020&ndash;2022</span>
       </a>
 
-      <a class="entry reveal" href="projects/insightboard.html">
-        <span class="entry-index">02</span>
+      <a class="entry reveal" data-hue="teal" href="projects/insightboard.html">
+        <span class="entry-mark">
+          <span class="entry-index">02</span>
+          <span class="icon-box"><i data-icon="mail"></i></span>
+        </span>
         <span>
           <span class="entry-title">Exchange Online Migration</span>
           <span class="entry-desc">Moving 1,500 mailboxes off on-premises Exchange without anyone noticing. Hybrid configuration first, then eight weeks of wave migrations, with compliance holds and mail flow held intact throughout.</span>
@@ -63,8 +70,11 @@
         <span class="entry-aside">WCB-Alberta<br>Completed</span>
       </a>
 
-      <a class="entry reveal" href="projects/chatcontext.html">
-        <span class="entry-index">03</span>
+      <a class="entry reveal" data-hue="purple" href="projects/chatcontext.html">
+        <span class="entry-mark">
+          <span class="entry-index">03</span>
+          <span class="icon-box"><i data-icon="chart"></i></span>
+        </span>
         <span>
           <span class="entry-title">Dynamics 365 &amp; Power Platform</span>
           <span class="entry-desc">Environment strategy across dev, test and production, Azure AD integration, Power BI for enterprise reporting, and a Centre of Excellence so a low-code estate could grow without becoming shadow IT.</span>
@@ -73,8 +83,11 @@
         <span class="entry-aside">WCB-Alberta<br>Ongoing</span>
       </a>
 
-      <a class="entry reveal" href="projects/designtoken.html">
-        <span class="entry-index">04</span>
+      <a class="entry reveal" data-hue="orange" href="projects/designtoken.html">
+        <span class="entry-mark">
+          <span class="entry-index">04</span>
+          <span class="icon-box"><i data-icon="building"></i></span>
+        </span>
         <span>
           <span class="entry-title">Multi-Site Hotel Infrastructure</span>
           <span class="entry-desc">Twelve Best Western and Ramada properties, one IT department: me. Corporate network design, virtualisation on ESXi and Hyper-V, site-to-site VPN between properties, and offsite backup into AWS.</span>
@@ -124,6 +137,7 @@
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/icons.js?v=20260808a"></script>
+<script src="js/main.js?v=20260808a"></script>
 </body>
 </html>

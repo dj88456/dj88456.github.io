@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-  <meta name="theme-color" content="#f6f7f8" id="themeColorMeta" />
+  <meta name="theme-color" content="#08090a" id="themeColorMeta" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Azure Landing Zone · Alex Dai</title>
+  <script>try{if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="../css/shared.css" />
+  <link rel="stylesheet" href="../css/shared.css?v=20260808a" />
 </head>
 <body>
 <header class="site-head">
@@ -28,7 +29,7 @@
   </div>
 </header>
 
-<main class="page">
+<main class="page" data-hue="blue">
   <a class="back-link" href="../work.html">All work</a>
 
   <div class="detail-head reveal">
@@ -58,10 +59,10 @@
   <div class="block reveal">
     <h2>Architecture Overview</h2>
     <div class="arch-diagram">
-      <div class="arch-step">Management Groups<span class="sub">Hierarchy & Governance</span></div>
-      <div class="arch-step">Subscriptions<span class="sub">Platform + App LZs</span></div>
-      <div class="arch-step">Hub VNet<span class="sub">Firewall, VPN, DNS</span></div>
-      <div class="arch-step">Spoke VNets<span class="sub">Workload Isolation</span></div>
+      <div class="arch-step"><i data-icon="layers"></i>Management Groups<span class="sub">Hierarchy & Governance</span></div>
+      <div class="arch-step"><i data-icon="layers"></i>Subscriptions<span class="sub">Platform + App LZs</span></div>
+      <div class="arch-step"><i data-icon="network"></i>Hub VNet<span class="sub">Firewall, VPN, DNS</span></div>
+      <div class="arch-step"><i data-icon="network"></i>Spoke VNets<span class="sub">Workload Isolation</span></div>
     </div>
   </div>
 
@@ -69,21 +70,27 @@
     <h2>Key Deliverables</h2>
     <div class="features-grid">
       <div class="feature">
+        <span class="icon-box"><i data-icon="layers"></i></span>
         <div><h3>Subscription Design</h3><p>Platform/application separation model with dedicated subscriptions for Identity, Connectivity, Management, and workload landing zones.</p></div>
       </div>
       <div class="feature">
+        <span class="icon-box"><i data-icon="network"></i></span>
         <div><h3>Hub-and-Spoke Networking</h3><p>Central hub with Azure Firewall for traffic inspection, Private DNS zones, and ExpressRoute for hybrid connectivity to on-premises.</p></div>
       </div>
       <div class="feature">
+        <span class="icon-box"><i data-icon="key"></i></span>
         <div><h3>RBAC Framework</h3><p>Custom role definitions and group-based assignments for platform team, application teams, and read-only auditors. All elevated roles gated via PIM.</p></div>
       </div>
       <div class="feature">
+        <span class="icon-box"><i data-icon="shield"></i></span>
         <div><h3>Azure Policy Guardrails</h3><p>Deny policies for non-Canadian regions and public IPs; audit policies for tagging and diagnostic settings; auto-remediation for log forwarding.</p></div>
       </div>
       <div class="feature">
+        <span class="icon-box"><i data-icon="lock"></i></span>
         <div><h3>Private Endpoints</h3><p>All PaaS services (Storage, SQL, Key Vault) accessed via Private Endpoints — no public exposure in production environments.</p></div>
       </div>
       <div class="feature">
+        <span class="icon-box"><i data-icon="shield"></i></span>
         <div><h3>Governance Documentation</h3><p>Cloud governance documents including RBAC role definitions, naming conventions, tagging taxonomy, and subscription vending process.</p></div>
       </div>
     </div>
@@ -136,6 +143,7 @@
     <span>Hand-written HTML. No trackers.</span>
   </div>
 </footer>
-<script src="../js/main.js"></script>
+<script src="../js/icons.js?v=20260808a"></script>
+<script src="../js/main.js?v=20260808a"></script>
 </body>
 </html>
