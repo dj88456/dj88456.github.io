@@ -1,349 +1,233 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Résumé — Alex Dai</title>
+  <meta name="description" content="Résumé of Alex Dai — IT Architect II at WCB-Alberta, Microsoft Certified Azure Solutions Architect Expert." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta name="theme-color" content="#f8fafc" id="themeColorMeta" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alex Dai · Resume</title>
+  <meta name="theme-color" content="#f6f7f8" id="themeColorMeta" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="css/shared.css" />
-  <style>
-    body { background: var(--bg); }
-    .page { max-width: 1160px; margin: 0 auto; padding: 90px 24px 60px; }
-    .resume-header {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 36px 40px;
-      display: flex; justify-content: space-between; align-items: flex-start;
-      box-shadow: var(--shadow); margin-bottom: 24px; gap: 24px; flex-wrap: wrap;
-    }
-    .resume-name { font-size: 2rem; font-weight: 800; letter-spacing: -1px; }
-    .resume-title { font-size: 1rem; color: var(--accent); font-weight: 600; margin-top: 4px; }
-    .resume-meta { margin-top: 16px; display: flex; flex-direction: column; gap: 5px; }
-    .resume-meta span { font-size: .85rem; color: var(--muted); }
-    .resume-actions { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
-    .resume-section {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 28px 32px;
-      box-shadow: var(--shadow); margin-bottom: 20px;
-    }
-    .resume-section h2 {
-      font-size: .8rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 1.5px; color: var(--accent); margin-bottom: 20px;
-      padding-bottom: 10px; border-bottom: 1px solid var(--border);
-    }
-    .resume-section p { font-size: .9rem; color: var(--muted); line-height: 1.7; }
-    .exp-item { margin-bottom: 24px; }
-    .exp-item:last-child { margin-bottom: 0; }
-    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 2px; }
-    .exp-title { font-size: .95rem; font-weight: 700; }
-    .exp-date { font-size: .78rem; color: var(--accent); font-weight: 600; background: var(--accent-light); padding: 2px 10px; border-radius: 20px; white-space: nowrap; }
-    .exp-org { font-size: .85rem; color: var(--muted); margin-bottom: 8px; }
-    .exp-points { padding-left: 0; display: flex; flex-direction: column; gap: 4px; }
-    .exp-points li { font-size: .85rem; color: var(--muted); list-style: none; padding-left: 14px; position: relative; }
-    .exp-points li::before { content: "›"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
-    .skills-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
-    .skill-group h3 { font-size: .85rem; font-weight: 700; margin-bottom: 8px; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .skill-tag { background: var(--bg2); color: var(--muted); padding: 4px 10px; border-radius: 6px; font-size: .78rem; font-weight: 500; }
-    .certs-list { display: flex; flex-direction: column; gap: 10px; }
-    .cert-item { display: flex; align-items: center; gap: 12px; font-size: .88rem; }
-    .cert-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
-    .cert-name { font-weight: 600; }
-    .cert-issuer { color: var(--muted); font-size: .78rem; }
-    .edu-item { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; }
-    .edu-info h3 { font-size: .95rem; font-weight: 700; }
-    .edu-info p { font-size: .85rem; color: var(--muted); margin-top: 2px; }
-    .edu-date { font-size: .78rem; color: var(--accent); font-weight: 600; background: var(--accent-light); padding: 2px 10px; border-radius: 20px; white-space: nowrap; }
-    .awards-list { display: flex; flex-direction: column; gap: 8px; }
-    .award-item { display: flex; align-items: center; gap: 10px; font-size: .88rem; }
-    @media print {
-      nav, .resume-actions .btn-outline, #progress-bar { display: none !important; }
-      .page { padding-top: 20px; }
-      .resume-section, .resume-header { box-shadow: none; break-inside: avoid; }
-    }
-    @media (max-width: 600px) {
-      .resume-header { flex-direction: column; }
-      .resume-actions { align-items: flex-start; flex-direction: row; }
-      .skills-grid { grid-template-columns: 1fr; }
-    }
-  </style>
 </head>
 <body>
-<div id="progress-bar-track"></div>
-<div id="progress-bar"></div>
-<nav>
-  <a class="nav-logo" href="index.html">Alex Dai</a>
-  <div class="nav-right">
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html#about">About</a></li>
-      <li class="has-dropdown">
-        <div class="drop-header">
-          <a href="index.html#projects">Projects</a>
-          <button class="drop-toggle" aria-label="Toggle projects menu">&#9660;</button>
-        </div>
-        <div class="mega-drop">
-          <div class="mega-label">Key Initiatives</div>
-          <div class="mega-grid">
-            <a class="mega-item" href="projects/devflow.html"><div class="mega-icon">&#x2601;&#xFE0F;</div><div><div class="mega-title">Azure Landing Zone</div><div class="mega-desc">WCB-Alberta's first Azure tenant &mdash; hub-spoke networking, RBAC &amp; governance</div><div class="mega-meta">Microsoft Azure &middot; 2020&ndash;2022</div></div></a>
-            <a class="mega-item" href="projects/insightboard.html"><div class="mega-icon">&#x1F4E7;</div><div><div class="mega-title">Exchange Online Migration</div><div class="mega-desc">Zero-downtime migration of 1,500+ mailboxes to Microsoft 365</div><div class="mega-meta">Exchange Online &middot; Completed</div></div></a>
-            <a class="mega-item" href="projects/chatcontext.html"><div class="mega-icon">&#x1F4CA;</div><div><div class="mega-title">Dynamics 365 Deployment</div><div class="mega-desc">Digital transformation with Dynamics 365, Power BI &amp; CoE governance</div><div class="mega-meta">Power Platform &middot; Ongoing</div></div></a>
-            <a class="mega-item" href="projects/designtoken.html"><div class="mega-icon">&#x1F3E8;</div><div><div class="mega-title">Multi-Site IT Infrastructure</div><div class="mega-desc">Complete IT for 12 hotel properties &mdash; network, VMs, VPN, cloud backup</div><div class="mega-meta">Sunrise International &middot; 2017&ndash;2019</div></div></a>
-          </div>
-          <div class="mega-footer"><a href="index.html#projects">View all projects &rarr;</a></div>
-        </div>
-      </li>
-      <li><a href="index.html#timeline">Experience</a></li>
-      <li class="has-dropdown">
-        <div class="drop-header">
-          <a href="index.html#articles">Articles</a>
-          <button class="drop-toggle" aria-label="Toggle articles menu">&#9660;</button>
-        </div>
-        <div class="mega-drop">
-          <div class="mega-label">Latest Writing</div>
-          <div class="mega-grid">
-            <a class="mega-item" href="articles/lowcode.html"><div class="mega-icon">&#x2601;&#xFE0F;</div><div><div class="mega-title">Designing an Enterprise Azure Landing Zone</div><div class="mega-desc">Subscription design, hub-spoke networking, RBAC &amp; policy</div><div class="mega-meta">8 min &middot; Mar 2026 &middot; Azure</div></div></a>
-            <a class="mega-item" href="articles/llm-rag.html"><div class="mega-icon">&#x1F4E7;</div><div><div class="mega-title">Exchange Online Migration: Lessons Learned</div><div class="mega-desc">Hybrid coexistence, mail flow, compliance holds &amp; user communication</div><div class="mega-meta">10 min &middot; Feb 2026 &middot; Microsoft 365</div></div></a>
-            <a class="mega-item" href="articles/performance.html"><div class="mega-icon">&#x1F510;</div><div><div class="mega-title">Azure RBAC and Cloud Governance</div><div class="mega-desc">PIM, custom roles, Azure Policy guardrails &amp; access review cadence</div><div class="mega-meta">8 min &middot; Jan 2026 &middot; Governance</div></div></a>
-            <a class="mega-item" href="articles/growth.html"><div class="mega-icon">&#x1F680;</div><div><div class="mega-title">From IT Specialist to IT Architect</div><div class="mega-desc">Career journey, certifications, project leadership &amp; the mindset shift</div><div class="mega-meta">6 min &middot; Dec 2025 &middot; Career</div></div></a>
-          </div>
-          <div class="mega-footer"><a href="index.html#articles">View all articles &rarr;</a></div>
-        </div>
-      </li>
-      <li><a href="index.html#contact">Contact</a></li>
-    </ul>
-    <button class="theme-btn" id="themeToggle" aria-label="Toggle theme"></button>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
+
+<header class="site-head">
+  <a class="wordmark" href="index.html">Alex Dai</a>
+  <nav class="site-nav" id="siteNav">
+    <a href="work.html">Work</a>
+    <a href="writing.html">Writing</a>
+    <a href="experience.html">Experience</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="head-tools">
+    <button class="theme-btn" id="themeToggle" aria-label="Switch between light and dark"></button>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="siteNav">
+      <span></span><span></span>
     </button>
   </div>
-</nav>
+</header>
 
-<div class="page">
-  <a class="back-link fade-in" href="index.html">← Back to Home</a>
+<main class="page">
+  <div class="wrap">
+    <a class="back-link" href="experience.html">Experience</a>
 
-  <div class="resume-header fade-in">
-    <div>
-      <div class="resume-name">Alex Dai</div>
-      <div class="resume-title">IT Architect II · Azure Solutions Architect Expert</div>
-      <div class="resume-meta">
-        <span>📍 Edmonton, Alberta, Canada</span>
-        <span>✉️ daijian.gov@gmail.com</span>
-        <span>💼 linkedin.com/in/alex-dai</span>
-        <span>🐙 github.com/dj88456</span>
+    <div class="detail-head">
+      <span class="eyebrow" style="margin-bottom: 1.5rem;">Résumé</span>
+      <h1>Alex Dai</h1>
+      <p>IT Architect II · Microsoft Certified: Azure Solutions Architect Expert</p>
+
+      <dl class="facts" style="max-width: 40rem; margin-bottom: 2rem;">
+        <div class="fact"><dt>Location</dt><dd>Edmonton, Alberta, Canada</dd></div>
+        <div class="fact"><dt>Email</dt><dd><a class="link" href="mailto:daijian.gov@gmail.com">daijian.gov@gmail.com</a></dd></div>
+        <div class="fact"><dt>LinkedIn</dt><dd><a class="link" href="https://www.linkedin.com/in/alex-dai/" target="_blank" rel="noopener">linkedin.com/in/alex-dai</a></dd></div>
+        <div class="fact"><dt>GitHub</dt><dd><a class="link" href="https://github.com/dj88456" target="_blank" rel="noopener">github.com/dj88456</a></dd></div>
+      </dl>
+
+      <div class="btn-row">
+        <button class="btn" onclick="window.print()">Print / save as PDF</button>
+        <a class="btn btn-quiet" href="contact.html">Get in touch</a>
       </div>
     </div>
-    <div class="resume-actions">
-      <button class="btn btn-primary btn-sm" onclick="window.print()">🖨 Print / Save PDF</button>
-      <a class="btn btn-outline btn-sm" href="index.html#contact">✉ Contact Me</a>
-    </div>
-  </div>
 
-  <div class="resume-section fade-in">
-    <h2>Summary</h2>
-    <p>Microsoft Certified Azure Solutions Architect Expert with over 8 years of experience managing and architecting enterprise IT infrastructure and cloud services. Proven expertise in Microsoft Azure, Power Platform, and enterprise platforms including Exchange, SharePoint, Citrix, and VMware. Strong communicator with a track record of delivering complex digital transformation projects in cross-functional teams.</p>
-  </div>
+    <section class="cv-section">
+      <h2>Summary</h2>
+      <p style="font-size: 0.98rem; color: var(--muted); line-height: 1.75; max-width: 54ch;">
+        Microsoft Certified Azure Solutions Architect Expert with nine years
+        managing and architecting enterprise IT infrastructure and cloud
+        services. Deep experience across Microsoft Azure, Power Platform and
+        the enterprise platforms underneath them — Exchange, SharePoint, Citrix
+        and VMware. Comfortable owning a design decision end to end and
+        explaining it to the people who have to live with it.
+      </p>
+    </section>
 
-  <div class="resume-section fade-in">
-    <h2>Work Experience</h2>
+    <section class="cv-section">
+      <h2>Experience</h2>
+      <div class="roles" style="border-top: none;">
 
-    <div class="exp-item">
-      <div class="exp-header">
-        <div class="exp-title">IT Architect II</div>
-        <span class="exp-date">Aug 2023 — Present</span>
+        <article class="role">
+          <div class="role-when">Aug 2023 &ndash; Present</div>
+          <div>
+            <h3>IT Architect II</h3>
+            <div class="role-org">WCB-Alberta · Edmonton, Alberta</div>
+            <ul>
+              <li>Lead enterprise IT architecture decisions across cloud and on-premises infrastructure</li>
+              <li>Drive digital transformation work spanning Dynamics 365, Power BI and Power Platform</li>
+              <li>Architect Azure solutions together with the governance, networking and security controls around them</li>
+              <li>Own the enterprise platforms: Citrix, Exchange Online, SharePoint, Veeam</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="role">
+          <div class="role-when">Jun 2022 &ndash; Aug 2023</div>
+          <div>
+            <h3>IT Architect</h3>
+            <div class="role-org">WCB-Alberta · Edmonton, Alberta</div>
+            <ul>
+              <li>Designed and implemented the organisation's first Azure tenant and landing zone</li>
+              <li>Authored the cloud governance documentation, including Azure RBAC role definitions</li>
+              <li>Led the Exchange Online migration from planning through cutover</li>
+              <li>Reviewed and approved infrastructure design proposals across teams</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="role">
+          <div class="role-when">Aug 2020 &ndash; Jun 2022</div>
+          <div>
+            <h3>IT Specialist II</h3>
+            <div class="role-org">WCB-Alberta · Edmonton, Alberta</div>
+            <ul>
+              <li>Managed onsite and cloud infrastructure for the Infrastructure Platform team</li>
+              <li>Implemented Power BI and Power Platform environments, from planning to testing</li>
+              <li>Led the Print Release proof of concept; administered HPE Synergy and 3PAR / Nimble storage</li>
+              <li>Worked across teams on Severity 1 incident resolution</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="role">
+          <div class="role-when">Sep 2019 &ndash; Jul 2020</div>
+          <div>
+            <h3>IT Specialist</h3>
+            <div class="role-org">WCB-Alberta · Edmonton, Alberta</div>
+            <ul>
+              <li>Supported enterprise IT infrastructure and end-user platforms</li>
+              <li>Administered Windows Server, Exchange and virtualisation environments</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="role">
+          <div class="role-when">May 2017 &ndash; Aug 2019</div>
+          <div>
+            <h3>IT Team Lead</h3>
+            <div class="role-org">Sunrise International Inc. · Stony Plain, Alberta</div>
+            <ul>
+              <li>Ran all IT for 12 franchise hotels (Best Western, Ramada) across multiple sites</li>
+              <li>Designed the corporate network and deployed Windows Server, Exchange and Office 365</li>
+              <li>Configured ESXi and Hyper-V hosts, firewalls, site-to-site VPN and offsite cloud backup</li>
+              <li>Managed domains and websites on AWS, including design and marketing work</li>
+            </ul>
+          </div>
+        </article>
+
       </div>
-      <div class="exp-org">WCB-Alberta · Edmonton, Alberta, Canada</div>
-      <ul class="exp-points">
-        <li>Lead enterprise IT architecture decisions for cloud and on-premises infrastructure</li>
-        <li>Drive digital transformation initiatives including Dynamics 365, Power BI, and Power Platform</li>
-        <li>Manage and architect Azure cloud solutions with governance, networking and security controls</li>
-        <li>Oversee enterprise platforms: Citrix, Exchange Online, SharePoint, Veeam</li>
-      </ul>
-    </div>
+    </section>
 
-    <div class="exp-item">
-      <div class="exp-header">
-        <div class="exp-title">IT Architect</div>
-        <span class="exp-date">Jun 2022 — Aug 2023</span>
-      </div>
-      <div class="exp-org">WCB-Alberta · Edmonton, Alberta, Canada</div>
-      <ul class="exp-points">
-        <li>Designed and implemented the company's first Azure tenant and landing zone</li>
-        <li>Created cloud governance documentation including Azure RBAC role definitions</li>
-        <li>Led Exchange Online migration project from planning through cutover</li>
-        <li>Reviewed and approved infrastructure design proposals across teams</li>
-      </ul>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-header">
-        <div class="exp-title">IT Specialist II</div>
-        <span class="exp-date">Aug 2020 — Jun 2022</span>
-      </div>
-      <div class="exp-org">WCB-Alberta · Edmonton, Canada</div>
-      <ul class="exp-points">
-        <li>Managed onsite and cloud infrastructure for the Infrastructure Platform team</li>
-        <li>Implemented Power BI and Power Platform environments with planning, setup and testing</li>
-        <li>Led Print Release POC project; administered HPE Synergy and 3PAR/Nimble Storage</li>
-        <li>Collaborated across teams to resolve Severity 1 incidents</li>
-      </ul>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-header">
-        <div class="exp-title">IT Specialist</div>
-        <span class="exp-date">Sep 2019 — Jul 2020</span>
-      </div>
-      <div class="exp-org">WCB-Alberta · Edmonton, Alberta, Canada</div>
-      <ul class="exp-points">
-        <li>Supported enterprise IT infrastructure and end-user platforms</li>
-        <li>Administered Windows Server, Exchange, and virtualization environments</li>
-      </ul>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-header">
-        <div class="exp-title">IT Team Lead</div>
-        <span class="exp-date">May 2017 — Aug 2019</span>
-      </div>
-      <div class="exp-org">Sunrise International Inc. · Stony Plain, Alberta</div>
-      <ul class="exp-points">
-        <li>Managed all IT for 12 franchise hotels (Best Western, Ramada) across multiple sites</li>
-        <li>Designed corporate network structure and deployed Windows Server, Exchange, Office 365</li>
-        <li>Configured VM ESXi, Hyper-V, firewall, Site-to-Site VPN, and offsite cloud backup</li>
-        <li>Managed domain and websites on AWS; handled high-quality website design and marketing</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="resume-section fade-in">
-    <h2>Technical Skills</h2>
-    <div class="skills-grid">
-      <div class="skill-group">
-        <h3>Cloud &amp; Azure</h3>
-        <div class="skill-tags">
-          <span class="skill-tag">Microsoft Azure</span>
-          <span class="skill-tag">Azure Landing Zone</span>
-          <span class="skill-tag">Power Platform</span>
-          <span class="skill-tag">Dynamics 365</span>
-          <span class="skill-tag">Power BI</span>
+    <section class="cv-section">
+      <h2>Technical skills</h2>
+      <div class="cv-grid">
+        <div>
+          <h3>Cloud</h3>
+          <p>Microsoft Azure · Azure Landing Zone · Azure Policy · Entra ID · Power Platform · Dynamics 365 · Power BI · AWS</p>
+        </div>
+        <div>
+          <h3>Infrastructure</h3>
+          <p>Windows Server · VMware ESXi · Hyper-V · HPE Synergy · 3PAR / Nimble Storage · Veeam</p>
+        </div>
+        <div>
+          <h3>Enterprise platforms</h3>
+          <p>Exchange &amp; Exchange Online · SharePoint · Citrix · Microsoft 365</p>
+        </div>
+        <div>
+          <h3>Programming</h3>
+          <p>PowerShell · Python · SQL · C/C++ · MATLAB</p>
         </div>
       </div>
-      <div class="skill-group">
-        <h3>Infrastructure</h3>
-        <div class="skill-tags">
-          <span class="skill-tag">Windows Server</span>
-          <span class="skill-tag">HPE Synergy</span>
-          <span class="skill-tag">3PAR / Nimble</span>
-          <span class="skill-tag">VMware ESXi</span>
-          <span class="skill-tag">Hyper-V</span>
+    </section>
+
+    <section class="cv-section">
+      <h2>Certifications</h2>
+      <ul class="cv-list" style="max-width: 34rem;">
+        <li>Microsoft Certified: Azure Solutions Architect Expert<span class="issuer">Microsoft</span></li>
+        <li>Microsoft Certified: Azure AI Fundamentals<span class="issuer">Microsoft</span></li>
+        <li>Microsoft Certified: Dynamics 365 Fundamentals<span class="issuer">Microsoft</span></li>
+        <li>ITIL&reg; 4 Foundation CPD<span class="issuer">AXELOS</span></li>
+        <li>What Is Scrum?<span class="issuer">Scrum.org</span></li>
+      </ul>
+    </section>
+
+    <section class="cv-section">
+      <h2>Education</h2>
+      <div class="role" style="border-bottom: none; padding-top: 0;">
+        <div class="role-when">2012 &ndash; 2017</div>
+        <div>
+          <h3>B.Sc., Electrical and Computer Engineering</h3>
+          <div class="role-org">University of Alberta · Edmonton, Alberta</div>
+          <ul>
+            <li>University of Alberta Academic Excellence Scholarship</li>
+            <li>Coursework in C/C++, MATLAB, algorithms and computer architecture</li>
+          </ul>
         </div>
       </div>
-      <div class="skill-group">
-        <h3>Enterprise Platforms</h3>
-        <div class="skill-tags">
-          <span class="skill-tag">Exchange / Exchange Online</span>
-          <span class="skill-tag">SharePoint</span>
-          <span class="skill-tag">Citrix</span>
-          <span class="skill-tag">Veeam</span>
-          <span class="skill-tag">Office 365</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>Programming &amp; Tools</h3>
-        <div class="skill-tags">
-          <span class="skill-tag">PowerShell</span>
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">SQL</span>
-          <span class="skill-tag">C/C++</span>
-          <span class="skill-tag">MATLAB</span>
-          <span class="skill-tag">AWS</span>
-        </div>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="resume-section fade-in">
-    <h2>Certifications</h2>
-    <div class="certs-list">
-      <div class="cert-item">
-        <div class="cert-icon">🏆</div>
-        <div><div class="cert-name">Microsoft Certified: Azure Solutions Architect Expert</div><div class="cert-issuer">Microsoft</div></div>
-      </div>
-      <div class="cert-item">
-        <div class="cert-icon">🤖</div>
-        <div><div class="cert-name">Microsoft Certified: Azure AI Fundamentals</div><div class="cert-issuer">Microsoft</div></div>
-      </div>
-      <div class="cert-item">
-        <div class="cert-icon">📊</div>
-        <div><div class="cert-name">Microsoft Certified: Dynamics 365 Fundamentals</div><div class="cert-issuer">Microsoft</div></div>
-      </div>
-      <div class="cert-item">
-        <div class="cert-icon">⚙️</div>
-        <div><div class="cert-name">ITIL® 4 Foundation CPD</div><div class="cert-issuer">AXELOS</div></div>
-      </div>
-      <div class="cert-item">
-        <div class="cert-icon">🔄</div>
-        <div><div class="cert-name">What Is Scrum?</div><div class="cert-issuer">Scrum.org</div></div>
-      </div>
-    </div>
+    <section class="cv-section">
+      <h2>Languages</h2>
+      <dl class="facts" style="max-width: 34rem;">
+        <div class="fact"><dt>Chinese</dt><dd>Native or bilingual</dd></div>
+        <div class="fact"><dt>English</dt><dd>Full professional</dd></div>
+      </dl>
+    </section>
   </div>
+</main>
 
-  <div class="resume-section fade-in">
-    <h2>Education</h2>
-    <div class="edu-item">
-      <div class="edu-info">
-        <h3>University of Alberta</h3>
-        <p>Bachelor of Science (B.Sc.) · Electrical and Computer Engineering</p>
-      </div>
-      <span class="edu-date">2012 — 2017</span>
+<footer class="site-foot">
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <a class="wordmark" href="index.html">Alex Dai</a>
+      <p>IT architect at WCB-Alberta, working on cloud platforms and enterprise infrastructure in Edmonton.</p>
     </div>
-  </div>
-
-  <div class="resume-section fade-in">
-    <h2>Honors &amp; Languages</h2>
-    <div class="awards-list">
-      <div class="award-item"><span>🏅</span><span>University of Alberta Academic Excellence Scholarship</span></div>
-      <div class="award-item"><span>🇨🇳</span><span>Chinese — Native or Bilingual</span></div>
-      <div class="award-item"><span>🇨🇦</span><span>English — Full Professional</span></div>
-    </div>
-  </div>
-</div>
-
-<footer>
-  <div class="footer-main">
-    <div class="footer-brand">
-      <a class="footer-logo" href="index.html">Alex Dai</a>
-      <p>IT Architect II at WCB-Alberta. Designing enterprise cloud infrastructure across Alberta.</p>
-      <div class="footer-social">
-        <a href="mailto:daijian.gov@gmail.com" title="Email">✉</a>
-        <a href="https://linkedin.com/in/alex-dai" target="_blank" rel="noopener" title="LinkedIn">in</a>
-        <a href="https://github.com/dj88456" target="_blank" rel="noopener" title="GitHub">⌥</a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h4>Navigation</h4>
+    <div class="foot-col">
+      <h4>Pages</h4>
       <ul>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#projects">Projects</a></li>
-        <li><a href="index.html#timeline">Experience</a></li>
-        <li><a href="index.html#articles">Articles</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="writing.html">Writing</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="resume.html">Résumé</a></li>
       </ul>
     </div>
-    <div class="footer-col">
-      <h4>Connect</h4>
+    <div class="foot-col">
+      <h4>Elsewhere</h4>
       <ul>
-        <li><a class="contact-item" href="mailto:daijian.gov@gmail.com"><span class="ci-icon">✉</span>daijian.gov@gmail.com</a></li>
-        <li><a class="contact-item" href="https://linkedin.com/in/alex-dai" target="_blank" rel="noopener"><span class="ci-icon">in</span>linkedin.com/in/alex-dai</a></li>
-        <li><a class="contact-item" href="https://github.com/dj88456" target="_blank" rel="noopener"><span class="ci-icon">⌥</span>github.com/dj88456</a></li>
+        <li><a href="mailto:daijian.gov@gmail.com">daijian.gov@gmail.com</a></li>
+        <li><a href="https://www.linkedin.com/in/alex-dai/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/dj88456" target="_blank" rel="noopener">GitHub</a></li>
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2026 Alex Dai · No tracking</span>
-    <a href="index.html">← Back to Home</a>
+  <div class="foot-bottom">
+    <span>&copy; 2026 Alex Dai</span>
+    <span>Hand-written HTML. No trackers.</span>
   </div>
 </footer>
+
 <script src="js/main.js"></script>
 </body>
 </html>

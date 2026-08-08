@@ -1,100 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-  <meta name="theme-color" content="#f8fafc" id="themeColorMeta" />
+  <meta name="theme-color" content="#f6f7f8" id="themeColorMeta" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>From IT Specialist to IT Architect: My Career Journey · Alex Dai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="../css/shared.css" />
-  <style>
-    .page { max-width: 940px; margin: 0 auto; padding: 90px 24px 60px; }
-    .article-header { margin-bottom: 40px; }
-    .article-header h1 { font-size: clamp(1.7rem, 4vw, 2.3rem); line-height: 1.15; margin-bottom: 18px; }
-    .article-meta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: .92rem; margin-bottom: 28px; }
-    .article-meta .sep { color: var(--border); }
-    .article-body { font-size: 1.08rem; line-height: 1.95; }
-    .article-body p { margin-bottom: 24px; color: var(--muted); }
-    .article-body p strong { color: var(--text); }
-    .article-body h2 { font-size: 1.4rem; margin: 44px 0 16px; color: var(--text); }
-    .article-body h3 { font-size: 1.1rem; margin: 28px 0 12px; color: var(--text); }
-    .article-body ul, .article-body ol { padding-left: 20px; margin-bottom: 20px; }
-    .article-body li { color: var(--muted); margin-bottom: 6px; }
-    .article-body code { background: var(--bg2); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: .88em; color: var(--accent); }
-    .callout { background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 24px 0; }
-    .callout p { color: var(--text) !important; margin: 0; font-size: .9rem; }
-    .career-timeline { margin: 32px 0; }
-    .ct-item { display: flex; gap: 20px; padding-bottom: 32px; position: relative; }
-    .ct-item::before { content: ''; position: absolute; left: 19px; top: 40px; bottom: 0; width: 2px; background: var(--border); }
-    .ct-item:last-child::before { display: none; }
-    .ct-dot { width: 40px; height: 40px; border-radius: 50%; background: var(--accent-light); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
-    .ct-content { padding-top: 8px; }
-    .ct-title { font-weight: 700; color: var(--text); font-size: .95rem; }
-    .ct-meta { font-size: .8rem; color: var(--muted); margin-bottom: 6px; }
-    .ct-body { font-size: .88rem; color: var(--muted); line-height: 1.7; }
-    .divider { height: 1px; background: var(--border); margin: 40px 0; }
-    .related h3 { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 16px; }
-    .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .related-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-decoration: none; color: var(--text); transition: all .2s; font-size: .88rem; font-weight: 600; }
-    .related-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .related-card small { display: block; color: var(--muted); font-weight: 400; margin-top: 4px; font-size: .78rem; }
-    @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
-  </style>
 </head>
 <body>
-<div id="progress-bar-track"></div>
 <div id="progress-bar"></div>
-<nav>
-  <a class="nav-logo" href="../index.html">Alex Dai</a>
-  <div class="nav-right">
-    <ul class="nav-links" id="navLinks">
-      <li><a href="../index.html#about">About</a></li>
-      <li class="has-dropdown">
-        <div class="drop-header">
-          <a href="../index.html#projects">Projects</a>
-          <button class="drop-toggle" aria-label="Toggle projects menu">&#9660;</button>
-        </div>
-        <div class="mega-drop">
-          <div class="mega-label">Key Initiatives</div>
-          <div class="mega-grid">
-            <a class="mega-item" href="../projects/devflow.html"><div class="mega-icon">&#x2601;&#xFE0F;</div><div><div class="mega-title">Azure Landing Zone</div><div class="mega-desc">WCB-Alberta's first Azure tenant &mdash; hub-spoke networking, RBAC &amp; governance</div><div class="mega-meta">Microsoft Azure &middot; 2020&ndash;2022</div></div></a>
-            <a class="mega-item" href="../projects/insightboard.html"><div class="mega-icon">&#x1F4E7;</div><div><div class="mega-title">Exchange Online Migration</div><div class="mega-desc">Zero-downtime migration of 1,500+ mailboxes to Microsoft 365</div><div class="mega-meta">Exchange Online &middot; Completed</div></div></a>
-            <a class="mega-item" href="../projects/chatcontext.html"><div class="mega-icon">&#x1F4CA;</div><div><div class="mega-title">Dynamics 365 Deployment</div><div class="mega-desc">Digital transformation with Dynamics 365, Power BI &amp; CoE governance</div><div class="mega-meta">Power Platform &middot; Ongoing</div></div></a>
-            <a class="mega-item" href="../projects/designtoken.html"><div class="mega-icon">&#x1F3E8;</div><div><div class="mega-title">Multi-Site IT Infrastructure</div><div class="mega-desc">Complete IT for 12 hotel properties &mdash; network, VMs, VPN, cloud backup</div><div class="mega-meta">Sunrise International &middot; 2017&ndash;2019</div></div></a>
-          </div>
-          <div class="mega-footer"><a href="../index.html#projects">View all projects &rarr;</a></div>
-        </div>
-      </li>
-      <li><a href="../index.html#timeline">Experience</a></li>
-      <li class="has-dropdown">
-        <div class="drop-header">
-          <a href="../index.html#articles">Articles</a>
-          <button class="drop-toggle" aria-label="Toggle articles menu">&#9660;</button>
-        </div>
-        <div class="mega-drop">
-          <div class="mega-label">Latest Writing</div>
-          <div class="mega-grid">
-            <a class="mega-item" href="../articles/lowcode.html"><div class="mega-icon">&#x2601;&#xFE0F;</div><div><div class="mega-title">Designing an Enterprise Azure Landing Zone</div><div class="mega-desc">Subscription design, hub-spoke networking, RBAC &amp; policy</div><div class="mega-meta">8 min &middot; Mar 2026 &middot; Azure</div></div></a>
-            <a class="mega-item" href="../articles/llm-rag.html"><div class="mega-icon">&#x1F4E7;</div><div><div class="mega-title">Exchange Online Migration: Lessons Learned</div><div class="mega-desc">Hybrid coexistence, mail flow, compliance holds &amp; user communication</div><div class="mega-meta">10 min &middot; Feb 2026 &middot; Microsoft 365</div></div></a>
-            <a class="mega-item" href="../articles/performance.html"><div class="mega-icon">&#x1F510;</div><div><div class="mega-title">Azure RBAC and Cloud Governance</div><div class="mega-desc">PIM, custom roles, Azure Policy guardrails &amp; access review cadence</div><div class="mega-meta">8 min &middot; Jan 2026 &middot; Governance</div></div></a>
-            <a class="mega-item" href="../articles/growth.html"><div class="mega-icon">&#x1F680;</div><div><div class="mega-title">From IT Specialist to IT Architect</div><div class="mega-desc">Career journey, certifications, project leadership &amp; the mindset shift</div><div class="mega-meta">6 min &middot; Dec 2025 &middot; Career</div></div></a>
-          </div>
-          <div class="mega-footer"><a href="../index.html#articles">View all articles &rarr;</a></div>
-        </div>
-      </li>
-      <li><a href="../index.html#contact">Contact</a></li>
-    </ul>
-    <button class="theme-btn" id="themeToggle"></button>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
+<header class="site-head">
+  <a class="wordmark" href="../index.html">Alex Dai</a>
+  <nav class="site-nav" id="siteNav">
+    <a href="../work.html">Work</a>
+    <a href="../writing.html" aria-current="page">Writing</a>
+    <a href="../experience.html">Experience</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+  </nav>
+  <div class="head-tools">
+    <button class="theme-btn" id="themeToggle" aria-label="Switch between light and dark"></button>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="siteNav">
+      <span></span><span></span>
     </button>
   </div>
-</nav>
+</header>
 
-<div class="page">
-  <a class="back-link fade-in" href="../index.html">← Back to Home</a>
+<main class="page narrow">
+  <a class="back-link" href="../writing.html">All writing</a>
 
-  <div class="article-header fade-in">
+  <div class="article-header reveal">
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
       <span class="tag-accent">Career</span>
       <span class="tag">IT Architecture</span>
@@ -108,10 +46,10 @@
     </div>
   </div>
 
-  <div class="article-body fade-in">
+  <div class="article-body prose reveal">
     <p>I graduated with a B.Sc. in Computing Science from the University of Alberta in 2017 with a vague plan of "working in tech." Eight years later, I'm designing enterprise cloud architectures for a major provincial organization. This is the honest account of how that happened — the deliberate moves, the lucky breaks, and the things I'd do differently.</p>
 
-    <div class="callout"><p>💡 This is a personal reflection, not a prescriptive career guide. Career paths in IT are genuinely diverse. I'm sharing what worked for me, not a universal formula.</p></div>
+    <div class="callout"><p>This is a personal reflection, not a prescriptive career guide. Career paths in IT are genuinely diverse. I'm sharing what worked for me, not a universal formula.</p></div>
 
     <h2>The Early Years: Building a Foundation</h2>
     <p>My first real IT role after university was IT Team Lead at Sunrise Health Lodge, a long-term care facility. In hindsight, this was an ideal first job for someone who wanted to eventually move into architecture: it was a small team, which meant wearing many hats.</p>
@@ -124,7 +62,7 @@
 
     <div class="career-timeline">
       <div class="ct-item">
-        <div class="ct-dot">🎓</div>
+        <div class="ct-dot"></div>
         <div class="ct-content">
           <div class="ct-title">University of Alberta — B.Sc. Computing Science</div>
           <div class="ct-meta">2012 – 2017</div>
@@ -132,7 +70,7 @@
         </div>
       </div>
       <div class="ct-item">
-        <div class="ct-dot">💼</div>
+        <div class="ct-dot"></div>
         <div class="ct-content">
           <div class="ct-title">IT Team Lead — Sunrise Health Lodge</div>
           <div class="ct-meta">May 2017 – Aug 2019</div>
@@ -140,7 +78,7 @@
         </div>
       </div>
       <div class="ct-item">
-        <div class="ct-dot">⬆️</div>
+        <div class="ct-dot"></div>
         <div class="ct-content">
           <div class="ct-title">IT Specialist I → II — WCB-Alberta</div>
           <div class="ct-meta">Sep 2019 – Jun 2022</div>
@@ -148,7 +86,7 @@
         </div>
       </div>
       <div class="ct-item">
-        <div class="ct-dot">🏗️</div>
+        <div class="ct-dot"></div>
         <div class="ct-content">
           <div class="ct-title">IT Architect — WCB-Alberta</div>
           <div class="ct-meta">Jun 2022 – Aug 2023</div>
@@ -156,7 +94,7 @@
         </div>
       </div>
       <div class="ct-item">
-        <div class="ct-dot">🚀</div>
+        <div class="ct-dot"></div>
         <div class="ct-content">
           <div class="ct-title">IT Architect II — WCB-Alberta</div>
           <div class="ct-meta">Aug 2023 – Present</div>
@@ -188,49 +126,43 @@
   </div>
 
   <div class="divider"></div>
-  <div class="related fade-in">
+  <div class="related reveal">
     <h3>Related Articles</h3>
     <div class="related-grid">
       <a class="related-card" href="lowcode.html">Designing an Enterprise Azure Landing Zone<small>2026-03-15 · 8 min</small></a>
       <a class="related-card" href="performance.html">Azure RBAC and Cloud Governance<small>2026-01-20 · 8 min</small></a>
     </div>
   </div>
-</div>
+</main>
 
-<footer>
-  <div class="footer-main">
-    <div class="footer-brand">
-      <a class="footer-logo" href="../index.html">Alex Dai</a>
-      <p>IT Architect II at WCB-Alberta. Designing enterprise cloud infrastructure across Alberta.</p>
-      <div class="footer-social">
-        <a href="mailto:daijian.gov@gmail.com" title="Email">✉</a>
-        <a href="https://linkedin.com/in/alex-dai" target="_blank" rel="noopener" title="LinkedIn">in</a>
-        <a href="https://github.com/dj88456" target="_blank" rel="noopener" title="GitHub">⌥</a>
-      </div>
+<footer class="site-foot">
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <a class="wordmark" href="../index.html">Alex Dai</a>
+      <p>IT architect at WCB-Alberta, working on cloud platforms and enterprise infrastructure in Edmonton.</p>
     </div>
-    <div class="footer-col">
-      <h4>Navigation</h4>
+    <div class="foot-col">
+      <h4>Pages</h4>
       <ul>
-        <li><a href="../index.html#about">About</a></li>
-        <li><a href="../index.html#projects">Projects</a></li>
-        <li><a href="../index.html#timeline">Experience</a></li>
-        <li><a href="../index.html#articles">Articles</a></li>
-        <li><a href="../index.html#contact">Contact</a></li>
-        <li><a href="../resume.html">Resume</a></li>
+        <li><a href="../work.html">Work</a></li>
+        <li><a href="../writing.html">Writing</a></li>
+        <li><a href="../experience.html">Experience</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../resume.html">R&eacute;sum&eacute;</a></li>
       </ul>
     </div>
-    <div class="footer-col">
-      <h4>Connect</h4>
+    <div class="foot-col">
+      <h4>Elsewhere</h4>
       <ul>
-        <li><a class="contact-item" href="mailto:daijian.gov@gmail.com"><span class="ci-icon">✉</span>daijian.gov@gmail.com</a></li>
-        <li><a class="contact-item" href="https://linkedin.com/in/alex-dai" target="_blank" rel="noopener"><span class="ci-icon">in</span>linkedin.com/in/alex-dai</a></li>
-        <li><a class="contact-item" href="https://github.com/dj88456" target="_blank" rel="noopener"><span class="ci-icon">⌥</span>github.com/dj88456</a></li>
+        <li><a href="mailto:daijian.gov@gmail.com">daijian.gov@gmail.com</a></li>
+        <li><a href="https://www.linkedin.com/in/alex-dai/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/dj88456" target="_blank" rel="noopener">GitHub</a></li>
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2026 Alex Dai · No tracking</span>
-    <a href="../index.html">← Back to Home</a>
+  <div class="foot-bottom">
+    <span>&copy; 2026 Alex Dai</span>
+    <span>Hand-written HTML. No trackers.</span>
   </div>
 </footer>
 <script src="../js/main.js"></script>

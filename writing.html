@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Writing — Alex Dai</title>
+  <meta name="description" content="Notes on Azure landing zones, Exchange Online migrations, cloud governance, and moving from IT specialist to architect." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#f7f5f1" id="themeColorMeta" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="css/shared.css" />
+</head>
+<body>
+
+<header class="site-head">
+  <a class="wordmark" href="index.html">Alex Dai</a>
+  <nav class="site-nav" id="siteNav">
+    <a href="work.html">Work</a>
+    <a href="writing.html" aria-current="page">Writing</a>
+    <a href="experience.html">Experience</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="head-tools">
+    <button class="theme-btn" id="themeToggle" aria-label="Switch between light and dark"></button>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="siteNav">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="page-head">
+      <span class="eyebrow">Writing</span>
+      <h1>Notes from the build</h1>
+      <p class="lede">
+        Longer write-ups of things I had to figure out the slow way. Mostly
+        Azure and Microsoft 365, occasionally the career itself.
+      </p>
+    </div>
+
+    <div class="entries" style="margin-bottom: clamp(3rem, 6vw, 5rem);">
+      <a class="entry reveal" href="articles/lowcode.html">
+        <span class="entry-index">01</span>
+        <span>
+          <span class="entry-title">Designing an enterprise Azure landing zone from scratch</span>
+          <span class="entry-desc">Subscription and management group design, hub-and-spoke networking, the tiered RBAC model, and policy as code. Includes the three pitfalls that cost us the most time.</span>
+          <span class="entry-meta">Azure · Cloud Architecture · Governance</span>
+        </span>
+        <span class="entry-aside">2026-03-15<br>8 min</span>
+      </a>
+
+      <a class="entry reveal" href="articles/llm-rag.html">
+        <span class="entry-index">02</span>
+        <span>
+          <span class="entry-title">Exchange Online migration: lessons learned</span>
+          <span class="entry-desc">Hybrid coexistence, mail flow routing, compliance holds and cutover strategy — plus why the user communication plan turned out to matter more than any of the tooling.</span>
+          <span class="entry-meta">Microsoft 365 · Exchange · Migration</span>
+        </span>
+        <span class="entry-aside">2026-02-28<br>10 min</span>
+      </a>
+
+      <a class="entry reveal" href="articles/performance.html">
+        <span class="entry-index">03</span>
+        <span>
+          <span class="entry-title">Azure RBAC and cloud governance: a practical framework</span>
+          <span class="entry-desc">How to design an RBAC structure that survives contact with real teams: custom roles, PIM for anything elevated, Azure Policy guardrails, and an access review cadence people actually keep.</span>
+          <span class="entry-meta">Governance · Security · Azure</span>
+        </span>
+        <span class="entry-aside">2026-01-20<br>8 min</span>
+      </a>
+
+      <a class="entry reveal" href="articles/growth.html">
+        <span class="entry-index">04</span>
+        <span>
+          <span class="entry-title">From IT specialist to IT architect</span>
+          <span class="entry-desc">A personal account rather than a career guide. What changed when the job stopped being about fixing things and started being about deciding how they should be built.</span>
+          <span class="entry-meta">Career · Reflection</span>
+        </span>
+        <span class="entry-aside">2025-12-10<br>6 min</span>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <a class="wordmark" href="index.html">Alex Dai</a>
+      <p>IT architect at WCB-Alberta, working on cloud platforms and enterprise infrastructure in Edmonton.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="writing.html">Writing</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="resume.html">Résumé</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Elsewhere</h4>
+      <ul>
+        <li><a href="mailto:daijian.gov@gmail.com">daijian.gov@gmail.com</a></li>
+        <li><a href="https://www.linkedin.com/in/alex-dai/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/dj88456" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>&copy; 2026 Alex Dai</span>
+    <span>Hand-written HTML. No trackers.</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

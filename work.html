@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Work — Alex Dai</title>
+  <meta name="description" content="Four projects: an Azure landing zone, an Exchange Online migration, a Dynamics 365 rollout and multi-site hotel infrastructure." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#f7f5f1" id="themeColorMeta" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="css/shared.css" />
+</head>
+<body>
+
+<header class="site-head">
+  <a class="wordmark" href="index.html">Alex Dai</a>
+  <nav class="site-nav" id="siteNav">
+    <a href="work.html" aria-current="page">Work</a>
+    <a href="writing.html">Writing</a>
+    <a href="experience.html">Experience</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="head-tools">
+    <button class="theme-btn" id="themeToggle" aria-label="Switch between light and dark"></button>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="siteNav">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="page-head">
+      <span class="eyebrow">Work</span>
+      <h1>Four projects worth writing down</h1>
+      <p class="lede">
+        Most of what I do leaves no visible trace. These are the pieces that
+        changed how a whole organisation works, so they are the ones I can
+        actually describe.
+      </p>
+    </div>
+
+    <div class="entries" style="margin-bottom: clamp(3rem, 6vw, 5rem);">
+      <a class="entry reveal" href="projects/devflow.html">
+        <span class="entry-index">01</span>
+        <span>
+          <span class="entry-title">Azure Landing Zone</span>
+          <span class="entry-desc">WCB-Alberta had no Azure presence at all. I designed the tenant from the ground up: management group hierarchy, platform and workload subscriptions, a hub-and-spoke network with Azure Firewall, a tiered RBAC model, and the policy set that keeps everything inside Canadian regions.</span>
+          <span class="entry-meta">Azure · Landing Zone · RBAC · Azure Policy</span>
+        </span>
+        <span class="entry-aside">WCB-Alberta<br>2020&ndash;2022</span>
+      </a>
+
+      <a class="entry reveal" href="projects/insightboard.html">
+        <span class="entry-index">02</span>
+        <span>
+          <span class="entry-title">Exchange Online Migration</span>
+          <span class="entry-desc">Moving 1,500 mailboxes off on-premises Exchange without anyone noticing. Hybrid configuration first, then eight weeks of wave migrations, with compliance holds and mail flow held intact throughout.</span>
+          <span class="entry-meta">Exchange Online · Microsoft 365 · Hybrid</span>
+        </span>
+        <span class="entry-aside">WCB-Alberta<br>Completed</span>
+      </a>
+
+      <a class="entry reveal" href="projects/chatcontext.html">
+        <span class="entry-index">03</span>
+        <span>
+          <span class="entry-title">Dynamics 365 &amp; Power Platform</span>
+          <span class="entry-desc">Environment strategy across dev, test and production, Azure AD integration, Power BI for enterprise reporting, and a Centre of Excellence so a low-code estate could grow without becoming shadow IT.</span>
+          <span class="entry-meta">Dynamics 365 · Power BI · Governance</span>
+        </span>
+        <span class="entry-aside">WCB-Alberta<br>Ongoing</span>
+      </a>
+
+      <a class="entry reveal" href="projects/designtoken.html">
+        <span class="entry-index">04</span>
+        <span>
+          <span class="entry-title">Multi-Site Hotel Infrastructure</span>
+          <span class="entry-desc">Twelve Best Western and Ramada properties, one IT department: me. Corporate network design, virtualisation on ESXi and Hyper-V, site-to-site VPN between properties, and offsite backup into AWS.</span>
+          <span class="entry-meta">Networking · VMware · Hyper-V · AWS</span>
+        </span>
+        <span class="entry-aside">Sunrise International<br>2017&ndash;2019</span>
+      </a>
+    </div>
+
+    <div class="reveal" style="max-width: 32rem; padding-bottom: clamp(2rem, 5vw, 4rem);">
+      <p style="font-size: 0.95rem; line-height: 1.7; color: var(--muted);">
+        The full career, including the roles that came before these,
+        is on the <a class="link" href="experience.html">experience</a> page.
+      </p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <a class="wordmark" href="index.html">Alex Dai</a>
+      <p>IT architect at WCB-Alberta, working on cloud platforms and enterprise infrastructure in Edmonton.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="writing.html">Writing</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="resume.html">Résumé</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Elsewhere</h4>
+      <ul>
+        <li><a href="mailto:daijian.gov@gmail.com">daijian.gov@gmail.com</a></li>
+        <li><a href="https://www.linkedin.com/in/alex-dai/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/dj88456" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>&copy; 2026 Alex Dai</span>
+    <span>Hand-written HTML. No trackers.</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,685 +1,159 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alex Dai — IT Architect</title>
+  <meta name="description" content="Alex Dai is an IT architect in Edmonton, Alberta, working on Azure platforms, enterprise infrastructure and cloud governance." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta name="theme-color" content="#f8fafc" id="themeColorMeta" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alex Dai · IT Architect</title>
+  <meta name="theme-color" content="#f7f5f1" id="themeColorMeta" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="css/shared.css" />
-  <style>
-    section { max-width: 1160px; margin: 0 auto; padding: 96px 24px 64px; }
-    #hero { padding-top: 130px; }
-    #stats { padding-top: 0; padding-bottom: 0; }
-
-    /* HERO */
-    .hero-avatar {
-      width: 112px; height: 112px; border-radius: 50%;
-      background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2.6rem; color: #fff; margin-bottom: 28px;
-      font-weight: 800; box-shadow: 0 8px 32px rgba(37,99,235,.3);
-      position: relative;
-    }
-    .hero-avatar::after {
-      content: ""; position: absolute; inset: -4px; border-radius: 50%;
-      border: 2px dashed rgba(37,99,235,.3);
-      animation: spin 12s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--accent-light); color: var(--accent);
-      padding: 4px 12px; border-radius: 20px; font-size: .78rem;
-      font-weight: 600; margin-bottom: 16px;
-    }
-    .hero-badge .dot {
-      width: 7px; height: 7px; border-radius: 50%; background: #22c55e;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,.4); }
-      50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
-    }
-    .hero-title span {
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .hero-subtitle { font-size: 1.2rem; color: var(--muted); max-width: 760px; margin-bottom: 40px; line-height: 1.8; }
-    .btn-group { display: flex; gap: 12px; flex-wrap: wrap; }
-
-    /* STATS */
-    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
-    .stat-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 24px 20px; text-align: center;
-      box-shadow: var(--shadow); transition: all .2s;
-    }
-    .stat-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-    .stat-number {
-      font-size: 2.4rem; font-weight: 800; letter-spacing: -1px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .stat-label { font-size: .88rem; color: var(--muted); margin-top: 6px; font-weight: 500; }
-
-    /* ABOUT */
-    .about-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow);
-    }
-    .about-card p { color: var(--muted); margin-bottom: 18px; font-size: 1.05rem; line-height: 1.85; }
-    .about-card p:last-of-type { margin-bottom: 0; }
-    .about-card strong { color: var(--text); }
-    .skills-section { margin-top: 28px; }
-    .skills-section h3 {
-      font-size: .85rem; color: var(--muted); text-transform: uppercase;
-      letter-spacing: 1px; margin-bottom: 16px; font-weight: 600;
-    }
-    .skill-bars { display: flex; flex-direction: column; gap: 12px; }
-    .skill-row { display: flex; flex-direction: column; gap: 5px; }
-    .skill-row-top { display: flex; justify-content: space-between; font-size: .95rem; font-weight: 600; }
-    .skill-row-pct { color: var(--muted); font-weight: 400; }
-    .skill-bar-bg { height: 6px; background: var(--bg2); border-radius: 4px; overflow: hidden; }
-    .skill-bar-fill {
-      height: 100%; border-radius: 4px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      width: 0; transition: width 1s cubic-bezier(.4,0,.2,1);
-    }
-    .interests-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 28px; }
-    .interest-item {
-      background: var(--bg2); border-radius: 10px; padding: 18px;
-      text-align: center; font-size: .92rem; font-weight: 500;
-    }
-    .interest-icon { font-size: 2rem; display: block; margin-bottom: 8px; }
-
-    /* PROJECTS */
-    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .project-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow);
-      transition: all .25s; display: flex; flex-direction: column; gap: 12px;
-      text-decoration: none; color: inherit;
-    }
-    .project-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--accent); }
-    .project-header { display: flex; justify-content: space-between; align-items: flex-start; }
-    .project-icon {
-      width: 54px; height: 54px; border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.55rem;
-    }
-    .project-arrow { color: var(--muted); font-size: 1.1rem; transition: transform .2s; }
-    .project-card:hover .project-arrow { transform: translate(3px,-3px); color: var(--accent); }
-    .project-card h3 { font-size: 1.1rem; font-weight: 700; }
-    .project-desc { font-size: .95rem; color: var(--muted); flex: 1; line-height: 1.7; }
-    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .project-meta { display: flex; gap: 16px; font-size: .85rem; color: var(--muted); }
-
-    /* TIMELINE */
-    .timeline { position: relative; padding-left: 28px; }
-    .timeline::before {
-      content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px;
-      width: 2px; background: var(--border); border-radius: 2px;
-    }
-    .timeline-item { position: relative; margin-bottom: 40px; }
-    .timeline-item:last-child { margin-bottom: 0; }
-    .timeline-dot {
-      position: absolute; left: -25px; top: 7px;
-      width: 16px; height: 16px; border-radius: 50%;
-      background: var(--surface); border: 2.5px solid var(--accent); transition: all .2s;
-    }
-    .timeline-item:hover .timeline-dot { background: var(--accent); transform: scale(1.2); }
-    .timeline-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 24px 28px;
-      box-shadow: var(--shadow); transition: all .2s;
-    }
-    .timeline-item:hover .timeline-card { box-shadow: var(--shadow-lg); }
-    .timeline-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
-    .timeline-date {
-      font-size: .75rem; font-weight: 700; color: var(--accent);
-      background: var(--accent-light); padding: 2px 10px; border-radius: 20px;
-    }
-    .timeline-type {
-      font-size: .72rem; font-weight: 600; color: var(--muted);
-      background: var(--bg2); padding: 2px 8px; border-radius: 20px;
-    }
-    .timeline-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
-    .timeline-org { font-size: .95rem; color: var(--muted); margin-bottom: 10px; }
-    .timeline-desc { font-size: .95rem; color: var(--muted); line-height: 1.7; }
-    .timeline-highlights { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
-    .timeline-highlights li {
-      font-size: .9rem; color: var(--muted); list-style: none;
-      padding-left: 14px; position: relative;
-    }
-    .timeline-highlights li::before { content: "›"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
-
-    /* ARTICLES */
-    .articles-list { display: flex; flex-direction: column; gap: 16px; }
-    .article-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 24px 28px; box-shadow: var(--shadow);
-      display: flex; gap: 20px; align-items: flex-start;
-      text-decoration: none; color: inherit; transition: all .2s;
-    }
-    .article-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color: var(--accent); }
-    .article-num {
-      font-size: 2.4rem; font-weight: 800; color: var(--border);
-      line-height: 1; flex-shrink: 0; transition: color .2s;
-    }
-    .article-card:hover .article-num { color: var(--accent); }
-    .article-body h3 { font-size: 1.08rem; margin-bottom: 8px; }
-    .article-body p { font-size: .95rem; color: var(--muted); margin-bottom: 12px; line-height: 1.7; }
-    .article-meta { display: flex; gap: 12px; font-size: .82rem; color: var(--muted); align-items: center; }
-
-    /* CONTACT */
-    .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .contact-intro {
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      border-radius: var(--radius); padding: 32px; color: #fff;
-      display: flex; flex-direction: column; justify-content: space-between;
-    }
-    .contact-intro h3 { font-size: 1.35rem; margin-bottom: 14px; }
-    .contact-intro p { font-size: 1rem; opacity: .85; line-height: 1.7; }
-    .contact-links { display: flex; flex-direction: column; gap: 12px; }
-    .contact-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; padding: 16px 20px;
-      display: flex; align-items: center; gap: 14px;
-      text-decoration: none; color: var(--text);
-      transition: all .2s; font-weight: 500; font-size: .96rem;
-      box-shadow: var(--shadow);
-    }
-    .contact-card:hover { border-color: var(--accent); transform: translateX(4px); box-shadow: var(--shadow-lg); }
-    .contact-icon {
-      width: 36px; height: 36px; border-radius: 8px;
-      background: var(--accent-light); display: flex;
-      align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
-    }
-    .contact-info { flex: 1; }
-    .contact-info small { display: block; color: var(--muted); font-size: .82rem; font-weight: 400; }
-    .contact-arrow { color: var(--muted); font-size: .9rem; transition: all .2s; }
-    .contact-card:hover .contact-arrow { color: var(--accent); transform: translateX(3px); }
-
-    @media (max-width: 680px) {
-      section { padding: 80px 18px 50px; }
-      .stats-grid { grid-template-columns: repeat(2,1fr); }
-      .projects-grid { grid-template-columns: 1fr; }
-      .contact-wrapper { grid-template-columns: 1fr; }
-      .interests-grid { grid-template-columns: repeat(2,1fr); }
-    }
-
-    /* ── BACKGROUND ART ── */
-    .bg-art {
-      position: fixed; inset: 0; z-index: -1;
-      overflow: hidden; pointer-events: none;
-    }
-    /* Dot grid */
-    .bg-art::before {
-      content: "";
-      position: absolute; inset: 0;
-      background-image: radial-gradient(circle, rgba(37,99,235,.12) 1px, transparent 1px);
-      background-size: 32px 32px;
-    }
-    [data-theme="dark"] .bg-art::before {
-      background-image: radial-gradient(circle, rgba(96,165,250,.1) 1px, transparent 1px);
-    }
-    /* Gradient blobs */
-    .blob {
-      position: absolute; border-radius: 50%;
-      filter: blur(80px); opacity: .45;
-      animation: blobFloat 18s ease-in-out infinite alternate;
-    }
-    [data-theme="dark"] .blob { opacity: .2; }
-    .blob-1 {
-      width: 520px; height: 520px;
-      background: radial-gradient(circle, #bfdbfe, #ddd6fe);
-      top: -120px; right: -80px;
-      animation-duration: 20s;
-    }
-    .blob-2 {
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, #a5f3fc, #bfdbfe);
-      bottom: 30%; left: -100px;
-      animation-duration: 25s; animation-delay: -8s;
-    }
-    .blob-3 {
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, #fde68a, #fca5a5);
-      bottom: 10%; right: 5%;
-      animation-duration: 22s; animation-delay: -4s;
-    }
-    @keyframes blobFloat {
-      0%   { transform: translate(0, 0) scale(1); }
-      33%  { transform: translate(30px, -20px) scale(1.04); }
-      66%  { transform: translate(-20px, 30px) scale(.97); }
-      100% { transform: translate(10px, -10px) scale(1.02); }
-    }
-    /* Floating accent lines */
-    .bg-lines {
-      position: absolute; inset: 0;
-      background:
-        linear-gradient(90deg, rgba(37,99,235,.04) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(37,99,235,.04) 1px, transparent 1px);
-      background-size: 80px 80px;
-    }
-    [data-theme="dark"] .bg-lines {
-      background:
-        linear-gradient(90deg, rgba(96,165,250,.06) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(96,165,250,.06) 1px, transparent 1px);
-      background-size: 80px 80px;
-    }
-  </style>
 </head>
 <body>
 
-<div class="bg-art">
-  <div class="bg-lines"></div>
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
-  <div class="blob blob-3"></div>
-</div>
-
-<div id="progress-bar-track"></div>
-<div id="progress-bar"></div>
-
-<nav>
-  <a class="nav-logo" href="index.html">Alex Dai</a>
-  <div class="nav-right">
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#about">About</a></li>
-
-      <!-- Projects mega dropdown -->
-      <li class="has-dropdown">
-        <div class="drop-header">
-          <a href="#projects">Projects</a>
-          <button class="drop-toggle" aria-label="Toggle projects menu">▾</button>
-        </div>
-        <div class="mega-drop">
-          <div class="mega-label">Key Initiatives</div>
-          <div class="mega-grid">
-            <a class="mega-item" href="projects/devflow.html">
-              <div class="mega-icon">☁️</div>
-              <div>
-                <div class="mega-title">Azure Landing Zone</div>
-                <div class="mega-desc">WCB-Alberta's first Azure tenant — hub-spoke networking, RBAC & governance</div>
-                <div class="mega-meta">Microsoft Azure · 2020–2022</div>
-              </div>
-            </a>
-            <a class="mega-item" href="projects/insightboard.html">
-              <div class="mega-icon">📧</div>
-              <div>
-                <div class="mega-title">Exchange Online Migration</div>
-                <div class="mega-desc">Zero-downtime migration of 1,500+ mailboxes to Microsoft 365</div>
-                <div class="mega-meta">Exchange Online · Completed</div>
-              </div>
-            </a>
-            <a class="mega-item" href="projects/chatcontext.html">
-              <div class="mega-icon">📊</div>
-              <div>
-                <div class="mega-title">Dynamics 365 Deployment</div>
-                <div class="mega-desc">Digital transformation with Dynamics 365, Power BI & CoE governance</div>
-                <div class="mega-meta">Power Platform · Ongoing</div>
-              </div>
-            </a>
-            <a class="mega-item" href="projects/designtoken.html">
-              <div class="mega-icon">🏨</div>
-              <div>
-                <div class="mega-title">Multi-Site IT Infrastructure</div>
-                <div class="mega-desc">Complete IT for 12 hotel properties — network, VMs, VPN, cloud backup</div>
-                <div class="mega-meta">Sunrise International · 2017–2019</div>
-              </div>
-            </a>
-          </div>
-          <div class="mega-footer"><a href="#projects">View all projects →</a></div>
-        </div>
-      </li>
-
-      <li><a href="#timeline">Experience</a></li>
-
-      <!-- Articles mega dropdown -->
-      <li class="has-dropdown">
-        <div class="drop-header">
-          <a href="#articles">Articles</a>
-          <button class="drop-toggle" aria-label="Toggle articles menu">▾</button>
-        </div>
-        <div class="mega-drop">
-          <div class="mega-label">Latest Writing</div>
-          <div class="mega-grid">
-            <a class="mega-item" href="articles/lowcode.html">
-              <div class="mega-icon">☁️</div>
-              <div>
-                <div class="mega-title">Designing an Enterprise Azure Landing Zone</div>
-                <div class="mega-desc">From scratch — subscription design, hub-spoke networking, RBAC & policy</div>
-                <div class="mega-meta">8 min · Mar 2026 · Azure</div>
-              </div>
-            </a>
-            <a class="mega-item" href="articles/llm-rag.html">
-              <div class="mega-icon">📧</div>
-              <div>
-                <div class="mega-title">Exchange Online Migration: Lessons Learned</div>
-                <div class="mega-desc">Hybrid coexistence, mail flow, compliance holds & user communication</div>
-                <div class="mega-meta">10 min · Feb 2026 · Microsoft 365</div>
-              </div>
-            </a>
-            <a class="mega-item" href="articles/performance.html">
-              <div class="mega-icon">🔐</div>
-              <div>
-                <div class="mega-title">Azure RBAC and Cloud Governance</div>
-                <div class="mega-desc">PIM, custom roles, Azure Policy guardrails & access review cadence</div>
-                <div class="mega-meta">8 min · Jan 2026 · Governance</div>
-              </div>
-            </a>
-            <a class="mega-item" href="articles/growth.html">
-              <div class="mega-icon">🚀</div>
-              <div>
-                <div class="mega-title">From IT Specialist to IT Architect</div>
-                <div class="mega-desc">Career journey, certifications, project leadership & the mindset shift</div>
-                <div class="mega-meta">6 min · Dec 2025 · Career</div>
-              </div>
-            </a>
-          </div>
-          <div class="mega-footer"><a href="#articles">View all articles →</a></div>
-        </div>
-      </li>
-
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="theme-btn" id="themeToggle" aria-label="Toggle theme"></button>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
+<header class="site-head">
+  <a class="wordmark" href="index.html">Alex Dai</a>
+  <nav class="site-nav" id="siteNav">
+    <a href="work.html">Work</a>
+    <a href="writing.html">Writing</a>
+    <a href="experience.html">Experience</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="head-tools">
+    <button class="theme-btn" id="themeToggle" aria-label="Switch between light and dark"></button>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="siteNav">
+      <span></span><span></span>
     </button>
   </div>
-</nav>
+</header>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-avatar fade-in">AD</div>
-  <div class="hero-badge fade-in delay-1"><span class="dot"></span> Open to Opportunities</div>
-  <h1 class="hero-title fade-in delay-1">Hi, I'm <span>Alex Dai</span><br>IT Architect · Azure Solutions Architect Expert</h1>
-  <p class="hero-subtitle fade-in delay-2">8+ years architecting enterprise IT infrastructure and cloud services in Canada. Microsoft Certified Azure Solutions Architect Expert, passionate about digital transformation and cloud innovation.</p>
-  <div class="btn-group fade-in delay-3">
-    <a class="btn btn-primary" href="#contact">✉ Contact Me</a>
-    <a class="btn btn-outline" href="#projects">View Projects →</a>
-    <a class="btn btn-outline" href="resume.html">↓ View Resume</a>
-  </div>
-</section>
+<main>
 
-<!-- STATS -->
-<section id="stats">
-  <div class="stats-grid">
-    <div class="stat-card fade-in"><div class="stat-number">8+</div><div class="stat-label">Years Experience</div></div>
-    <div class="stat-card fade-in delay-1"><div class="stat-number">5</div><div class="stat-label">MS Certifications</div></div>
-    <div class="stat-card fade-in delay-2"><div class="stat-number">12+</div><div class="stat-label">Sites Managed</div></div>
-    <div class="stat-card fade-in delay-3"><div class="stat-number">2</div><div class="stat-label">Languages</div></div>
-  </div>
-</section>
+  <section class="wrap" style="padding-top: clamp(4rem, 12vw, 9rem); padding-bottom: clamp(3rem, 8vw, 6rem);">
+    <span class="eyebrow reveal" style="margin-bottom: 1.75rem;">Edmonton, Alberta</span>
+    <h1 class="display reveal">Alex Dai</h1>
+    <p class="lede reveal" style="margin-top: 2rem; max-width: 38ch;">
+      I'm an IT architect at WCB&#8209;Alberta. I design the cloud platforms and
+      enterprise systems that a few thousand people use every day without ever
+      having to think about them.
+    </p>
+    <div class="btn-row reveal" style="margin-top: 2.5rem;">
+      <a class="btn" href="work.html">See the work</a>
+      <a class="btn btn-quiet" href="resume.html">Résumé</a>
+    </div>
+  </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-label fade-in">About Me</div>
-  <h2 class="fade-in">More Than Just an IT Guy</h2>
-  <div class="about-card fade-in">
-    <p>Hi! I'm <strong>Alex Dai</strong>, an IT Architect II at <strong>WCB-Alberta</strong> based in Edmonton, Canada. With over 8 years of experience, I specialize in designing and managing enterprise IT infrastructure and cloud services.</p>
-    <p>I'm experienced in <strong>Microsoft Azure</strong>, <strong>Power Platform</strong>, and enterprise platforms including Exchange, SharePoint, Citrix, and VMware. I led WCB-Alberta's first Azure tenant and landing zone design, and have driven major digital transformation initiatives including Dynamics 365 and Power BI deployments.</p>
-    <p>I hold the <strong>Microsoft Certified: Azure Solutions Architect Expert</strong> certification along with 4 other Microsoft and industry certifications. I'm fluent in both English and Chinese, and thrive in collaborative, diverse environments.</p>
-    <div class="skills-section">
-      <h3>Technical Proficiency</h3>
-      <div class="skill-bars" id="skillBars">
-        <div class="skill-row"><div class="skill-row-top"><span>Microsoft Azure &amp; Cloud Architecture</span><span class="skill-row-pct">95%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-width="95"></div></div></div>
-        <div class="skill-row"><div class="skill-row-top"><span>Windows Server / VMware / Hyper-V</span><span class="skill-row-pct">92%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-width="92"></div></div></div>
-        <div class="skill-row"><div class="skill-row-top"><span>Exchange / SharePoint / Citrix</span><span class="skill-row-pct">90%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-width="90"></div></div></div>
-        <div class="skill-row"><div class="skill-row-top"><span>PowerShell / Python / SQL</span><span class="skill-row-pct">85%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-width="85"></div></div></div>
-        <div class="skill-row"><div class="skill-row-top"><span>Power Platform / Dynamics 365</span><span class="skill-row-pct">80%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-width="80"></div></div></div>
-      </div>
+  <section class="band wrap" style="border-top: 1px solid var(--rule);">
+    <div class="band-head">
+      <h2 class="reveal">Selected work</h2>
+      <a class="more-link reveal" href="work.html">All four projects</a>
     </div>
-    <div class="interests-grid">
-      <div class="interest-item"><span class="interest-icon">☁️</span>Cloud</div>
-      <div class="interest-item"><span class="interest-icon">🔐</span>Security</div>
-      <div class="interest-item"><span class="interest-icon">🤖</span>AI / ML</div>
-      <div class="interest-item"><span class="interest-icon">📸</span>Photography</div>
-      <div class="interest-item"><span class="interest-icon">✈️</span>Travel</div>
-      <div class="interest-item"><span class="interest-icon">📚</span>Learning</div>
-    </div>
-  </div>
-</section>
 
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-label fade-in">Key Initiatives</div>
-  <h2 class="fade-in">Projects I've Led</h2>
-  <div class="projects-grid">
-    <a class="project-card fade-in" href="projects/devflow.html">
-      <div class="project-header"><div class="project-icon" style="background:#eff6ff;">☁️</div><span class="project-arrow">↗</span></div>
-      <h3>Azure Landing Zone</h3>
-      <p class="project-desc">Designed and implemented WCB-Alberta's first Azure tenant and landing zone, establishing cloud governance, RBAC roles, and networking architecture.</p>
-      <div class="project-tags"><span class="tag">Microsoft Azure</span><span class="tag">Landing Zone</span><span class="tag">RBAC</span><span class="tag">Governance</span></div>
-      <div class="project-meta"><span>🏢 WCB-Alberta</span><span>📅 2020–2022</span></div>
-    </a>
-    <a class="project-card fade-in delay-1" href="projects/insightboard.html">
-      <div class="project-header"><div class="project-icon" style="background:#f0fdf4;">📧</div><span class="project-arrow">↗</span></div>
-      <h3>Exchange Online Migration</h3>
-      <p class="project-desc">Led end-to-end migration of on-premises Exchange to Exchange Online, ensuring zero downtime and minimal user disruption across the enterprise.</p>
-      <div class="project-tags"><span class="tag">Exchange Online</span><span class="tag">Microsoft 365</span><span class="tag">Migration</span></div>
-      <div class="project-meta"><span>🏢 WCB-Alberta</span><span>✅ Completed</span></div>
-    </a>
-    <a class="project-card fade-in delay-2" href="projects/chatcontext.html">
-      <div class="project-header"><div class="project-icon" style="background:#fdf4ff;">📊</div><span class="project-arrow">↗</span></div>
-      <h3>Dynamics 365 Deployment</h3>
-      <p class="project-desc">Proactively involved in digital transformation with Dynamics 365 and Power BI, including environment planning, setup, testing and ongoing maintenance.</p>
-      <div class="project-tags"><span class="tag">Dynamics 365</span><span class="tag">Power BI</span><span class="tag">Power Platform</span></div>
-      <div class="project-meta"><span>🏢 WCB-Alberta</span><span>🔄 Ongoing</span></div>
-    </a>
-    <a class="project-card fade-in delay-3" href="projects/designtoken.html">
-      <div class="project-header"><div class="project-icon" style="background:#fff7ed;">🏨</div><span class="project-arrow">↗</span></div>
-      <h3>Multi-Site IT Infrastructure</h3>
-      <p class="project-desc">Managed all IT aspects for 12 franchise hotels (Best Western, Ramada), including network design, server deployment, virtualization and cloud backup.</p>
-      <div class="project-tags"><span class="tag">VMware ESXi</span><span class="tag">Hyper-V</span><span class="tag">AWS</span><span class="tag">Networking</span></div>
-      <div class="project-meta"><span>🏢 Sunrise International</span><span>📅 2017–2019</span></div>
-    </a>
-  </div>
-</section>
-
-<!-- TIMELINE -->
-<section id="timeline">
-  <div class="section-label fade-in">Work &amp; Education</div>
-  <h2 class="fade-in">My Experience</h2>
-  <div class="timeline">
-    <div class="timeline-item fade-in">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <div class="timeline-top"><span class="timeline-date">Aug 2023 — Present</span><span class="timeline-type">Full-time</span></div>
-        <div class="timeline-title">IT Architect II</div>
-        <div class="timeline-org">WCB-Alberta · Edmonton, Alberta, Canada</div>
-        <div class="timeline-desc">Leading enterprise IT architecture decisions for cloud and on-premises infrastructure, driving cloud adoption and digital transformation initiatives.</div>
-        <ul class="timeline-highlights">
-          <li>Architecting Azure cloud solutions and governance frameworks</li>
-          <li>Leading digital transformation projects including Dynamics 365 and Power Platform</li>
-          <li>Managing enterprise platforms: Citrix, Exchange, SharePoint, Veeam</li>
-        </ul>
-      </div>
-    </div>
-    <div class="timeline-item fade-in">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <div class="timeline-top"><span class="timeline-date">Jun 2022 — Aug 2023</span><span class="timeline-type">Full-time</span></div>
-        <div class="timeline-title">IT Architect</div>
-        <div class="timeline-org">WCB-Alberta · Edmonton, Alberta, Canada</div>
-        <div class="timeline-desc">Promoted to architect role, responsible for designing and reviewing IT solutions across cloud and on-premises environments.</div>
-        <ul class="timeline-highlights">
-          <li>Created cloud governance documents including Azure RBAC roles definition</li>
-          <li>Designed and implemented company's first Azure landing zone</li>
-          <li>Led Exchange Online migration project from planning to completion</li>
-        </ul>
-      </div>
-    </div>
-    <div class="timeline-item fade-in">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <div class="timeline-top"><span class="timeline-date">Sep 2019 — Jun 2022</span><span class="timeline-type">Full-time</span></div>
-        <div class="timeline-title">IT Specialist II / IT Specialist</div>
-        <div class="timeline-org">WCB-Alberta · Edmonton, Canada</div>
-        <div class="timeline-desc">Part of the Infrastructure Platform team managing onsite and cloud infrastructure for the organization.</div>
-        <ul class="timeline-highlights">
-          <li>Implemented Power BI and Power Platform with environment planning and setup</li>
-          <li>Led Print Release POC project and managed Severity 1 incident resolution</li>
-          <li>Administered HPE Synergy, 3PAR/Nimble Storage infrastructure</li>
-        </ul>
-      </div>
-    </div>
-    <div class="timeline-item fade-in">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <div class="timeline-top"><span class="timeline-date">May 2017 — Aug 2019</span><span class="timeline-type">Full-time</span></div>
-        <div class="timeline-title">IT Team Lead</div>
-        <div class="timeline-org">Sunrise International Inc. · Stony Plain, Alberta</div>
-        <div class="timeline-desc">Managed all aspects of IT for 12 franchise hotels including Best Western and Ramada.</div>
-        <ul class="timeline-highlights">
-          <li>Designed and deployed corporate network structure and server infrastructure</li>
-          <li>Configured VM ESXi, Hyper-V, Site-to-Site VPN, and offsite cloud backup</li>
-          <li>Managed domain and websites in AWS; handled Office 365 migration</li>
-        </ul>
-      </div>
-    </div>
-    <div class="timeline-item fade-in">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <div class="timeline-top"><span class="timeline-date">2012 — 2017</span><span class="timeline-type">Education</span></div>
-        <div class="timeline-title">B.Sc., Electrical and Computer Engineering</div>
-        <div class="timeline-org">University of Alberta · Edmonton, Alberta</div>
-        <div class="timeline-desc">Bachelor's degree with Academic Excellence Scholarship. Strong foundation in computer systems, networking, and programming.</div>
-        <ul class="timeline-highlights">
-          <li>University of Alberta Academic Excellence Scholarship</li>
-          <li>Coursework in C/C++, MATLAB, algorithms and computer architecture</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ARTICLES -->
-<section id="articles">
-  <div class="section-label fade-in">Blog &amp; Articles</div>
-  <h2 class="fade-in">What I Write About</h2>
-  <div class="articles-list">
-    <a class="article-card fade-in" href="articles/lowcode.html">
-      <div class="article-num">01</div>
-      <div class="article-body">
-        <h3>Designing an Enterprise Azure Landing Zone from Scratch</h3>
-        <p>Key decisions, pitfalls, and best practices from building WCB-Alberta's first Azure tenant — from subscription design to governance policy.</p>
-        <div class="article-meta"><span>2026-03-15</span><span>·</span><span>8 min read</span><span class="tag-accent">Azure</span></div>
-      </div>
-    </a>
-    <a class="article-card fade-in delay-1" href="articles/llm-rag.html">
-      <div class="article-num">02</div>
-      <div class="article-body">
-        <h3>Exchange Online Migration: Lessons Learned</h3>
-        <p>A practical guide to migrating on-premises Exchange to Exchange Online with minimal disruption — planning, coexistence, and cutover strategies.</p>
-        <div class="article-meta"><span>2026-02-28</span><span>·</span><span>10 min read</span><span class="tag-accent">Microsoft 365</span></div>
-      </div>
-    </a>
-    <a class="article-card fade-in delay-2" href="articles/performance.html">
-      <div class="article-num">03</div>
-      <div class="article-body">
-        <h3>Azure RBAC and Cloud Governance: A Practical Framework</h3>
-        <p>How to design and implement a scalable RBAC structure for enterprise Azure environments, with real-world role definitions and policy examples.</p>
-        <div class="article-meta"><span>2026-01-20</span><span>·</span><span>8 min read</span><span class="tag-accent">Governance</span></div>
-      </div>
-    </a>
-    <a class="article-card fade-in delay-3" href="articles/growth.html">
-      <div class="article-num">04</div>
-      <div class="article-body">
-        <h3>From IT Specialist to IT Architect: My Career Journey</h3>
-        <p>Reflections on growing from hands-on support work to enterprise architecture — what skills matter, what doesn't, and how to make the leap.</p>
-        <div class="article-meta"><span>2025-12-10</span><span>·</span><span>6 min read</span><span class="tag-accent">Career</span></div>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-label fade-in">Contact</div>
-  <h2 class="fade-in">Let's Connect</h2>
-  <div class="contact-wrapper fade-in">
-    <div class="contact-intro">
-      <div>
-        <h3>Always Happy to Chat</h3>
-        <p>Whether it's about cloud architecture, IT strategy, or just a friendly conversation — my inbox is always open. I typically reply within 24 hours.</p>
-      </div>
-      <div style="margin-top:24px;font-size:.85rem;opacity:.8;">📍 Edmonton, Alberta, Canada<br>🕐 MST (UTC-7) · Mon–Fri 9:00–18:00</div>
-    </div>
-    <div class="contact-links">
-      <a class="contact-card" href="mailto:daijian.gov@gmail.com">
-        <div class="contact-icon">✉️</div>
-        <div class="contact-info">Email<small>daijian.gov@gmail.com</small></div>
-        <span class="contact-arrow">→</span>
+    <div class="entries">
+      <a class="entry reveal" href="projects/devflow.html">
+        <span class="entry-index">01</span>
+        <span>
+          <span class="entry-title">Azure Landing Zone</span>
+          <span class="entry-desc">WCB-Alberta's first Azure tenant, built from an empty subscription: management groups, hub-and-spoke networking, RBAC and the policy guardrails everything else now sits on.</span>
+          <span class="entry-meta">Azure · Governance</span>
+        </span>
+        <span class="entry-aside">2020&ndash;2022</span>
       </a>
-      <a class="contact-card" href="https://www.linkedin.com/in/alex-dai/" target="_blank" rel="noopener">
-        <div class="contact-icon">💼</div>
-        <div class="contact-info">LinkedIn<small>linkedin.com/in/alex-dai</small></div>
-        <span class="contact-arrow">→</span>
+
+      <a class="entry reveal" href="projects/insightboard.html">
+        <span class="entry-index">02</span>
+        <span>
+          <span class="entry-title">Exchange Online Migration</span>
+          <span class="entry-desc">1,500 mailboxes moved from on-premises Exchange to Microsoft 365 in waves, with hybrid coexistence holding the whole way through. Nobody lost a day of mail.</span>
+          <span class="entry-meta">Microsoft 365 · Migration</span>
+        </span>
+        <span class="entry-aside">Completed</span>
       </a>
-      <a class="contact-card" href="https://github.com/dj88456" target="_blank" rel="noopener">
-        <div class="contact-icon">🐙</div>
-        <div class="contact-info">GitHub<small>@dj88456</small></div>
-        <span class="contact-arrow">→</span>
+
+      <a class="entry reveal" href="projects/chatcontext.html">
+        <span class="entry-index">03</span>
+        <span>
+          <span class="entry-title">Dynamics 365 &amp; Power Platform</span>
+          <span class="entry-desc">Environment strategy, Azure AD integration and a Centre of Excellence to keep a fast-growing low-code estate from turning into shadow IT.</span>
+          <span class="entry-meta">Dynamics 365 · Power BI</span>
+        </span>
+        <span class="entry-aside">Ongoing</span>
       </a>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div class="footer-main">
-    <div class="footer-brand">
-      <a class="footer-logo" href="#hero">Alex Dai</a>
-      <p>IT Architect II at WCB-Alberta. Designing enterprise cloud infrastructure and driving digital transformation across Alberta.</p>
-      <div class="footer-social">
-        <a href="mailto:daijian.gov@gmail.com" title="Email">✉</a>
-        <a href="https://linkedin.com/in/alex-dai" target="_blank" rel="noopener" title="LinkedIn">in</a>
-        <a href="https://github.com/dj88456" target="_blank" rel="noopener" title="GitHub">⌥</a>
-      </div>
+  <section class="band wrap">
+    <div class="band-head">
+      <h2 class="reveal">Recent writing</h2>
+      <a class="more-link reveal" href="writing.html">All articles</a>
     </div>
-    <div class="footer-col">
-      <h4>Navigation</h4>
+
+    <div class="entries">
+      <a class="entry reveal" href="articles/lowcode.html">
+        <span class="entry-index">01</span>
+        <span>
+          <span class="entry-title">Designing an enterprise Azure landing zone from scratch</span>
+          <span class="entry-desc">The decisions that were hard to reverse, and the two I would make differently.</span>
+          <span class="entry-meta">Azure</span>
+        </span>
+        <span class="entry-aside">Mar 2026 · 8 min</span>
+      </a>
+
+      <a class="entry reveal" href="articles/llm-rag.html">
+        <span class="entry-index">02</span>
+        <span>
+          <span class="entry-title">Exchange Online migration: lessons learned</span>
+          <span class="entry-desc">Hybrid coexistence, mail flow, compliance holds, and why the communication plan mattered more than the tooling.</span>
+          <span class="entry-meta">Microsoft 365</span>
+        </span>
+        <span class="entry-aside">Feb 2026 · 10 min</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="band wrap">
+    <div class="reveal" style="max-width: 34rem;">
+      <span class="eyebrow" style="margin-bottom: 1.25rem;">Elsewhere</span>
+      <p style="font-family: var(--display); font-size: clamp(1.3rem, 3vw, 1.9rem); line-height: 1.3; font-weight: 500; letter-spacing: -0.03em;">
+        Happy to talk about cloud architecture, migrations that went sideways,
+        or anything in between. <a class="link" href="contact.html">Get in touch</a>.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <a class="wordmark" href="index.html">Alex Dai</a>
+      <p>IT architect at WCB-Alberta, working on cloud platforms and enterprise infrastructure in Edmonton.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Pages</h4>
       <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#timeline">Experience</a></li>
-        <li><a href="#articles">Articles</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="resume.html">Resume</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="writing.html">Writing</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="resume.html">Résumé</a></li>
       </ul>
     </div>
-    <div class="footer-col">
-      <h4>Connect</h4>
+    <div class="foot-col">
+      <h4>Elsewhere</h4>
       <ul>
-        <li>
-          <a class="contact-item" href="mailto:daijian.gov@gmail.com">
-            <span class="ci-icon">✉</span>daijian.gov@gmail.com
-          </a>
-        </li>
-        <li>
-          <a class="contact-item" href="https://linkedin.com/in/alex-dai" target="_blank" rel="noopener">
-            <span class="ci-icon">in</span>linkedin.com/in/alex-dai
-          </a>
-        </li>
-        <li>
-          <a class="contact-item" href="https://github.com/dj88456" target="_blank" rel="noopener">
-            <span class="ci-icon">⌥</span>github.com/dj88456
-          </a>
-        </li>
-        <li>
-          <a class="contact-item" href="#">
-            <span class="ci-icon">📍</span>Edmonton, AB, Canada
-          </a>
-        </li>
+        <li><a href="mailto:daijian.gov@gmail.com">daijian.gov@gmail.com</a></li>
+        <li><a href="https://www.linkedin.com/in/alex-dai/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/dj88456" target="_blank" rel="noopener">GitHub</a></li>
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2026 Alex Dai · Built with vanilla HTML, CSS &amp; JS · No tracking</span>
-    <a href="#hero">Back to top ↑</a>
+  <div class="foot-bottom">
+    <span>&copy; 2026 Alex Dai</span>
+    <span>Hand-written HTML. No trackers.</span>
   </div>
 </footer>
 
