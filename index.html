@@ -1,16 +1,16 @@
 ﻿<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Alex Dai — IT Architect</title>
   <meta name="description" content="Alex Dai is an IT architect in Edmonton, Alberta, working on Azure platforms, enterprise infrastructure and cloud governance." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta name="theme-color" content="#08090a" id="themeColorMeta" />
-  <script>try{if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
+  <meta name="theme-color" content="#fbfbfd" id="themeColorMeta" />
+  <script>try{if(localStorage.getItem("theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="css/shared.css?v=20260808a" />
+  <link rel="stylesheet" href="css/shared.css?v=20260808g" />
 </head>
 <body>
 
@@ -36,15 +36,14 @@
   <div class="wrap">
     <section class="hero">
       <div>
-        <span class="eyebrow reveal" style="margin-bottom: 1.75rem;">Edmonton, Alberta</span>
         <h1 class="display reveal">Alex Dai</h1>
-        <p class="lede reveal" style="margin-top: 1.75rem; max-width: 38ch;">
-          I'm an IT architect at WCB&#8209;Alberta. I design the cloud platforms and
-          enterprise systems that a few thousand people use every day without ever
-          having to think about them.
+        <p class="lede reveal" style="margin-top: 1.5rem; max-width: 40ch;">
+          IT architect at WCB&#8209;Alberta, in Edmonton. Azure infrastructure,
+          Microsoft&nbsp;365, and the governance around both. Before that I ran
+          IT for a hotel group.
         </p>
-        <div class="btn-row reveal" style="margin-top: 2.25rem;">
-          <a class="btn" href="work.html">See the work</a>
+        <div class="btn-row reveal" style="margin-top: 2rem;">
+          <a class="btn" href="work.html">Projects</a>
           <a class="btn btn-quiet" href="resume.html">Résumé</a>
         </div>
       </div>
@@ -85,27 +84,15 @@
           <rect class="topo-hub" x="124" y="124" width="72" height="72" rx="6" />
           <rect class="topo-core" x="150" y="150" width="20" height="20" rx="2" />
 
-          <text class="topo-label" x="160" y="20"  text-anchor="middle">spoke 01</text>
-          <text class="topo-label" x="262" y="256" text-anchor="middle">spoke 02</text>
-          <text class="topo-label" x="58"  y="256" text-anchor="middle">spoke 03</text>
-          <text class="topo-label" x="160" y="308" text-anchor="middle">spoke 04</text>
-          <text class="topo-label" x="160" y="214" text-anchor="middle" style="fill: var(--accent)">hub</text>
         </svg>
       </div>
     </section>
-
-    <div class="readout reveal">
-      <span><b>53.5461&deg;N 113.4938&deg;W</b></span>
-      <span>MST <b>UTC&#8722;7</b></span>
-      <span>Azure Solutions Architect <b>Expert</b></span>
-      <span class="k">Open to conversations</span>
-    </div>
   </div>
 
   <section class="band wrap" data-hue="blue" style="border-top: 1px solid var(--rule);">
     <div class="band-head">
-      <h2 class="reveal">Selected work</h2>
-      <a class="more-link reveal" href="work.html">All four projects</a>
+      <h2 class="reveal">Projects</h2>
+      <a class="more-link reveal" href="work.html">All four</a>
     </div>
 
     <div class="entries">
@@ -116,9 +103,10 @@
         </span>
         <span>
           <span class="entry-title">Azure Landing Zone</span>
-          <span class="entry-desc">WCB-Alberta's first Azure tenant, built from an empty subscription: management groups, hub-and-spoke networking, RBAC and the policy guardrails everything else now sits on.</span>
+          <span class="entry-desc">WCB-Alberta's first Azure tenant. Management group hierarchy, hub-and-spoke networking behind Azure Firewall, a tiered RBAC model, and the Azure Policy set that keeps resources in Canadian regions.</span>
           <span class="entry-meta">Azure · Governance</span>
         </span>
+        <span class="cover-thumb" data-cover="landing-zone"></span>
         <span class="entry-aside">2020&ndash;2022</span>
       </a>
 
@@ -129,9 +117,10 @@
         </span>
         <span>
           <span class="entry-title">Exchange Online Migration</span>
-          <span class="entry-desc">1,500 mailboxes moved from on-premises Exchange to Microsoft 365 in waves, with hybrid coexistence holding the whole way through. Nobody lost a day of mail.</span>
+          <span class="entry-desc">1,500 mailboxes from on-premises Exchange 2016 to Exchange Online, moved in waves over eight weeks with a hybrid configuration in place throughout.</span>
           <span class="entry-meta">Microsoft 365 · Migration</span>
         </span>
+        <span class="cover-thumb" data-cover="migration"></span>
         <span class="entry-aside"><span class="chip static">Completed</span></span>
       </a>
 
@@ -142,9 +131,10 @@
         </span>
         <span>
           <span class="entry-title">Dynamics 365 &amp; Power Platform</span>
-          <span class="entry-desc">Environment strategy, Azure AD integration and a Centre of Excellence to keep a fast-growing low-code estate from turning into shadow IT.</span>
+          <span class="entry-desc">Environment strategy across dev, test and production, Azure AD integration, Power BI reporting, and a Centre of Excellence for the Power Platform estate.</span>
           <span class="entry-meta">Dynamics 365 · Power BI</span>
         </span>
+        <span class="cover-thumb" data-cover="platform"></span>
         <span class="entry-aside"><span class="chip">Ongoing</span></span>
       </a>
     </div>
@@ -152,8 +142,8 @@
 
   <section class="band wrap" data-hue="pink">
     <div class="band-head">
-      <h2 class="reveal">Recent writing</h2>
-      <a class="more-link reveal" href="writing.html">All articles</a>
+      <h2 class="reveal">Writing</h2>
+      <a class="more-link reveal" href="writing.html">All four</a>
     </div>
 
     <div class="entries">
@@ -164,9 +154,10 @@
         </span>
         <span>
           <span class="entry-title">Designing an enterprise Azure landing zone from scratch</span>
-          <span class="entry-desc">The decisions that were hard to reverse, and the two I would make differently.</span>
+          <span class="entry-desc">Subscription and management group design, hub-and-spoke networking, the RBAC model, and policy as code.</span>
           <span class="entry-meta">Azure</span>
         </span>
+        <span class="cover-thumb" data-cover="landing-zone"></span>
         <span class="entry-aside">Mar 2026 · 8 min</span>
       </a>
 
@@ -177,20 +168,21 @@
         </span>
         <span>
           <span class="entry-title">Exchange Online migration: lessons learned</span>
-          <span class="entry-desc">Hybrid coexistence, mail flow, compliance holds, and why the communication plan mattered more than the tooling.</span>
+          <span class="entry-desc">Hybrid coexistence, mail flow routing, compliance holds, and the cutover plan.</span>
           <span class="entry-meta">Microsoft 365</span>
         </span>
+        <span class="cover-thumb" data-cover="migration"></span>
         <span class="entry-aside">Feb 2026 · 10 min</span>
       </a>
     </div>
   </section>
 
   <section class="band wrap" data-hue="teal">
-    <div class="reveal" style="max-width: 34rem;">
-      <span class="eyebrow" style="margin-bottom: 1.25rem;">Elsewhere</span>
-      <p style="font-family: var(--display); font-size: clamp(1.3rem, 3vw, 1.9rem); line-height: 1.3; font-weight: 500; letter-spacing: -0.03em;">
-        Happy to talk about cloud architecture, migrations that went sideways,
-        or anything in between. <a class="link" href="contact.html">Get in touch</a>.
+    <div class="reveal prose" style="max-width: 34rem;">
+      <p>
+        If you want to ask about any of this, my email is
+        <a href="mailto:daijian.gov@gmail.com">daijian.gov@gmail.com</a>.
+        Other ways to reach me are on the <a href="contact.html">contact</a> page.
       </p>
     </div>
   </section>
@@ -228,7 +220,8 @@
   </div>
 </footer>
 
-<script src="js/icons.js?v=20260808a"></script>
-<script src="js/main.js?v=20260808a"></script>
+<script src="js/icons.js?v=20260808g"></script>
+<script src="js/covers.js?v=20260808g"></script>
+<script src="js/main.js?v=20260808g"></script>
 </body>
 </html>

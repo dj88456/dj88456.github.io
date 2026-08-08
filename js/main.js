@@ -1,9 +1,8 @@
 // ── Theme ──────────────────────────────────────────────────
-// Dark is the intended look; light is there for anyone who wants it,
-// and whichever they pick is remembered.
+// Light by default; whichever the visitor picks is remembered.
 const root = document.documentElement;
 const themeMeta = document.getElementById("themeColorMeta");
-const PAPER = { light: "#f6f7f8", dark: "#08090a" };
+const PAPER = { light: "#fbfbfd", dark: "#0a0a0c" };
 
 const ICON = `<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
   <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.2"/>
@@ -15,7 +14,7 @@ function applyTheme(t) {
   if (themeMeta) themeMeta.setAttribute("content", PAPER[t]);
 }
 
-applyTheme(localStorage.getItem("theme") === "light" ? "light" : "dark");
+applyTheme(localStorage.getItem("theme") === "dark" ? "dark" : "light");
 
 const themeBtn = document.getElementById("themeToggle");
 if (themeBtn) {

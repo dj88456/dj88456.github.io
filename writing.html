@@ -1,16 +1,16 @@
 ﻿<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Writing — Alex Dai</title>
   <meta name="description" content="Notes on Azure landing zones, Exchange Online migrations, cloud governance, and moving from IT specialist to architect." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta name="theme-color" content="#08090a" id="themeColorMeta" />
-  <script>try{if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
+  <meta name="theme-color" content="#fbfbfd" id="themeColorMeta" />
+  <script>try{if(localStorage.getItem("theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="css/shared.css?v=20260808a" />
+  <link rel="stylesheet" href="css/shared.css?v=20260808g" />
 </head>
 <body>
 
@@ -34,11 +34,9 @@
 <main data-hue="pink">
   <div class="wrap">
     <div class="page-head">
-      <span class="eyebrow">Writing</span>
-      <h1>Notes from the build</h1>
+      <h1>Writing</h1>
       <p class="lede">
-        Longer write-ups of things I had to figure out the slow way. Mostly
-        Azure and Microsoft 365, occasionally the career itself.
+        Write-ups of the projects, mostly Azure and Microsoft 365. Four so far.
       </p>
     </div>
 
@@ -50,9 +48,10 @@
         </span>
         <span>
           <span class="entry-title">Designing an enterprise Azure landing zone from scratch</span>
-          <span class="entry-desc">Subscription and management group design, hub-and-spoke networking, the tiered RBAC model, and policy as code. Includes the three pitfalls that cost us the most time.</span>
+          <span class="entry-desc">Subscription and management group design, hub-and-spoke networking, the tiered RBAC model, and policy as code. Ends with the pitfalls that cost us the most time.</span>
           <span class="entry-meta">Azure · Cloud Architecture · Governance</span>
         </span>
+        <span class="cover-thumb" data-cover="landing-zone"></span>
         <span class="entry-aside">2026-03-15<br>8 min</span>
       </a>
 
@@ -63,9 +62,10 @@
         </span>
         <span>
           <span class="entry-title">Exchange Online migration: lessons learned</span>
-          <span class="entry-desc">Hybrid coexistence, mail flow routing, compliance holds and cutover strategy — plus why the user communication plan turned out to matter more than any of the tooling.</span>
+          <span class="entry-desc">Hybrid coexistence, mail flow routing, compliance holds and cutover strategy, based on an Exchange Server 2016 environment.</span>
           <span class="entry-meta">Microsoft 365 · Exchange · Migration</span>
         </span>
+        <span class="cover-thumb" data-cover="migration"></span>
         <span class="entry-aside">2026-02-28<br>10 min</span>
       </a>
 
@@ -76,9 +76,10 @@
         </span>
         <span>
           <span class="entry-title">Azure RBAC and cloud governance: a practical framework</span>
-          <span class="entry-desc">How to design an RBAC structure that survives contact with real teams: custom roles, PIM for anything elevated, Azure Policy guardrails, and an access review cadence people actually keep.</span>
+          <span class="entry-desc">Custom role definitions, PIM for elevated access, Azure Policy guardrails, and how often to run access reviews.</span>
           <span class="entry-meta">Governance · Security · Azure</span>
         </span>
+        <span class="cover-thumb" data-cover="rbac"></span>
         <span class="entry-aside">2026-01-20<br>8 min</span>
       </a>
 
@@ -89,9 +90,10 @@
         </span>
         <span>
           <span class="entry-title">From IT specialist to IT architect</span>
-          <span class="entry-desc">A personal account rather than a career guide. What changed when the job stopped being about fixing things and started being about deciding how they should be built.</span>
+          <span class="entry-desc">The moves, certifications and projects that got me from support work to architecture. A personal account, not a career guide.</span>
           <span class="entry-meta">Career · Reflection</span>
         </span>
+        <span class="cover-thumb" data-cover="steps"></span>
         <span class="entry-aside">2025-12-10<br>6 min</span>
       </a>
     </div>
@@ -129,7 +131,8 @@
   </div>
 </footer>
 
-<script src="js/icons.js?v=20260808a"></script>
-<script src="js/main.js?v=20260808a"></script>
+<script src="js/icons.js?v=20260808g"></script>
+<script src="js/covers.js?v=20260808g"></script>
+<script src="js/main.js?v=20260808g"></script>
 </body>
 </html>

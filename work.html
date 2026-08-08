@@ -1,16 +1,16 @@
 ﻿<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Work — Alex Dai</title>
   <meta name="description" content="Four projects: an Azure landing zone, an Exchange Online migration, a Dynamics 365 rollout and multi-site hotel infrastructure." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta name="theme-color" content="#08090a" id="themeColorMeta" />
-  <script>try{if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
+  <meta name="theme-color" content="#fbfbfd" id="themeColorMeta" />
+  <script>try{if(localStorage.getItem("theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="css/shared.css?v=20260808a" />
+  <link rel="stylesheet" href="css/shared.css?v=20260808g" />
 </head>
 <body>
 
@@ -34,12 +34,10 @@
 <main data-hue="blue">
   <div class="wrap">
     <div class="page-head">
-      <span class="eyebrow">Work</span>
-      <h1>Four projects worth writing down</h1>
+      <h1>Projects</h1>
       <p class="lede">
-        Most of what I do leaves no visible trace. These are the pieces that
-        changed how a whole organisation works, so they are the ones I can
-        actually describe.
+        Four from the last nine years. Each page has the architecture, the main
+        deliverables and the stack it was built on.
       </p>
     </div>
 
@@ -51,9 +49,10 @@
         </span>
         <span>
           <span class="entry-title">Azure Landing Zone</span>
-          <span class="entry-desc">WCB-Alberta had no Azure presence at all. I designed the tenant from the ground up: management group hierarchy, platform and workload subscriptions, a hub-and-spoke network with Azure Firewall, a tiered RBAC model, and the policy set that keeps everything inside Canadian regions.</span>
+          <span class="entry-desc">WCB-Alberta had no Azure presence. I designed the tenant: management group hierarchy, platform and workload subscriptions, a hub-and-spoke network behind Azure Firewall, a tiered RBAC model, and the policy set that keeps resources in Canadian regions.</span>
           <span class="entry-meta">Azure · Landing Zone · RBAC · Azure Policy</span>
         </span>
+        <span class="cover-thumb" data-cover="landing-zone"></span>
         <span class="entry-aside">WCB-Alberta<br>2020&ndash;2022</span>
       </a>
 
@@ -64,9 +63,10 @@
         </span>
         <span>
           <span class="entry-title">Exchange Online Migration</span>
-          <span class="entry-desc">Moving 1,500 mailboxes off on-premises Exchange without anyone noticing. Hybrid configuration first, then eight weeks of wave migrations, with compliance holds and mail flow held intact throughout.</span>
+          <span class="entry-desc">1,500 mailboxes off on-premises Exchange 2016. Hybrid configuration first, then eight weeks of wave migrations, with compliance holds and mail flow intact throughout.</span>
           <span class="entry-meta">Exchange Online · Microsoft 365 · Hybrid</span>
         </span>
+        <span class="cover-thumb" data-cover="migration"></span>
         <span class="entry-aside">WCB-Alberta<br>Completed</span>
       </a>
 
@@ -77,9 +77,10 @@
         </span>
         <span>
           <span class="entry-title">Dynamics 365 &amp; Power Platform</span>
-          <span class="entry-desc">Environment strategy across dev, test and production, Azure AD integration, Power BI for enterprise reporting, and a Centre of Excellence so a low-code estate could grow without becoming shadow IT.</span>
+          <span class="entry-desc">Environment strategy across dev, test and production, Azure AD integration, Power BI for enterprise reporting, and a Centre of Excellence covering ALM and governance for the low-code estate.</span>
           <span class="entry-meta">Dynamics 365 · Power BI · Governance</span>
         </span>
+        <span class="cover-thumb" data-cover="platform"></span>
         <span class="entry-aside">WCB-Alberta<br>Ongoing</span>
       </a>
 
@@ -90,17 +91,18 @@
         </span>
         <span>
           <span class="entry-title">Multi-Site Hotel Infrastructure</span>
-          <span class="entry-desc">Twelve Best Western and Ramada properties, one IT department: me. Corporate network design, virtualisation on ESXi and Hyper-V, site-to-site VPN between properties, and offsite backup into AWS.</span>
+          <span class="entry-desc">Twelve Best Western and Ramada properties, with me as the whole IT department. Corporate network design, virtualisation on ESXi and Hyper-V, site-to-site VPN between properties, offsite backup into AWS.</span>
           <span class="entry-meta">Networking · VMware · Hyper-V · AWS</span>
         </span>
+        <span class="cover-thumb" data-cover="sites"></span>
         <span class="entry-aside">Sunrise International<br>2017&ndash;2019</span>
       </a>
     </div>
 
     <div class="reveal" style="max-width: 32rem; padding-bottom: clamp(2rem, 5vw, 4rem);">
       <p style="font-size: 0.95rem; line-height: 1.7; color: var(--muted);">
-        The full career, including the roles that came before these,
-        is on the <a class="link" href="experience.html">experience</a> page.
+        Full dates and the roles in between are on the
+        <a class="link" href="experience.html">experience</a> page.
       </p>
     </div>
   </div>
@@ -137,7 +139,8 @@
   </div>
 </footer>
 
-<script src="js/icons.js?v=20260808a"></script>
-<script src="js/main.js?v=20260808a"></script>
+<script src="js/icons.js?v=20260808g"></script>
+<script src="js/covers.js?v=20260808g"></script>
+<script src="js/main.js?v=20260808g"></script>
 </body>
 </html>

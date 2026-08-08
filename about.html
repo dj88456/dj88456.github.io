@@ -1,16 +1,16 @@
 ﻿<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About — Alex Dai</title>
   <meta name="description" content="Alex Dai, IT architect in Edmonton: how I work, what I work with, and what I do when I am not working." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta name="theme-color" content="#08090a" id="themeColorMeta" />
-  <script>try{if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
+  <meta name="theme-color" content="#fbfbfd" id="themeColorMeta" />
+  <script>try{if(localStorage.getItem("theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="css/shared.css?v=20260808a" />
+  <link rel="stylesheet" href="css/shared.css?v=20260808g" />
 </head>
 <body>
 
@@ -34,40 +34,38 @@
 <main data-hue="indigo">
   <div class="wrap">
     <div class="page-head">
-      <span class="eyebrow">About</span>
-      <h1>More than the job title, but the job title is a good start</h1>
+      <h1>About</h1>
     </div>
 
-    <div class="prose reveal">
+    <div class="about-top reveal">
+      <!-- Swap the inner div for <img src="img/alex.jpg" alt="Alex Dai"> -->
+      <div class="portrait">
+        <div class="portrait-empty">photo<br>goes here</div>
+      </div>
+
+    <div class="prose">
       <p>
-        I'm an IT Architect II at <strong>WCB-Alberta</strong>, in Edmonton.
-        Nine years in, most of my work sits at the point where a decision stops
-        being technical and starts being organisational: who gets access to
-        what, which region the data lives in, what happens when the team that
-        built a thing moves on.
+        I'm an IT Architect II at WCB-Alberta, in Edmonton. I've been there
+        since 2019, first as a specialist on the Infrastructure Platform team
+        and in the architecture group since 2022.
       </p>
       <p>
-        My background is Microsoft-shaped. I led WCB-Alberta's first Azure
-        tenant and landing zone design, and I've spent years on the enterprise
-        platforms underneath it — Exchange, SharePoint, Citrix, VMware — long
-        enough to have opinions about all of them. More recently the centre of
-        gravity has moved toward Power Platform and Dynamics 365, and toward
-        the governance work that keeps a fast-growing low-code estate from
-        quietly becoming somebody else's problem.
+        The work is mostly Microsoft. I designed WCB-Alberta's first Azure
+        tenant and landing zone, and before that spent several years running
+        the platforms underneath it: Exchange, SharePoint, Citrix, VMware.
+        Lately more of it is Power Platform and Dynamics 365, along with the
+        governance that goes with a growing low-code estate.
       </p>
       <p>
-        I hold the <strong>Azure Solutions Architect Expert</strong>
-        certification along with four other Microsoft and industry
-        certifications. I work in English and Chinese, which turns out to be
-        useful more often than you would expect.
+        I hold the Azure Solutions Architect Expert certification and four
+        others. I work in English and Chinese.
       </p>
       <p>
-        The thing I care about most is legibility. A system that only one
-        person understands is a system with a single point of failure, and that
-        person is usually the one who built it. So I write things down: role
-        definitions, naming conventions, the reasoning behind a topology. Some
-        of that ends up on the <a href="writing.html">writing</a> page.
+        Most of what I write down is internal: role definitions, naming
+        conventions, the reasoning behind a network topology. The parts that
+        generalise end up on the <a href="writing.html">writing</a> page.
       </p>
+    </div>
     </div>
 
     <section class="band">
@@ -75,7 +73,7 @@
       <dl class="facts reveal">
         <div class="fact">
           <dt><i data-icon="cloud"></i>Cloud</dt>
-          <dd>Microsoft Azure<span class="sub">Landing zones, hub-and-spoke networking, Azure Policy, Entra ID, Defender for Cloud, AWS where the history demands it</span></dd>
+          <dd>Microsoft Azure<span class="sub">Landing zones, hub-and-spoke networking, Azure Policy, Entra ID, Defender for Cloud. Some AWS, inherited.</span></dd>
         </div>
         <div class="fact">
           <dt><i data-icon="server"></i>Infrastructure</dt>
@@ -83,7 +81,7 @@
         </div>
         <div class="fact">
           <dt><i data-icon="network"></i>Platforms</dt>
-          <dd>Exchange &amp; Exchange Online, SharePoint, Citrix, Microsoft 365<span class="sub">Hybrid identity, compliance and retention, the awkward middle years of a migration</span></dd>
+          <dd>Exchange &amp; Exchange Online, SharePoint, Citrix, Microsoft 365<span class="sub">Hybrid identity, compliance holds and retention, coexistence during migration</span></dd>
         </div>
         <div class="fact">
           <dt><i data-icon="layers"></i>Low-code</dt>
@@ -91,20 +89,17 @@
         </div>
         <div class="fact">
           <dt><i data-icon="terminal"></i>Scripting</dt>
-          <dd>PowerShell, Python, SQL<span class="sub">Plus C/C++ and MATLAB from the engineering degree, mostly dormant</span></dd>
+          <dd>PowerShell, Python, SQL<span class="sub">C/C++ and MATLAB from the engineering degree, rarely used now</span></dd>
         </div>
       </dl>
     </section>
 
     <section class="band">
-      <div class="band-head"><h2 class="reveal">Away from the keyboard</h2></div>
+      <div class="band-head"><h2 class="reveal">Outside work</h2></div>
       <div class="prose reveal">
         <p>
-          I take photographs, mostly of places I have travelled to and
-          occasionally of Alberta in the four days a year it looks its best. I
-          read more about machine learning than my job strictly requires. And I
-          am always somewhere in the middle of a certification I told myself
-          would be the last one.
+          Photography, travel, and reading about machine learning. Usually
+          partway through another certification.
         </p>
       </div>
       <div class="btn-row reveal" style="margin-top: 2.5rem;">
@@ -146,7 +141,7 @@
   </div>
 </footer>
 
-<script src="js/icons.js?v=20260808a"></script>
-<script src="js/main.js?v=20260808a"></script>
+<script src="js/icons.js?v=20260808g"></script>
+<script src="js/main.js?v=20260808g"></script>
 </body>
 </html>
