@@ -116,33 +116,111 @@ const COVERS = {
       <text x="226" y="186">contributor · owner · pim</text>
     </g>`,
 
-  /* the climb, one step per role */
-  steps: `
-    <g class="c-wave">
-      <rect x="34"  y="132" width="58" height="28" rx="2"/>
-      <rect x="110" y="110" width="58" height="50" rx="2"/>
-      <rect x="186" y="88"  width="58" height="72" rx="2"/>
-      <rect x="262" y="62"  width="58" height="98" rx="2"/>
-      <rect x="338" y="36"  width="58" height="124" rx="2"/>
+  /* the actual sequence of roles, with the two employers behind it —
+     a timeline, not a bar chart of nothing */
+  steps: {
+    vb: "0 0 560 176",
+    art: `
+      ${box(30, 34, 92, 22)}
+      ${box(130, 34, 400, 22, "c-box c-fill")}
+
+      <g class="c-line c-dash"><path d="M30 116h500"/></g>
+      <g class="c-line">
+        <path d="M56 116V96M168 116V96M280 116V96M392 116V96M496 116V96"/>
+      </g>
+      <g class="c-dot">
+        <circle cx="56"  cy="116" r="5"/><circle cx="168" cy="116" r="5"/>
+        <circle cx="280" cy="116" r="5"/><circle cx="392" cy="116" r="5"/>
+        <circle cx="496" cy="116" r="5"/>
+      </g>
+
+      <g class="c-label">
+        <text x="76"  y="49">sunrise</text>
+        <text x="330" y="49">wcb-alberta</text>
+
+        <text x="56"  y="88">team lead</text>
+        <text x="168" y="88">it specialist</text>
+        <text x="280" y="88">specialist ii</text>
+        <text x="392" y="88">it architect</text>
+        <text x="496" y="88">architect ii</text>
+
+        <text x="56"  y="142">2017</text>
+        <text x="168" y="142">2019</text>
+        <text x="280" y="142">2020</text>
+        <text x="392" y="142">2022</text>
+        <text x="496" y="142">2023</text>
+      </g>`,
+  },
+};
+
+/* three ways to reach a person, drawn the way the page lists them */
+COVERS.reach = `
+  <g class="c-line">
+    <path d="M136 96h44M180 96V50h60M180 96h60M180 96v46h60"/>
+  </g>
+  ${box(66, 74, 60, 44, "c-box c-fill")}
+  ${box(240, 32, 84, 36)}
+  ${box(240, 78, 84, 36)}
+  ${box(240, 124, 84, 36)}
+  <g class="c-dot"><circle cx="180" cy="96" r="4"/></g>
+  <g class="c-label">
+    <text x="96" y="140">edmonton</text>
+    <text x="282" y="55">email</text>
+    <text x="282" y="101">linkedin</text>
+    <text x="282" y="147">github</text>
+  </g>`;
+
+/* the About page portrait slot: layered planes, not a face */
+COVERS.portrait = {
+  vb: "0 0 320 400",
+  art: `
+    <defs>
+      <linearGradient id="pfWash" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0"   stop-color="var(--accent)" stop-opacity=".26"/>
+        <stop offset="0.55" stop-color="var(--c-blue)" stop-opacity=".10"/>
+        <stop offset="1"   stop-color="var(--c-teal)" stop-opacity=".16"/>
+      </linearGradient>
+      <pattern id="pfDots" width="18" height="18" patternUnits="userSpaceOnUse">
+        <circle cx="1.6" cy="1.6" r="1.6" fill="var(--ink)" opacity=".10"/>
+      </pattern>
+    </defs>
+    <rect width="320" height="400" fill="url(#pfWash)"/>
+    <rect width="320" height="400" fill="url(#pfDots)"/>
+
+    <text class="pf-mono" x="160" y="252" text-anchor="middle">AD</text>
+
+    <g class="pf-plate" transform="translate(160 190)">
+      <rect x="-104" y="-104" width="208" height="208" rx="14" transform="rotate(-12)"/>
+      <rect x="-104" y="-104" width="208" height="208" rx="14" transform="rotate(12)"/>
     </g>
-    <g class="c-line c-dash"><path d="M24 160h396"/></g>
+
+    <g class="pf-net" transform="translate(160 190)">
+      <path d="M0 0V-72M0 0 62 42M0 0-62 42M0-72 62 42M62 42-62 42M-62 42 0-72"/>
+    </g>
+    <g class="pf-node" transform="translate(160 190)">
+      <circle cx="0"   cy="-72" r="9"/>
+      <circle cx="62"  cy="42"  r="9"/>
+      <circle cx="-62" cy="42"  r="9"/>
+      <circle cx="0"   cy="0"   r="15"/>
+    </g>
+
     <g class="c-label">
-      <text x="63"  y="180">2017</text>
-      <text x="139" y="180">2019</text>
-      <text x="215" y="180">2020</text>
-      <text x="291" y="180">2022</text>
-      <text x="367" y="180">2023</text>
+      <text x="160" y="352" style="font-size:12px;letter-spacing:0.34em">alex dai</text>
+      <text x="160" y="374">edmonton, alberta</text>
     </g>`,
 };
 
-const SVG_OPEN =
-  '<svg class="cover-art" viewBox="0 0 452 196" fill="none" ' +
-  'preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">';
-
 document.querySelectorAll("[data-cover]").forEach(node => {
-  const art = COVERS[node.dataset.cover];
-  if (!art) return;
+  const entry = COVERS[node.dataset.cover];
+  if (!entry) return;
+  const { vb = "0 0 452 196", art } =
+    typeof entry === "string" ? { art: entry } : entry;
+
   const holder = document.createElement("div");
-  holder.innerHTML = SVG_OPEN + art + "</svg>";
+  holder.innerHTML =
+    `<svg class="cover-art" viewBox="${vb}" fill="none" ` +
+    `preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">` +
+    art +
+    `</svg>`;
   node.appendChild(holder.firstElementChild);
 });
