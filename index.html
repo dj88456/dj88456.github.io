@@ -8,9 +8,11 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta name="theme-color" content="#fbfbfd" id="themeColorMeta" />
   <script>try{if(localStorage.getItem("theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="css/shared.css?v=20260808n" />
+  <link rel="stylesheet" href="css/shared.css?v=20260808s" />
 </head>
 <body>
 
@@ -36,7 +38,7 @@
   <div class="wrap">
     <section class="hero">
       <div>
-        <h1 class="display reveal">Alex Dai</h1>
+        <h1 class="display signature reveal">Alex Dai</h1>
         <p class="lede reveal" style="margin-top: 1.5rem; max-width: 40ch;">
           IT architect at WCB&#8209;Alberta, in Edmonton. Azure infrastructure,
           Microsoft&nbsp;365, and the governance around both. Before that I ran
@@ -46,6 +48,9 @@
           <a class="btn" href="work.html">Projects</a>
           <a class="btn btn-quiet" href="resume.html">Résumé</a>
         </div>
+        <p class="meta reveal" style="margin-top: 2.25rem;">
+          Currently &mdash; Power Platform governance, and a Dynamics 365 rollout
+        </p>
       </div>
 
       <!-- Hub-and-spoke topology: the shape most of my work ends up taking -->
@@ -87,6 +92,13 @@
         </svg>
       </div>
     </section>
+
+    <dl class="figures reveal">
+      <div class="figure"><strong>9</strong><span>years in enterprise IT</span></div>
+      <div class="figure"><strong>5</strong><span>Microsoft &amp; industry certifications</span></div>
+      <div class="figure"><strong>1,500</strong><span>mailboxes migrated</span></div>
+      <div class="figure"><strong>12</strong><span>sites run single-handed</span></div>
+    </dl>
   </div>
 
   <section class="band wrap" data-hue="blue" style="border-top: 1px solid var(--rule);">
@@ -177,13 +189,77 @@
     </div>
   </section>
 
-  <section class="band wrap" data-hue="teal">
-    <div class="reveal prose" style="max-width: 34rem;">
+  <!-- Full-bleed dark slab: the stack, stated plainly and at size -->
+  <section class="band-invert" data-hue="blue">
+    <div class="wrap">
+      <span class="eyebrow reveal" style="margin-bottom: 1.5rem;">The stack</span>
+      <h2 class="reveal">What I actually work in, most weeks</h2>
+
+      <div class="stack-grid reveal">
+        <div class="stack-col">
+          <h3>Cloud</h3>
+          <ul>
+            <li>Microsoft Azure</li>
+            <li>Landing zones</li>
+            <li>Azure Policy</li>
+            <li>Entra ID &amp; PIM</li>
+          </ul>
+        </div>
+        <div class="stack-col">
+          <h3>Infrastructure</h3>
+          <ul>
+            <li>Windows Server</li>
+            <li>VMware ESXi</li>
+            <li>Hyper-V</li>
+            <li>Veeam</li>
+          </ul>
+        </div>
+        <div class="stack-col">
+          <h3>Platforms</h3>
+          <ul>
+            <li>Exchange Online</li>
+            <li>SharePoint</li>
+            <li>Citrix</li>
+            <li>Microsoft 365</li>
+          </ul>
+        </div>
+        <div class="stack-col">
+          <h3>Low-code</h3>
+          <ul>
+            <li>Power Platform</li>
+            <li>Dynamics 365</li>
+            <li>Power BI</li>
+            <li>PowerShell</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="marquee reveal" style="margin-top: clamp(2.5rem, 6vw, 4rem);" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Azure Firewall</span><span>ExpressRoute</span><span>Private Endpoints</span>
+        <span>Log Analytics</span><span>Defender for Cloud</span><span>Bicep</span>
+        <span>Azure AD Connect</span><span>Compliance holds</span><span>HPE Synergy</span>
+        <span>3PAR / Nimble</span><span>Site-to-site VPN</span><span>Centre of Excellence</span>
+        <span>Azure Firewall</span><span>ExpressRoute</span><span>Private Endpoints</span>
+        <span>Log Analytics</span><span>Defender for Cloud</span><span>Bicep</span>
+        <span>Azure AD Connect</span><span>Compliance holds</span><span>HPE Synergy</span>
+        <span>3PAR / Nimble</span><span>Site-to-site VPN</span><span>Centre of Excellence</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="band wrap" data-hue="teal" style="padding-top: 0;">
+    <div class="call reveal">
+      <h2>Ask me something</h2>
       <p>
-        If you want to ask about any of this, my email is
-        <a href="mailto:daijian.gov@gmail.com">daijian.gov@gmail.com</a>.
-        Other ways to reach me are on the <a href="contact.html">contact</a> page.
+        Cloud architecture, a migration you are planning, or the certification
+        path. Email is the surest way to reach me.
       </p>
+      <a class="call-mail" href="mailto:daijian.gov@gmail.com">daijian.gov@gmail.com</a>
+      <div class="btn-row" style="margin-top: 2.25rem;">
+        <a class="btn" href="contact.html">All the ways to reach me</a>
+      </div>
     </div>
   </section>
 
@@ -220,8 +296,8 @@
   </div>
 </footer>
 
-<script src="js/icons.js?v=20260808n"></script>
-<script src="js/covers.js?v=20260808n"></script>
-<script src="js/main.js?v=20260808n"></script>
+<script src="js/icons.js?v=20260808s"></script>
+<script src="js/covers.js?v=20260808s"></script>
+<script src="js/main.js?v=20260808s"></script>
 </body>
 </html>
