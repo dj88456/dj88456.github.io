@@ -1317,6 +1317,20 @@ a:hover > .icon-box { border-color: color-mix(in srgb, var(--accent) 45%, transp
   color: var(--ink);
 }
 
+/* On a phone the four columns collapse to one, which made this band
+   roughly four screens tall. Two columns and tighter rhythm instead. */
+@media (max-width: 46rem) {
+  .band-invert { padding-block: clamp(2.5rem, 8vw, 3.5rem); }
+  .stack-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem 1.25rem;
+    margin-top: 1.75rem;
+  }
+  .stack-col h3 { margin-bottom: 0.7rem; padding-bottom: 0.5rem; }
+  .stack-col ul { gap: 0.3rem; }
+  .stack-col li { font-size: 0.98rem; line-height: 1.35; }
+}
+
 /* ══ MARQUEE ═════════════════════════════════════════════════ */
 .marquee {
   overflow: hidden;
