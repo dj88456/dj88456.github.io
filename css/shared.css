@@ -1448,45 +1448,6 @@ a:hover > .icon-box { border-color: color-mix(in srgb, var(--accent) 45%, transp
 .cover-thumb .c-dash { stroke-dasharray: 10 12; }
 @media (max-width: 60rem) { .cover-thumb { display: none; } }
 
-/* portrait slot — drop a real photograph in when there is one */
-.portrait {
-  width: clamp(9rem, 22vw, 12rem);
-  aspect-ratio: 4 / 5;
-  border: 1px solid var(--rule);
-  border-radius: 10px;
-  background: var(--raised);
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.portrait img { width: 100%; height: 100%; object-fit: cover; }
-.portrait .cover-art { width: 100%; height: 100%; }
-
-/* the portrait is drawn at 320 wide and shown around 200, so its own
-   weights are set independently of the wide covers */
-.pf-mono {
-  font-family: var(--display);
-  font-size: 190px;
-  font-weight: 700;
-  letter-spacing: -0.06em;
-  fill: var(--ink);
-  opacity: .07;
-}
-.pf-plate rect {
-  fill: none;
-  stroke: var(--accent);
-  stroke-width: 1.5;
-  opacity: .35;
-}
-.pf-net path { fill: none; stroke: var(--accent); stroke-width: 1.5; opacity: .5; }
-.pf-node circle {
-  fill: var(--bg);
-  stroke: var(--accent);
-  stroke-width: 2.5;
-}
-.pf-node circle:last-child { fill: var(--accent); }
-.about-top { display: flex; gap: clamp(1.5rem, 4vw, 2.5rem); align-items: flex-start; }
-@media (max-width: 42rem) { .about-top { flex-direction: column; } }
-
 /* ══ SMALL SCREENS ═══════════════════════════════════════════ */
 /* Nothing below ~15px on a phone. The mono labels in particular
    were set for a desktop viewing distance. */

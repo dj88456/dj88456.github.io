@@ -170,46 +170,6 @@ COVERS.reach = `
     <text x="282" y="147">github</text>
   </g>`;
 
-/* the About page portrait slot: layered planes, not a face */
-COVERS.portrait = {
-  vb: "0 0 320 400",
-  art: `
-    <defs>
-      <linearGradient id="pfWash" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0"   stop-color="var(--accent)" stop-opacity=".26"/>
-        <stop offset="0.55" stop-color="var(--c-blue)" stop-opacity=".10"/>
-        <stop offset="1"   stop-color="var(--c-teal)" stop-opacity=".16"/>
-      </linearGradient>
-      <pattern id="pfDots" width="18" height="18" patternUnits="userSpaceOnUse">
-        <circle cx="1.6" cy="1.6" r="1.6" fill="var(--ink)" opacity=".10"/>
-      </pattern>
-    </defs>
-    <rect width="320" height="400" fill="url(#pfWash)"/>
-    <rect width="320" height="400" fill="url(#pfDots)"/>
-
-    <text class="pf-mono" x="160" y="252" text-anchor="middle">AD</text>
-
-    <g class="pf-plate" transform="translate(160 190)">
-      <rect x="-104" y="-104" width="208" height="208" rx="14" transform="rotate(-12)"/>
-      <rect x="-104" y="-104" width="208" height="208" rx="14" transform="rotate(12)"/>
-    </g>
-
-    <g class="pf-net" transform="translate(160 190)">
-      <path d="M0 0V-72M0 0 62 42M0 0-62 42M0-72 62 42M62 42-62 42M-62 42 0-72"/>
-    </g>
-    <g class="pf-node" transform="translate(160 190)">
-      <circle cx="0"   cy="-72" r="9"/>
-      <circle cx="62"  cy="42"  r="9"/>
-      <circle cx="-62" cy="42"  r="9"/>
-      <circle cx="0"   cy="0"   r="15"/>
-    </g>
-
-    <g class="c-label">
-      <text x="160" y="352" style="font-size:12px;letter-spacing:0.34em">alex dai</text>
-      <text x="160" y="374">edmonton, alberta</text>
-    </g>`,
-};
-
 document.querySelectorAll("[data-cover]").forEach(node => {
   const entry = COVERS[node.dataset.cover];
   if (!entry) return;

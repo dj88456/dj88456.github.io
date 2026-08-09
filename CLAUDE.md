@@ -71,9 +71,10 @@ re-measuring.
   heights encoded nothing; it was replaced with a real timeline. Don't add
   decoration that only looks technical — no fake coordinates, no invented
   telemetry.
-- **No fabricated likeness.** The About portrait is a drawn card, not a face.
-  If a real photograph turns up, drop it in `img/` and swap the div for an
-  `<img>`.
+- **No fabricated likeness.** About carries no portrait at all — the drawn
+  stand-in card was removed on the user's instruction, and inventing a face is
+  not an option. Don't reintroduce a placeholder; only a real photograph the
+  user supplies belongs there.
 
 ## Traps this repo has already fallen into
 
