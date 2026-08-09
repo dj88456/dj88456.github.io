@@ -1,6 +1,7 @@
-/* Apple devices get the real San Francisco; everyone else gets Inter,
-   which is the closest thing to it that can be served over the web. */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+/* Geist and Geist Mono, both variable, both served by Google Fonts.
+   Geist carries the headings, nav and body; Geist Mono carries every
+   label, date and diagram annotation. */
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Geist+Mono:wght@400..600&display=swap');
 
 /* ══════════════════════════════════════════════════════════════
    Alex Dai — personal site
@@ -9,17 +10,17 @@
 
 /* ── TOKENS ───────────────────────────────────────────────── */
 :root {
-  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
-          "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
   --display: var(--sans);
-  --mono: ui-monospace, SFMono-Regular, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  --mono: "Geist Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
   /* light */
   --bg:      #fbfbfd;
   --raised:  #ffffff;
   --ink:     #1d1d1f;
-  --muted:   #6e6e73;
-  --faint:   #86868b;
+  --muted:   #3f4045;   /* body and subtitles — deliberately not grey */
+  --faint:   #6a6b70;   /* mono labels, dates, diagram annotations */
   --rule:    #e4e4e8;
   --rule-2:  #d0d0d6;
   --grid:    rgba(29, 29, 31, .04);
@@ -49,8 +50,8 @@
   --bg:      #0a0a0c;
   --raised:  #16161a;
   --ink:     #f5f5f7;
-  --muted:   #a1a1a8;
-  --faint:   #71717a;
+  --muted:   #c4c4cb;   /* the same lift, mirrored for dark */
+  --faint:   #8e8e97;
   --rule:    #26262c;
   --rule-2:  #3a3a42;
   --grid:    rgba(245, 245, 247, .035);
@@ -617,6 +618,46 @@ section.band + section.band { border-top: 1px solid var(--rule); }
 }
 .prose td { color: var(--muted); }
 .prose tbody tr:last-child td { border-bottom: 0; }
+
+/* the vertical timeline inside the career article — its styles used to
+   live in that page's own <style> block */
+.career-timeline {
+  position: relative;
+  display: grid;
+  gap: 1.75rem;
+  margin: 2.5rem 0;
+  padding-left: 1.6rem;
+}
+.career-timeline::before {
+  content: "";
+  position: absolute;
+  left: 3px; top: 0.55rem; bottom: 0.55rem;
+  width: 1px;
+  background: var(--rule);
+}
+.ct-item { position: relative; }
+.ct-dot {
+  position: absolute;
+  left: -1.6rem; top: 0.45rem;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--bg);
+}
+.ct-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+.ct-meta {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--faint);
+  margin-bottom: 0.5rem;
+}
+.ct-body { font-size: 0.95rem; color: var(--muted); line-height: 1.65; }
 
 .divider {
   height: 1px;
